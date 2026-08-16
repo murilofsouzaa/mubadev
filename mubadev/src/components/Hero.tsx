@@ -12,7 +12,6 @@ export const Hero: React.FC = React.memo(() => {
   const [textIndex, setTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
 
-  // Ref para controlar a animação de scramble via rAF
   const animationFrameRef = useRef<number | null>(null);
 
   // 1. Efeito de digitação suave do comando inicial
@@ -39,7 +38,7 @@ export const Hero: React.FC = React.memo(() => {
     const totalFrames = 22;
     let frame = 0;
     let lastFrameTime = performance.now();
-    const frameInterval = 35; // ms entre frames da animação
+    const frameInterval = 35;
 
     const animate = (currentTime: number) => {
       if (currentTime - lastFrameTime >= frameInterval) {
@@ -70,7 +69,6 @@ export const Hero: React.FC = React.memo(() => {
 
     animationFrameRef.current = requestAnimationFrame(animate);
 
-    // Timer para alternar para a próxima palavra
     const switchTimeout = setTimeout(() => {
       setTextIndex((prev) => (prev + 1) % WORDS.length);
     }, 3800);
@@ -103,7 +101,8 @@ export const Hero: React.FC = React.memo(() => {
             <span className="text-orange-1">root@fedora</span>
             <span className="text-text-faint">:</span>
             <span className="text-orange-3">~#</span>
-            <span className="text-white tracking-wide">{typedCommand}</span>
+            {/* CORREÇÃO: Usando text-text em vez de text-white */}
+            <span className="text-text tracking-wide">{typedCommand}</span>
 
             {/* Cursor piscante durante a digitação */}
             {!isCommandDone && (
@@ -118,13 +117,14 @@ export const Hero: React.FC = React.memo(() => {
             )}
           </div>
 
-          <div className="relative overflow-hidden bg-panel/40 border-l-2 border-orange-1 pl-4 py-3 min-h-[76px] flex items-center rounded-r">
-            {/* Linhas de varredura CRT */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.2)_50%)] bg-[length:100%_4px] opacity-25 pointer-events-none" />
+          <div className="relative overflow-hidden bg-panel border-l-2 border-orange-1 pl-4 py-3 min-h-[76px] flex items-center rounded-r shadow-sm">
+            {/* Linhas de varredura CRT ajustadas para opacidade adaptativa */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.05)_50%)] dark:bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[length:100%_4px] pointer-events-none" />
 
             <h1 className="text-[28px] sm:text-[38px] md:text-[44px] font-bold leading-none tracking-tight flex items-center relative z-10">
               <span className="text-orange-1 mr-3">&gt;</span>
-              <span className="text-white uppercase font-mono">
+              {/* CORREÇÃO: Alterado de text-white para text-text */}
+              <span className="text-text uppercase font-mono">
                 {isCommandDone ? displayText : ''}
               </span>
             </h1>
@@ -132,8 +132,8 @@ export const Hero: React.FC = React.memo(() => {
         </div>
 
         {/* System Info Bar */}
-        <div className="border border-border bg-panel/80 p-3 rounded-md mb-6 text-[11px] text-text-dim backdrop-blur-sm">
-          <div className="flex justify-between items-center border-b border-border/80 pb-2 mb-2">
+        <div className="border border-border bg-panel p-3 rounded-md mb-6 text-[11px] text-text-dim backdrop-blur-sm">
+          <div className="flex justify-between items-center border-b border-border pb-2 mb-2">
             <span className="text-orange-1 font-bold flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-orange-1 animate-ping inline-block" />
               [TTY1] - DEV_SESSION_ACTIVE
@@ -148,16 +148,17 @@ export const Hero: React.FC = React.memo(() => {
 
         {/* Call to Actions */}
         <div className="flex gap-3 flex-wrap font-mono">
+          {/* CORREÇÃO: Substituído cor fixa #0d0e11 por texto com contraste garantido */}
           <a
             href="#projetos"
-            className="text-[12px] px-4 py-3 rounded bg-orange-1 text-[#0d0e11] font-bold border border-orange-1 inline-flex items-center gap-2 transition-all duration-150 hover:bg-orange-2 hover:border-orange-2 hover:shadow-[0_0_12px_rgba(255,107,0,0.3)] focus-visible:outline-orange-1"
+            className="text-[12px] px-4 py-3 rounded bg-orange-1 text-white dark:text-[#0d0e11] font-bold border border-orange-1 inline-flex items-center gap-2 transition-all duration-150 hover:bg-orange-2 hover:border-orange-2 hover:shadow-[0_0_12px_rgba(255,107,0,0.3)] focus-visible:outline-orange-1"
           >
             <span>$ ls projetos</span>
-            <span className="bg-[#0d0e11] text-orange-1 px-1.5 py-0.5 rounded text-[10px]">[EXE]</span>
+            <span className="bg-black/20 dark:bg-[#0d0e11] text-white dark:text-orange-1 px-1.5 py-0.5 rounded text-[10px]">[EXE]</span>
           </a>
           <a
             href="#contato"
-            className="text-[12px] px-4 py-3 rounded border border-border text-text inline-flex items-center gap-2 transition-all duration-150 hover:border-orange-1 hover:text-orange-1 bg-panel/60 focus-visible:outline-orange-1"
+            className="text-[12px] px-4 py-3 rounded border border-border text-text inline-flex items-center gap-2 transition-all duration-150 hover:border-orange-1 hover:text-orange-1 bg-panel focus-visible:outline-orange-1"
           >
             <span>$ cd contato</span>
           </a>
