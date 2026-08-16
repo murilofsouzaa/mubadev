@@ -11,7 +11,7 @@ export const Footer: React.FC = React.memo(() => {
 
           <div className="flex gap-2.5">
             <a
-              href="#"
+              href="https://github.com/murilofsouzaa"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -22,7 +22,7 @@ export const Footer: React.FC = React.memo(() => {
               </svg>
             </a>
             <a
-              href="#"
+              href="www.linkedin.com/in/murilofsouzaa"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -33,7 +33,7 @@ export const Footer: React.FC = React.memo(() => {
               </svg>
             </a>
             <a
-              href="mailto:seu-email@exemplo.com"
+              href="mailto:onemurilo@gmail.com"
               aria-label="E-mail"
               className="w-[38px] h-[38px] border border-border rounded-lg flex items-center justify-center text-text-dim transition-all duration-200 hover:border-orange-2 hover:text-orange-1 hover:-translate-y-0.5"
             >
