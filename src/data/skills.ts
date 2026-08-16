@@ -42,9 +42,10 @@ export const SKILLS_DATA: SkillItemEnhanced[] = [
     category: 'DevOps & Ferramentas',
     items: [
       { name: 'Docker', icon: 'Box'},
+      { name: 'Github Actions', icon: 'RefreshCcwDot'},
       { name: 'Nginx', icon: 'Cpu'},
       { name: 'Linux', icon: 'Terminal'},
-      { name: 'Git & GitHub', icon: 'GitFork'},
+      { name: 'Git', icon: 'GitFork'},
     ],
   },
 ];
