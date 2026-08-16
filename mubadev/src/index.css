@@ -38,6 +38,10 @@ html, body, a, button, input {
   cursor: none !important;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg);
   color: #ffffff;

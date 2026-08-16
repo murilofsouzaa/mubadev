@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { ProjectItem } from '../types/portfolio';
+import type { ProjectItem } from '../../types/portfolio';
 
 interface ProjectModalProps {
   project: ProjectItem | null;

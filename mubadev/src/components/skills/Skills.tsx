@@ -1,6 +1,6 @@
 import React from 'react';
 import { SkillCard } from './SkillCard';
-import type { SkillItem } from '../types/portfolio';
+import type { SkillItem } from '../../types/portfolio';
 
 const SKILLS_DATA: SkillItem[] = [
   { id: '1', category: 'Frontend', items: ['React', 'Tailwind', 'JavaScript'], icon: 'code' },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import type { SkillItem } from '../types/portfolio';
+import type { SkillItem } from '../../types/portfolio';
 
 interface SkillCardProps {
   skill: SkillItem;

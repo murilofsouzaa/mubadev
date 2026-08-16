@@ -2,10 +2,11 @@ import React from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { Skills } from './components/Skills';
-import { Projects } from './components/Projects';
+import { Skills } from './components/skills/Skills';
+import { Projects } from './components/projects/Projects';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
+import { ScrollToTop } from './components/ScrollToTop';
 
 export const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ export const App: React.FC = () => {
         </main>
         <Footer />
       </div>
+      <ScrollToTop />
     </ThemeProvider>
   );
 };

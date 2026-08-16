@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import type { ProjectItem } from '../types/portfolio';
+import type { ProjectItem } from '../../types/portfolio';
 
 interface ProjectCardProps {
   project: ProjectItem;

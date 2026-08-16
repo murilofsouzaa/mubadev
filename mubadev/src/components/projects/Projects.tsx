@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ProjectCard } from './ProjectCard';
 import { ProjectModal } from './ProjectModal';
-import { PROJECTS_DATA } from '../data/projects'; 
-import type { ProjectItem } from '../types/portfolio';
+import { PROJECTS_DATA } from '../../data/projects'; 
+import type { ProjectItem } from '../../types/portfolio';
 
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
