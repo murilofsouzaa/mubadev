@@ -1,22 +1,9 @@
+// src/components/Projects.tsx
 import React, { useState } from 'react';
 import { ProjectCard } from './ProjectCard';
 import { ProjectModal } from './ProjectModal';
+import { PROJECTS_DATA } from '../data/projects'; 
 import type { ProjectItem } from '../types/portfolio';
-
-// Certifique-se de que cada projeto possui todos os campos
-const PROJECTS_DATA: ProjectItem[] = [
-  {
-    id: '1',
-    title: 'Sistema de Gestão',
-    description: 'Aplicação full-stack desenvolvida para automação de processos.',
-    fullDescription: 'Descrição detalhada do projeto aqui...',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
-    youtubeId: 'dQw4w9WgXcQ',
-    tags: ['React', 'Node.js', 'TypeScript'],
-    githubUrl: 'https://github.com/seu-usuario/projeto-1',
-    deployUrl: 'https://meu-projeto.com',
-  },
-];
 
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
@@ -40,12 +27,11 @@ export const Projects: React.FC = () => {
           <ProjectCard
             key={project.id}
             project={project}
-            onOpenDetails={(proj) => setSelectedProject(proj)}
+            onOpenDetails={setSelectedProject}
           />
         ))}
       </div>
 
-      {/* Renderização do Modal */}
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}

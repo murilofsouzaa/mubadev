@@ -14,7 +14,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       onClick={() => onOpenDetails(project)}
-      className="bg-panel border border-border rounded-lg overflow-hidden font-mono flex flex-col justify-between transition-all duration-200 hover:border-orange-1 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(255,107,0,0.12)] group cursor-pointer"
+      /* Adicionamos 'cursor-none' em vez de 'cursor-pointer' para não sobrepor o cursor customizado */
+      className="bg-panel border border-border rounded-lg overflow-hidden font-mono flex flex-col justify-between transition-all duration-200 hover:border-orange-1 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(255,107,0,0.12)] group cursor-none"
     >
       {/* Topo do Terminal Card */}
       <div className="flex items-center justify-between px-3.5 py-2 bg-panel-2 border-b border-border-soft text-[11px]">
@@ -28,7 +29,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
         </span>
       </div>
 
-      {/* Imagem do Projeto com Badge de Status "ONLINE" */}
+      {/* Imagem do Projeto */}
       <div className="relative aspect-video w-full overflow-hidden bg-panel-2 border-b border-border-soft">
         <img
           src={project.image}
@@ -37,7 +38,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
         />
         <div className="absolute inset-0 bg-gradient-to-t from-panel/90 via-transparent to-transparent opacity-80" />
 
-        {/* Badge Indicando que o Site está no ar */}
+        {/* Badge Online */}
         {project.deployUrl && (
           <div className="absolute top-2.5 right-2.5 bg-black/80 backdrop-blur-md border border-green-500/50 text-green-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1.5 shadow-lg">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
@@ -71,7 +72,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
             ))}
           </div>
 
-          {/* Ações: Ver Detalhes / Acessar Site Direto */}
+          {/* Botões do Card */}
           <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
@@ -79,7 +80,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
                 e.stopPropagation();
                 onOpenDetails(project);
               }}
-              className="text-[11px] py-2 rounded bg-panel-2 border border-border text-text-dim font-bold transition-all duration-150 hover:border-orange-1 hover:text-orange-1 hover:bg-panel flex items-center justify-center gap-1"
+              className="text-[11px] py-2 rounded bg-panel-2 border border-border text-text-dim font-bold transition-all duration-150 hover:border-orange-1 hover:text-orange-1 hover:bg-panel flex items-center justify-center gap-1 cursor-none"
             >
               <span>$ detalhes</span>
             </button>
@@ -90,7 +91,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-[11px] py-2 rounded bg-orange-1 text-black font-bold transition-all duration-150 hover:bg-orange-2 flex items-center justify-center gap-1 shadow-sm"
+                className="text-[11px] py-2 rounded bg-orange-1 text-black font-bold transition-all duration-150 hover:bg-orange-2 flex items-center justify-center gap-1 shadow-sm cursor-none"
               >
                 <span>./ver_site ↗</span>
               </a>
