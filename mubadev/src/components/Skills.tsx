@@ -3,30 +3,12 @@ import { SkillCard } from './SkillCard';
 import type { SkillItem } from '../types/portfolio';
 
 const SKILLS_DATA: SkillItem[] = [
-  { 
-    id: '1', 
-    category: 'Frontend', 
-    items: ['React', 'Tailwind CSS', 'TypeScript', 'JavaScript'], 
-    icon: 'code' 
-  },
-  { 
-    id: '2', 
-    category: 'Backend', 
-    items: ['Java', 'Spring Boot', 'Node.js', 'TypeScript'], 
-    icon: 'server' 
-  },
-  { 
-    id: '3', 
-    category: 'Bancos de Dados', 
-    items: ['PostgreSQL', 'MySQL', 'MongoDB'], 
-    icon: 'database' 
-  },
-  { 
-    id: '4', 
-    category: 'DevOps & Infra', 
-    items: ['Docker', 'Nginx', 'Linux', 'Git'], 
-    icon: 'terminal' 
-  },
+  { id: '1', category: 'Frontend', items: ['React', 'Tailwind', 'JavaScript'], icon: 'code' },
+  { id: '2', category: 'Backend', items: ['Node.js', 'Express'], icon: 'server' },
+  { id: '3', category: 'Dados', items: ['SQL Server', 'Supabase'], icon: 'database' },
+  { id: '4', category: 'Linguagens', items: ['JavaScript', 'Java'], icon: 'terminal' },
+  { id: '5', category: 'Infra & Docs', items: ['Sistemas', 'Playbooks TI'], icon: 'file-text' },
+  { id: '6', category: 'Outros', items: ['Git', 'LaTeX (ABNT)'], icon: 'git' },
 ];
 
 export const Skills: React.FC = React.memo(() => {
