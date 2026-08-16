@@ -4,62 +4,106 @@ import type { ProjectItem } from '../types/portfolio';
 
 interface ProjectCardProps {
   project: ProjectItem;
-  index: number;
+  onOpenDetails: (project: ProjectItem) => void;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = React.memo(({ project, index }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.35, delay: index * 0.08 }}
-      className="bg-panel border border-border rounded-[10px] overflow-hidden transition-all duration-250 hover:border-orange-3 hover:-translate-y-1 hover:shadow-card-hover flex flex-col"
+      viewport={{ once: true }}
+      onClick={() => onOpenDetails(project)}
+      className="bg-panel border border-border rounded-lg overflow-hidden font-mono flex flex-col justify-between transition-all duration-200 hover:border-orange-1 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(255,107,0,0.12)] group cursor-pointer"
     >
-      <div className="h-[190px] bg-[repeating-linear-gradient(135deg,var(--img-a),var(--img-a)_10px,var(--img-b)_10px,var(--img-b)_20px)] relative flex items-center justify-center border-b border-border-soft">
-        <span className="font-mono text-[11px] text-orange-3 bg-[color-mix(in_srgb,var(--bg)_55%,transparent)] border border-dashed border-orange-4 px-3 py-1.5 rounded">
-          imagem do projeto
+      {/* Topo do Terminal Card */}
+      <div className="flex items-center justify-between px-3.5 py-2 bg-panel-2 border-b border-border-soft text-[11px]">
+        <div className="flex items-center gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-border group-hover:bg-red-500/80 transition-colors" />
+          <span className="w-2.5 h-2.5 rounded-full bg-border group-hover:bg-yellow-500/80 transition-colors" />
+          <span className="w-2.5 h-2.5 rounded-full bg-orange-3 group-hover:bg-green-500/80 transition-colors" />
+        </div>
+        <span className="text-text-faint text-[10px]">
+          ./{project.title.toLowerCase().replace(/\s+/g, '_')}.app
         </span>
       </div>
 
-      <div className="p-5 sm:p-[22px] flex flex-col flex-1">
-        <div className="text-[17px] font-bold mb-2 flex items-center justify-between">
-          <span>{project.title}</span>
-          <span className="font-mono text-[12px] text-text-faint font-normal">{project.number}</span>
+      {/* Imagem do Projeto com Badge de Status "ONLINE" */}
+      <div className="relative aspect-video w-full overflow-hidden bg-panel-2 border-b border-border-soft">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover grayscale opacity-80 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-panel/90 via-transparent to-transparent opacity-80" />
+
+        {/* Badge Indicando que o Site está no ar */}
+        {project.deployUrl && (
+          <div className="absolute top-2.5 right-2.5 bg-black/80 backdrop-blur-md border border-green-500/50 text-green-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1.5 shadow-lg">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            <span>ONLINE</span>
+          </div>
+        )}
+      </div>
+
+      {/* Conteúdo do Card */}
+      <div className="p-4 flex-1 flex flex-col justify-between">
+        <div>
+          <h3 className="text-[16px] font-bold text-text mb-2 flex items-center gap-2 group-hover:text-orange-1 transition-colors">
+            <span className="text-orange-2">&gt;</span>
+            {project.title}
+          </h3>
+          <p className="text-[12px] text-text-dim line-clamp-2 mb-4 leading-relaxed">
+            {project.description}
+          </p>
         </div>
 
-        <p className="text-[13.5px] text-text-dim leading-[1.6] mb-4 flex-1">
-          {project.description}
-        </p>
+        <div>
+          {/* Tags */}
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-[10px] bg-panel-2 border border-border text-text-faint px-2 py-0.5 rounded group-hover:border-orange-1/30 transition-colors"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.tags.map((tag) => (
-            <span key={tag} className="font-mono text-[10.5px] py-1 px-5 border border-border rounded-[20px] text-orange-2">
-              {tag}
-            </span>
-          ))}
-        </div>
+          {/* Ações: Ver Detalhes / Acessar Site Direto */}
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenDetails(project);
+              }}
+              className="text-[11px] py-2 rounded bg-panel-2 border border-border text-text-dim font-bold transition-all duration-150 hover:border-orange-1 hover:text-orange-1 hover:bg-panel flex items-center justify-center gap-1"
+            >
+              <span>$ detalhes</span>
+            </button>
 
-        <div className="flex gap-[18px] font-mono text-[12.5px]">
-          {project.repoUrl && (
-            <a href={project.repoUrl} className="text-orange-1 hover:border-b hover:border-orange-1 transition-all">
-              repositório →
-            </a>
-          )}
-          {project.demoUrl && (
-            <a href={project.demoUrl} className="text-orange-1 hover:border-b hover:border-orange-1 transition-all">
-              demo →
-            </a>
-          )}
-          {project.detailsUrl && (
-            <a href={project.detailsUrl} className="text-orange-1 hover:border-b hover:border-orange-1 transition-all">
-              ver detalhes →
-            </a>
-          )}
+            {project.deployUrl ? (
+              <a
+                href={project.deployUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="text-[11px] py-2 rounded bg-orange-1 text-black font-bold transition-all duration-150 hover:bg-orange-2 flex items-center justify-center gap-1 shadow-sm"
+              >
+                <span>./ver_site ↗</span>
+              </a>
+            ) : (
+              <div className="text-[11px] py-2 rounded bg-panel-2 border border-border/40 text-text-faint text-center cursor-not-allowed">
+                [OFFLINE]
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>
   );
-});
+};
 
 ProjectCard.displayName = 'ProjectCard';

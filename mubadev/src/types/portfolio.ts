@@ -9,11 +9,12 @@ export interface SkillItem {
 
 export interface ProjectItem {
   id: string;
-  number: string;
   title: string;
   description: string;
+  fullDescription?: string;
+  image: string;
   tags: string[];
-  repoUrl?: string;
-  demoUrl?: string;
-  detailsUrl?: string;
+  githubUrl?: string;
+  deployUrl?: string;
+  youtubeId?: string; // Exemplo: "dQw4w9WgXcQ"
 }

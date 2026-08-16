@@ -14,12 +14,28 @@ const SKILLS_DATA: SkillItem[] = [
 export const Skills: React.FC = React.memo(() => {
   return (
     <section id="sobre" className="py-12 sm:py-[70px]">
-      <div className="mb-9">
-        <span className="font-mono text-[12px] text-orange-2 mb-2.5 block">~/sobre</span>
-        <h2 className="text-[30px] font-bold tracking-[-0.5px]">Habilidades</h2>
+      {/* Título Principal Estilo CLI/Terminal */}
+      <div className="mb-9 font-mono">
+        <div className="flex items-center gap-2 text-[12px] text-text-dim mb-2">
+          <span className="text-orange-1 font-bold">root@fedora</span>
+          <span className="text-text-faint">:</span>
+          <span className="text-orange-3">~/sobre$</span>
+          <span className="text-text font-semibold">cat ~/.skills</span>
+        </div>
+        
+        <div className="flex items-center gap-3">
+          <span className="text-orange-1 text-[24px] sm:text-[30px] font-bold">&gt;</span>
+          <h2 className="text-[28px] sm:text-[34px] font-bold tracking-[-0.5px] text-text font-mono">
+            Habilidades
+          </h2>
+          <span className="text-[11px] text-text-faint border border-border px-2 py-0.5 rounded bg-panel">
+            {SKILLS_DATA.length} módulos
+          </span>
+        </div>
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(360px,1fr))] gap-[14px]">
+      {/* Grid de Mini Terminais */}
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(340px,1fr))] gap-4">
         {SKILLS_DATA.map((skill, index) => (
           <SkillCard key={skill.id} skill={skill} index={index} />
         ))}

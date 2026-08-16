@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { TerminalCard } from './TerminalCard';
 
-const WORDS = ['MURILO', 'SOFTWARE ENGINEER'];
+const WORDS = ['MURILO FREITAS', 'SOFTWARE ENGINEER'];
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=';
 const COMMAND_TEXT = 'whoami --verbose';
 
@@ -101,7 +101,6 @@ export const Hero: React.FC = React.memo(() => {
             <span className="text-orange-1">root@fedora</span>
             <span className="text-text-faint">:</span>
             <span className="text-orange-3">~#</span>
-            {/* CORREÇÃO: Usando text-text em vez de text-white */}
             <span className="text-text tracking-wide">{typedCommand}</span>
 
             {/* Cursor piscante durante a digitação */}
@@ -118,12 +117,11 @@ export const Hero: React.FC = React.memo(() => {
           </div>
 
           <div className="relative overflow-hidden bg-panel border-l-2 border-orange-1 pl-4 py-3 min-h-[76px] flex items-center rounded-r shadow-sm">
-            {/* Linhas de varredura CRT ajustadas para opacidade adaptativa */}
+            {/* Linhas de varredura CRT */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.05)_50%)] dark:bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[length:100%_4px] pointer-events-none" />
 
             <h1 className="text-[28px] sm:text-[38px] md:text-[44px] font-bold leading-none tracking-tight flex items-center relative z-10">
               <span className="text-orange-1 mr-3">&gt;</span>
-              {/* CORREÇÃO: Alterado de text-white para text-text */}
               <span className="text-text uppercase font-mono">
                 {isCommandDone ? displayText : ''}
               </span>
@@ -146,21 +144,25 @@ export const Hero: React.FC = React.memo(() => {
           </div>
         </div>
 
-        {/* Call to Actions */}
+        {/* Call to Actions Refatoradas */}
         <div className="flex gap-3 flex-wrap font-mono">
-          {/* CORREÇÃO: Substituído cor fixa #0d0e11 por texto com contraste garantido */}
+          {/* Botão de Ação: Projetos */}
           <a
             href="#projetos"
-            className="text-[12px] px-4 py-3 rounded bg-orange-1 text-white dark:text-[#0d0e11] font-bold border border-orange-1 inline-flex items-center gap-2 transition-all duration-150 hover:bg-orange-2 hover:border-orange-2 hover:shadow-[0_0_12px_rgba(255,107,0,0.3)] focus-visible:outline-orange-1"
+            className="group text-[12px] px-4 py-2.5 rounded border border-border bg-panel text-text inline-flex items-center gap-2.5 transition-all duration-200 hover:border-orange-1 hover:shadow-[0_0_12px_rgba(255,107,0,0.2)] focus-visible:outline-orange-1"
           >
-            <span>$ ls projetos</span>
-            <span className="bg-black/20 dark:bg-[#0d0e11] text-white dark:text-orange-1 px-1.5 py-0.5 rounded text-[10px]">[EXE]</span>
+            <span className="text-orange-1 font-bold group-hover:translate-x-0.5 transition-transform duration-150">&gt;</span>
+            <span>$ ls ./projetos</span>
           </a>
+
+          {/* Botão de Ação: Contato */}
           <a
             href="#contato"
-            className="text-[12px] px-4 py-3 rounded border border-border text-text inline-flex items-center gap-2 transition-all duration-150 hover:border-orange-1 hover:text-orange-1 bg-panel focus-visible:outline-orange-1"
+            className="group text-[12px] px-4 py-2.5 rounded border border-border bg-panel text-text inline-flex items-center gap-2.5 transition-all duration-200 hover:border-orange-1 hover:shadow-[0_0_12px_rgba(255,107,0,0.2)] focus-visible:outline-orange-1"
           >
-            <span>$ cd contato</span>
+            <span className="text-orange-1 font-bold group-hover:translate-x-0.5 transition-transform duration-150">&gt;</span>
+            <span>$ cd ./contato</span>
+           
           </a>
         </div>
       </motion.div>
