@@ -55,24 +55,24 @@ export const TerminalCard: React.FC = React.memo(() => {
 
       <div className="p-4 text-text-dim">
         {/* Comando inicial */}
-        <div className="mb-2">
-          <span className="text-orange-2">$ </span>
+        <div className="flex gap-1 mb-2">
+          <span className="text-orange-2">$ cat</span>
           <span ref={commandRef} className="text-text" />
+          <div className="terminal-response text-text mb-2 font-bold">murilo_f_de_souza.md</div>
         </div>
 
         {/* Respostas do terminal */}
-        <div className="terminal-response text-text mb-2">murilo</div>
-        
+
         <div className="terminal-response mt-3.5 mb-2">
-          <span className="text-text-faint">status</span> → <span className="text-text">disponível</span>
+          <span className="text-text-faint">cursando</span> → <span className="text-text">engenharia_de_software</span>
         </div>
-        
+
         <div className="terminal-response mb-2">
-          <span className="text-text-faint">local</span> → <span className="text-text">Belo Horizonte, BR</span>
+          <span className="text-text-faint">local</span> → <span className="text-text">belo_horizonte</span>
         </div>
-        
+
         <div className="terminal-response mb-2">
-          <span className="text-text-faint">foco</span> → <span className="text-text">full-stack</span>
+          <span className="text-text-faint">constantemente</span> → <span className="text-text">estudando</span>
         </div>
 
         {/* Prompt final com o cursor piscando */}
