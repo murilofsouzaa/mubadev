@@ -115,9 +115,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[11px] bg-panel-2 border border-border text-orange-1 px-2.5 py-1 rounded"
+                          className="text-[13px] bg-panel-2 border border-border text-orange-1 px-2.5 py-1 rounded"
                         >
-                          #{tag}
+                          {tag}
                         </span>
                       ))}
                     </div>
