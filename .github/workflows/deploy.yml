@@ -1,0 +1,32 @@
+name: Direct VPS Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+
+            cd ~/projects/mubadev
+            
+            git pull origin main
+            
+            docker build -t mubadev-portfolio:1.0 .
+            
+            docker stop mubadev-portfolio || true
+            docker rm mubadev-portfolio || true
+            
+            docker run -d -p 8082:80 --name mubadev-portfolio mubadev-portfolio:1.0

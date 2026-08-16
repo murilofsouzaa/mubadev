@@ -15,6 +15,6 @@ FROM nginx:alpine
 # Copia os arquivos de build gerados pelo Vite para a pasta pública do Nginx
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
