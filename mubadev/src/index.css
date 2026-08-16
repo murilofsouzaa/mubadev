@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0d0e11;
+  --panel: #14161d;
+  --panel-sub: #1a1d26;
+  --border: #262936;
+  --border-soft: #1f222e;
+  --orange-1: #ff6b00;
+  --orange-2: #ff8533;
+  --orange-3: #ffa366;
+  --orange-4: rgba(255, 107, 0, 0.2);
+  --text-dim: #9aa0a6;
+  --text-faint: #5f6368;
+  --img-a: #1a1d26;
+  --img-b: #14161d;
+}
+
+[data-theme="light"] {
+  --bg: #f8f9fa;
+  --panel: #ffffff;
+  --panel-sub: #f1f3f5;
+  --border: #e9ecef;
+  --border-soft: #f1f3f5;
+  --orange-1: #e65c00;
+  --orange-2: #ff771d;
+  --orange-3: #d95200;
+  --orange-4: rgba(230, 92, 0, 0.15);
+  --text-dim: #495057;
+  --text-faint: #868e96;
+  --img-a: #e9ecef;
+  --img-b: #f1f3f5;
+}
+
+html, body, a, button, input {
+  cursor: none !important;
+}
+
+body {
+  background-color: var(--bg);
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+[data-theme="light"] body {
+  color: #212529;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--orange-1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orange-2);
+}
+
+/* Personalização do Cursor de Seleção de Texto */
+::selection {
+  background-color: var(--orange-1);
+  color: #ffffff;
+}
