@@ -23,6 +23,15 @@ export default {
       boxShadow: {
         'card-hover': '0 8px 30px rgba(0, 0, 0, 0.12)',
       },
+      keyframes: {
+        'cursor-blink': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+      },
+      animation: {
+        'cursor-blink': 'cursor-blink 1s step-start infinite',
+      },
     },
   },
   plugins: [],

@@ -76,3 +76,13 @@ body {
   background-color: var(--orange-1);
   color: #ffffff;
 }
+
+/* Animação fallback do cursor do terminal */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-cursor-blink {
+  animation: cursorBlink 1s step-start infinite;
+}

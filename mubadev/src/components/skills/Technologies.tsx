@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {SKILLS_DATA} from '../../data/skills'
-import { SkillCard } from './SkillCard';
+import { SkillCard } from './TechnologiesCard';
 
 const containerVariants = {
   hidden: { opacity: 0 },
