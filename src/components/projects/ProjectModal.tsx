@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ProjectItem } from '../../types/portfolio';
+import { Globe } from 'lucide-react'
+
 
 interface ProjectModalProps {
   project: ProjectItem | null;
@@ -147,7 +149,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                       rel="noopener noreferrer"
                       className="flex-1 text-[12px] px-4 py-2.5 rounded bg-orange-1 text-black font-bold text-center transition-all duration-150 hover:bg-orange-2 flex items-center justify-center gap-2 cursor-none"
                     >
-                      <span>./ver_site</span>
+                      <div className="flex items-center gap-2">
+                        <span>./ver_site </span>
+                        <span >
+                          <Globe className="w-auto h-3" />
+                        </span>
+                      </div>
                     </a>
                   )}
                 </div>

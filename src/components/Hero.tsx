@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { TerminalCard } from './TerminalCard';
 
-const WORDS = ['MURILO FREITAS', 'SOFTWARE ENGINEER'];
+const WORDS = ['MURILO FREITAS', 'SOFTWARE ENGINEER', 'MURA', ];
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=';
 const COMMAND_TEXT = 'whoami --verbose';
 

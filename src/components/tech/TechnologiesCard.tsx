@@ -9,7 +9,7 @@ interface SkillCardProps {
 
 // Renderizador dinâmico de ícones da Lucide com fallback
 const DynamicIcon: React.FC<{ name: string; className?: string }> = ({ name, className = 'w-4 h-4' }) => {
-  const IconComponent = (LucideIcons as Record<string, React.FC<{ className?: string }>>)[name] || LucideIcons.Code2;
+  const IconComponent = (LucideIcons as unknown as Record<string, React.FC<{ className?: string }>>)[name] || LucideIcons.Code2;
   return <IconComponent className={className} />;
 };
 

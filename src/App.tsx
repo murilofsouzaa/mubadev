@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { Skills } from './components/skills/Technologies';
+import { Skills } from './components/tech/Technologies';
 import { Projects } from './components/projects/Projects';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './ui/CustomCursor';

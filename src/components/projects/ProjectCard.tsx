@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import type { ProjectItem } from '../../types/portfolio';
-
+import { Globe } from 'lucide-react'
+ 
 interface ProjectCardProps {
   project: ProjectItem;
   onOpenDetails: (project: ProjectItem) => void;
@@ -93,7 +94,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
                 onClick={(e) => e.stopPropagation()}
                 className="text-[11px] py-2 rounded bg-orange-1 text-black font-bold transition-all duration-150 hover:bg-orange-2 flex items-center justify-center gap-1 shadow-sm cursor-none"
               >
-                <span>./ver_site ↗</span>
+                <div className="flex items-center gap-2">
+                  <span>./ver_site </span>
+                  <span >
+                    <Globe className="w-auto h-3" />
+                  </span>
+                </div>
               </a>
             ) : (
               <div className="text-[11px] py-2 rounded bg-panel-2 border border-border/40 text-text-faint text-center cursor-not-allowed">

@@ -22,7 +22,7 @@ export const Footer: React.FC = React.memo(() => {
               </svg>
             </a>
             <a
-              href="www.linkedin.com/in/murilofsouzaa"
+              href="https://linkedin.com/in/murilofsouzaa"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
