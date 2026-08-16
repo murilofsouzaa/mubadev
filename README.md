@@ -8,7 +8,8 @@
 
 This project was built using modern industry technologies to ensure high performance, responsiveness, and an exceptional user experience:
 
-**Front-end:** React, TypeScript, Tailwind CSS
+**Front-end:** React, TypeScript, Tailwind CSS \
+\
 **Server / Deploy:** Nginx, Docker, Linux VPS
 
 ##  Architecture & Deployment
