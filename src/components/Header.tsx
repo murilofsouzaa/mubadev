@@ -9,10 +9,8 @@ export const Header: React.FC = React.memo(() => {
   return (
     <header className="sticky top-0 z-[100] bg-[color-mix(in_srgb,var(--bg)_88%,transparent)] backdrop-blur-[10px] border-b border-border-soft">
       <div className="max-w-[1080px] mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="font-mono font-semibold text-[15px] tracking-[0.5px] text-text">
-          <span className="text-orange-2">&lt;/</span>
-          murilo
-          <span className="text-orange-2">&gt;</span>
+        <div className="font-shareTech font-semibold text-[16px] tracking-[0.5px] text-text text-orange-2">
+          murilo@fedora/~#
         </div>
 
         <nav className="hidden sm:flex gap-[2px]">

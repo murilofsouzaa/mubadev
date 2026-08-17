@@ -7,6 +7,10 @@ export default {
   darkMode: ['class', '[data-theme="dark"]'],
   theme: {
     extend: {
+      fontFamily:{
+        vt323: ["VT323", "monospace"],
+        shareTech: ["Share Tech Mono", "monospace"]
+      },
       colors: {
         bg: 'var(--bg)',
         panel: 'var(--panel)',
