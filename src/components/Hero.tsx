@@ -143,28 +143,6 @@ export const Hero: React.FC = React.memo(() => {
             <span>HOST: muba-workstation</span>
           </div>
         </div>
-
-        {/* Call to Actions Refatoradas */}
-        <div className="flex gap-3 flex-wrap font-mono">
-          {/* Botão de Ação: Projetos */}
-          <a
-            href="#projetos"
-            className="group text-[12px] px-4 py-2.5 rounded border border-border bg-panel text-text inline-flex items-center gap-2.5 transition-all duration-200 hover:border-orange-1 hover:shadow-[0_0_12px_rgba(255,107,0,0.2)] focus-visible:outline-orange-1"
-          >
-            <span className="text-orange-1 font-bold group-hover:translate-x-0.5 transition-transform duration-150">&gt;</span>
-            <span>$ ls ./projetos</span>
-          </a>
-
-          {/* Botão de Ação: Contato */}
-          <a
-            href="#contato"
-            className="group text-[12px] px-4 py-2.5 rounded border border-border bg-panel text-text inline-flex items-center gap-2.5 transition-all duration-200 hover:border-orange-1 hover:shadow-[0_0_12px_rgba(255,107,0,0.2)] focus-visible:outline-orange-1"
-          >
-            <span className="text-orange-1 font-bold group-hover:translate-x-0.5 transition-transform duration-150">&gt;</span>
-            <span>$ cd ./contato</span>
-           
-          </a>
-        </div>
       </motion.div>
     </section>
   );
