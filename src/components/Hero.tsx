@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { pdf } from '@react-pdf/renderer';
 import { motion } from 'framer-motion';
 import { TerminalCard } from './TerminalCard';
+// Importe o seu componente de documento PDF (exemplo: MyDocument)
+// import { MyDocument } from './MyDocument'; 
 
 const WORDS = ['MURILO FREITAS', 'SOFTWARE ENGINEER', 'MURA', ];
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=';
@@ -11,6 +14,7 @@ export const Hero: React.FC = React.memo(() => {
   const [isCommandDone, setIsCommandDone] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const animationFrameRef = useRef<number | null>(null);
 
@@ -81,6 +85,39 @@ export const Hero: React.FC = React.memo(() => {
     };
   }, [textIndex, isCommandDone]);
 
+  // Função para gerar e baixar o PDF usando @react-pdf/renderer
+  const handleDownloadPdf = async () => {
+    try {
+      setIsDownloading(true);
+      
+      // 1. Substitua <MyDocument /> pelo seu componente de PDF real
+      // Exemplo: const blob = await pdf(<MyDocument />).toBlob();
+      
+      // Como você não mandou o componente do PDF, certifique-se de importá-lo.
+      // Aqui está um exemplo genérico:
+      const docElement = <></>; // Trocar por <MyDocument />
+      const blob = await pdf(docElement).toBlob();
+
+      // 2. Cria uma URL temporária para o blob
+      const url = URL.createObjectURL(blob);
+
+      // 3. Cria um elemento âncora (<a>) invisível para forçar o download
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'agosto2026.pdf'; // Nome do arquivo baixado
+      document.body.appendChild(link);
+      link.click();
+
+      // 4. Limpeza
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Erro ao gerar o PDF:', error);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   return (
     <section id="inicio" className="py-[60px] md:py-[90px] grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-10 md:gap-[48px] items-center">
       {/* LADO ESQUERDO: Terminal Card */}
@@ -143,6 +180,16 @@ export const Hero: React.FC = React.memo(() => {
             <span>HOST: muba-workstation</span>
           </div>
         </div>
+
+        {/* Botão de Download estilizado com o tema terminal */}
+        <a
+          href="../../public/agosto2026.pdf" 
+          download="Murilo_Freitas_CV.pdf"
+          className="group relative inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-orange-1 border border-orange-400 bg-panel hover:bg-orange-1/10 transition-all rounded cursor-pointer"
+        >
+          <span>&gt;</span>
+          <span>./baixar_curriculo.sh</span>
+        </a>
       </motion.div>
     </section>
   );
