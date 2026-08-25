@@ -150,7 +150,7 @@ export const Hero: React.FC = React.memo(() => {
 
         {/* Botão de Download estilizado com o tema terminal */}
         <a
-          href="/agosto2026.pdf" 
+          href={t.hero.cvFilePath} 
           download={t.hero.cvFileName}
           aria-label={t.hero.downloadAria}
           className="group relative inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-orange-1 border border-orange-400 bg-panel hover:bg-orange-1/10 transition-all rounded cursor-pointer"

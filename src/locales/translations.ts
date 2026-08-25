@@ -17,6 +17,7 @@ export interface TranslationSchema {
     downloadCv: string;
     downloadAria: string;
     cvFileName: string;
+    cvFilePath: string;
     status: string;
   };
   terminalCard: {
@@ -74,7 +75,8 @@ export const translations: Record<Language, TranslationSchema> = {
       words: ['MURILO FREITAS', 'ENGENHEIRO DE SOFTWARE', 'DESENVOLVEDOR FULL STACK'],
       downloadCv: './baixar_curriculo.sh',
       downloadAria: 'Baixar currículo em PDF',
-      cvFileName: 'Murilo_Freitas_CV.pdf',
+      cvFileName: 'Murilo_Freitas_CV_PT.pdf',
+      cvFilePath: '/curriculo_pt.pdf',
       status: '[TTY1] - DEV_SESSION_ACTIVE',
     },
     terminalCard: {
@@ -135,7 +137,8 @@ export const translations: Record<Language, TranslationSchema> = {
       words: ['MURILO FREITAS', 'SOFTWARE ENGINEER', 'FULL STACK DEVELOPER'],
       downloadCv: './download_resume.sh',
       downloadAria: 'Download resume in PDF',
-      cvFileName: 'Murilo_Freitas_Resume.pdf',
+      cvFileName: 'Murilo_Freitas_Resume_EN.pdf',
+      cvFilePath: '/curriculo_en.pdf',
       status: '[TTY1] - DEV_SESSION_ACTIVE',
     },
     terminalCard: {
