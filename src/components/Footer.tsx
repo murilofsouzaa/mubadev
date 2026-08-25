@@ -1,12 +1,15 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Footer: React.FC = React.memo(() => {
+  const { t } = useLanguage();
+
   return (
     <footer id="contato" className="border-t border-border-soft py-[40px] mt-[20px]">
       <div className="max-w-[1080px] mx-auto px-6">
         <div className="flex justify-between items-center flex-wrap gap-5">
           <div className="font-mono text-[14px] text-text-dim">
-            feito por <strong className="text-orange-1 font-bold">Murilo</strong>
+            {t.footer.madeBy} <strong className="text-orange-1 font-bold">Murilo</strong>
           </div>
 
           <div className="flex gap-2.5">
@@ -46,8 +49,8 @@ export const Footer: React.FC = React.memo(() => {
         </div>
 
         <div className="mt-[26px] pt-5 border-t border-border-soft text-[12px] text-text-faint flex justify-between flex-wrap gap-2 font-mono">
-          <span>© 2026 Murilo. Todos os direitos reservados.</span>
-          <span>Belo Horizonte, BR</span>
+          <span>{t.footer.rights}</span>
+          <span>{t.footer.location}</span>
         </div>
       </div>
     </footer>

@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import * as LucideIcons from 'lucide-react';
 import type { SkillItemEnhanced } from '../../data/skills';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface SkillCardProps {
   skill: SkillItemEnhanced;
@@ -23,7 +24,10 @@ const cardVariants = {
 };
 
 export const SkillCard: React.FC<SkillCardProps> = React.memo(({ skill }) => {
+  const { language } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
+
+  const categoryName = language === 'en' && skill.categoryEn ? skill.categoryEn : skill.category;
 
   // Efeito 3D Tilt Sutil
   const x = useMotionValue(0);
@@ -69,7 +73,7 @@ export const SkillCard: React.FC<SkillCardProps> = React.memo(({ skill }) => {
           <div className="flex items-center gap-2">
             <span className="text-orange-1 font-bold text-xs">$</span>
             <h3 className="text-md font-bold uppercase tracking-wider text-text group-hover:text-orange-1 transition-colors">
-              {skill.category}
+              {categoryName}
             </h3>
           </div>
           <span className="text-[13px] text-text-faint">

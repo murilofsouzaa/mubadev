@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 export const ScrollToTop: React.FC = () => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export const ScrollToTop: React.FC = () => {
           transition={{ duration: 0.2 }}
           onClick={scrollToTop}
           type="button"
-          aria-label="Voltar ao topo"
+          aria-label={t.scrollToTop.ariaLabel}
           className="fixed bottom-6 right-6 z-[100] p-3 rounded-lg bg-panel-2 border border-border text-orange-1 hover:border-orange-1 hover:bg-panel shadow-lg font-mono text-xs flex items-center gap-2 group cursor-none transition-all"
         >
           <span className="group-hover:-translate-y-0.5 transition-transform font-bold">▲</span>

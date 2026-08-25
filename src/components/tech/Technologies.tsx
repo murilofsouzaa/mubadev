@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import {SKILLS_DATA} from '../../data/skills'
+import { SKILLS_DATA } from '../../data/skills';
 import { SkillCard } from './TechnologiesCard';
+import { useLanguage } from '../../context/LanguageContext';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -14,25 +15,28 @@ const containerVariants = {
 };
 
 export const Skills: React.FC = React.memo(() => {
+  const { t } = useLanguage();
+
   return (
     <section id="sobre" className="py-12 sm:py-[70px]">
       <div className="flex items-center gap-2 text-[12px] text-text-dim mb-3">
-          <span className="text-orange-1 font-bold">root@fedora</span>
-          <span className="text-text-faint">:</span>
-          <span className="text-orange-3">~/technologies$</span>
-          <span className="text-text font-semibold">ls -la --sort=expertise</span>
-          <span className="inline-block w-1.5 h-3.5 bg-orange-1 animate-pulse ml-1" />
-        </div>
+        <span className="text-orange-1 font-bold">root@fedora</span>
+        <span className="text-text-faint">:</span>
+        <span className="text-orange-3">~/technologies$</span>
+        <span className="text-text font-semibold">ls -la --sort=expertise</span>
+        <span className="inline-block w-1.5 h-3.5 bg-orange-1 animate-pulse ml-1" />
+      </div>
+
       {/* Título Padronizado no Estilo Projetos */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border-soft pb-4 mb-8">
         <div className="flex items-center gap-3">
           <span className="text-orange-1 text-[26px] sm:text-[32px] font-bold">&gt;</span>
           <h2 className="text-[28px] sm:text-[36px] font-bold tracking-tight text-text font-mono uppercase">
-            Tecnologias
+            {t.tech.title}
           </h2>
         </div>
         <span className="text-[11px] font-mono text-text-faint border border-border px-2.5 py-1 rounded bg-panel">
-          {SKILLS_DATA.reduce((acc, curr) => acc + curr.items.length, 0)} tecnologias
+          {SKILLS_DATA.reduce((acc, curr) => acc + curr.items.length, 0)} {t.tech.countLabel}
         </span>
       </div>
 

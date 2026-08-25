@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useLanguage } from '../context/LanguageContext';
 
 export const TerminalCard: React.FC = React.memo(() => {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const commandRef = useRef<HTMLSpanElement>(null);
 
@@ -50,7 +52,7 @@ export const TerminalCard: React.FC = React.memo(() => {
         <span className="w-2.5 h-2.5 rounded-full bg-border" />
         <span className="w-2.5 h-2.5 rounded-full bg-border" />
         <span className="w-2.5 h-2.5 rounded-full bg-orange-3" />
-        <span className="ml-1 text-text-faint text-[11px]">whoami.sh</span>
+        <span className="ml-1 text-text-faint text-[11px]">{t.terminalCard.title}</span>
       </div>
 
       <div className="p-4 text-text-dim">
@@ -58,21 +60,21 @@ export const TerminalCard: React.FC = React.memo(() => {
         <div className="flex gap-1 mb-2">
           <span className="text-orange-2">$ cat</span>
           <span ref={commandRef} className="text-text" />
-          <div className="terminal-response text-text mb-2 font-bold">murilo_f_de_souza.md</div>
+          <div className="terminal-response text-text mb-2 font-bold">{t.terminalCard.file}</div>
         </div>
 
         {/* Respostas do terminal */}
 
         <div className="terminal-response mt-3.5 mb-2">
-          <span className="text-text-faint">cursando</span> → <span className="text-text">engenharia_de_software</span>
+          <span className="text-text-faint">{t.terminalCard.studyingLabel}</span> → <span className="text-text">{t.terminalCard.studyingValue}</span>
         </div>
 
         <div className="terminal-response mb-2">
-          <span className="text-text-faint">local</span> → <span className="text-text">belo_horizonte</span>
+          <span className="text-text-faint">{t.terminalCard.locationLabel}</span> → <span className="text-text">{t.terminalCard.locationValue}</span>
         </div>
 
         <div className="terminal-response mb-2">
-          <span className="text-text-faint">constantemente</span> → <span className="text-text">estudando</span>
+          <span className="text-text-faint">{t.terminalCard.constantlyLabel}</span> → <span className="text-text">{t.terminalCard.constantlyValue}</span>
         </div>
 
         {/* Prompt final com o cursor piscando */}

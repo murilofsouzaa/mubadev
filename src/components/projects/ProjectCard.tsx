@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import type { ProjectItem } from '../../types/portfolio';
-import { Globe } from 'lucide-react'
+import { Globe } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
  
 interface ProjectCardProps {
   project: ProjectItem;
@@ -9,6 +10,8 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails }) => {
+  const { t, resolveText } = useLanguage();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -56,7 +59,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
             {project.title}
           </h3>
           <p className="text-[12px] text-text-dim line-clamp-2 mb-4 leading-relaxed">
-            {project.description}
+            {resolveText(project.description)}
           </p>
         </div>
 
@@ -83,7 +86,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
               }}
               className="text-[11px] py-2 rounded bg-panel-2 border border-border text-text-dim font-bold transition-all duration-150 hover:border-orange-1 hover:text-orange-1 hover:bg-panel flex items-center justify-center gap-1 cursor-none"
             >
-              <span>$ detalhes</span>
+              <span>{t.projects.detailsBtn}</span>
             </button>
 
             {project.deployUrl ? (
@@ -95,15 +98,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
                 className="text-[11px] py-2 rounded bg-orange-1 text-black font-bold transition-all duration-150 hover:bg-orange-2 flex items-center justify-center gap-1 shadow-sm cursor-none"
               >
                 <div className="flex items-center gap-2">
-                  <span>./ver_site </span>
-                  <span >
+                  <span>{t.projects.visitSiteBtn}</span>
+                  <span>
                     <Globe className="w-auto h-3" />
                   </span>
                 </div>
               </a>
             ) : (
               <div className="text-[11px] py-2 rounded bg-panel-2 border border-border/40 text-text-faint text-center cursor-not-allowed">
-                [OFFLINE]
+                {t.projects.offlineBtn}
               </div>
             )}
           </div>

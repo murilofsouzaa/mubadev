@@ -3,8 +3,10 @@ import { ProjectCard } from './ProjectCard';
 import { ProjectModal } from './ProjectModal';
 import { PROJECTS_DATA } from '../../data/projects'; 
 import type { ProjectItem } from '../../types/portfolio';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Projects: React.FC = () => {
+  const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
   return (
@@ -25,7 +27,7 @@ export const Projects: React.FC = () => {
           <div className="flex items-center gap-3">
             <span className="text-orange-1 text-[26px] sm:text-[32px] font-bold">&gt;</span>
             <h2 className="text-[28px] sm:text-[36px] font-bold tracking-tight text-text font-mono uppercase">
-              Meus projetos
+              {t.projects.title}
             </h2>
           </div>
 
@@ -33,7 +35,7 @@ export const Projects: React.FC = () => {
           <div className="flex items-center gap-2 text-[11px] text-text-faint">
             <span className="bg-panel-2 border border-border px-2.5 py-1 rounded flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span>{PROJECTS_DATA.length} APPS_LOADED</span>
+              <span>{PROJECTS_DATA.length} {t.projects.appsLoaded}</span>
             </span>
             <span className="hidden sm:inline-block bg-panel-2 border border-border px-2.5 py-1 rounded">
               PERM: drwxr-xr-x
@@ -44,7 +46,7 @@ export const Projects: React.FC = () => {
         {/* Subtítulo / Saída de Logs CLI */}
         <p className="mt-3 text-[13px] text-text-dim max-w-2xl leading-relaxed">
           <span className="text-orange-2 mr-1.5">//</span>
-          Coleção de aplicações full-stack, sistemas web em produção. Clique em qualquer card para ver a demonstração em vídeo e detalhes de arquitetura.
+          {t.projects.subtitle}
         </p>
       </div>
 

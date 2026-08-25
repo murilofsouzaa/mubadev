@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { pdf } from '@react-pdf/renderer';
 import { motion } from 'framer-motion';
 import { TerminalCard } from './TerminalCard';
-// Importe o seu componente de documento PDF (exemplo: MyDocument)
-// import { MyDocument } from './MyDocument'; 
+import { useLanguage } from '../context/LanguageContext';
 
-const WORDS = ['MURILO FREITAS', 'SOFTWARE ENGINEER', 'MURA', ];
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=';
 const COMMAND_TEXT = 'whoami --verbose';
 
 export const Hero: React.FC = React.memo(() => {
+  const { t } = useLanguage();
+  const words = t.hero.words;
+
   const [typedCommand, setTypedCommand] = useState('');
   const [isCommandDone, setIsCommandDone] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
-  const [isDownloading, setIsDownloading] = useState(false);
 
   const animationFrameRef = useRef<number | null>(null);
 
@@ -38,7 +37,8 @@ export const Hero: React.FC = React.memo(() => {
   useEffect(() => {
     if (!isCommandDone) return;
 
-    const targetWord = WORDS[textIndex];
+    const currentWords = words;
+    const targetWord = currentWords[textIndex % currentWords.length] || currentWords[0];
     const totalFrames = 22;
     let frame = 0;
     let lastFrameTime = performance.now();
@@ -74,7 +74,7 @@ export const Hero: React.FC = React.memo(() => {
     animationFrameRef.current = requestAnimationFrame(animate);
 
     const switchTimeout = setTimeout(() => {
-      setTextIndex((prev) => (prev + 1) % WORDS.length);
+      setTextIndex((prev) => (prev + 1) % currentWords.length);
     }, 3800);
 
     return () => {
@@ -83,40 +83,7 @@ export const Hero: React.FC = React.memo(() => {
       }
       clearTimeout(switchTimeout);
     };
-  }, [textIndex, isCommandDone]);
-
-  // Função para gerar e baixar o PDF usando @react-pdf/renderer
-  const handleDownloadPdf = async () => {
-    try {
-      setIsDownloading(true);
-      
-      // 1. Substitua <MyDocument /> pelo seu componente de PDF real
-      // Exemplo: const blob = await pdf(<MyDocument />).toBlob();
-      
-      // Como você não mandou o componente do PDF, certifique-se de importá-lo.
-      // Aqui está um exemplo genérico:
-      const docElement = <></>; // Trocar por <MyDocument />
-      const blob = await pdf(docElement).toBlob();
-
-      // 2. Cria uma URL temporária para o blob
-      const url = URL.createObjectURL(blob);
-
-      // 3. Cria um elemento âncora (<a>) invisível para forçar o download
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'agosto2026.pdf'; // Nome do arquivo baixado
-      document.body.appendChild(link);
-      link.click();
-
-      // 4. Limpeza
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Erro ao gerar o PDF:', error);
-    } finally {
-      setIsDownloading(false);
-    }
-  };
+  }, [textIndex, isCommandDone, words]);
 
   return (
     <section id="inicio" className="py-[60px] md:py-[90px] grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-10 md:gap-[48px] items-center">
@@ -171,7 +138,7 @@ export const Hero: React.FC = React.memo(() => {
           <div className="flex justify-between items-center border-b border-border pb-2 mb-2">
             <span className="text-orange-1 font-bold flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-orange-1 animate-ping inline-block" />
-              [TTY1] - DEV_SESSION_ACTIVE
+              {t.hero.status}
             </span>
             <span className="text-text-faint tracking-wider">BAUD: 115200</span>
           </div>
@@ -183,12 +150,13 @@ export const Hero: React.FC = React.memo(() => {
 
         {/* Botão de Download estilizado com o tema terminal */}
         <a
-          href="../../public/agosto2026.pdf" 
-          download="Murilo_Freitas_CV.pdf"
+          href="/agosto2026.pdf" 
+          download={t.hero.cvFileName}
+          aria-label={t.hero.downloadAria}
           className="group relative inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-orange-1 border border-orange-400 bg-panel hover:bg-orange-1/10 transition-all rounded cursor-pointer"
         >
           <span>&gt;</span>
-          <span>./baixar_curriculo.sh</span>
+          <span>{t.hero.downloadCv}</span>
         </a>
       </motion.div>
     </section>

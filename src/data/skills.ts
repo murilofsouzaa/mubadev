@@ -1,6 +1,7 @@
 export interface SkillItemEnhanced {
   id: string;
   category: string;
+  categoryEn?: string;
   items: {
     name: string;
     icon: string;
@@ -12,6 +13,7 @@ export const SKILLS_DATA: SkillItemEnhanced[] = [
   {
     id: '1',
     category: 'Frontend',
+    categoryEn: 'Frontend',
     items: [
       { name: 'React', icon: 'Code2'},
       { name: 'TypeScript', icon: 'FileType2'},
@@ -21,6 +23,7 @@ export const SKILLS_DATA: SkillItemEnhanced[] = [
   {
     id: '2',
     category: 'Backend',
+    categoryEn: 'Backend',
     items: [
       { name: 'Java', icon: 'Coffee'},
       { name: 'Spring Boot', icon: 'Leaf'},
@@ -31,6 +34,7 @@ export const SKILLS_DATA: SkillItemEnhanced[] = [
   {
     id: '3',
     category: 'Banco de Dados',
+    categoryEn: 'Databases',
     items: [
       { name: 'MongoDB', icon: 'Database'},
       { name: 'MySQL', icon: 'Database'},
@@ -40,6 +44,7 @@ export const SKILLS_DATA: SkillItemEnhanced[] = [
   {
     id: '4',
     category: 'DevOps & Ferramentas',
+    categoryEn: 'DevOps & Tools',
     items: [
       { name: 'Docker', icon: 'Box'},
       { name: 'Github Actions', icon: 'RefreshCcwDot'},
