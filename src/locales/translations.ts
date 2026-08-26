@@ -72,7 +72,7 @@ export const translations: Record<Language, TranslationSchema> = {
       langCode: 'PT',
     },
     hero: {
-      words: ['MURILO FREITAS', 'ENGENHEIRO DE SOFTWARE', 'DESENVOLVEDOR FULL STACK'],
+      words: ['MURILO FREITAS', 'ENGENHEIRO DE SOFTWARE', 'MURA'],
       downloadCv: './baixar_curriculo.sh',
       downloadAria: 'Baixar currículo em PDF',
       cvFileName: 'Murilo_Freitas_CV_PT.pdf',
@@ -134,7 +134,7 @@ export const translations: Record<Language, TranslationSchema> = {
       langCode: 'EN',
     },
     hero: {
-      words: ['MURILO FREITAS', 'SOFTWARE ENGINEER', 'FULL STACK DEVELOPER'],
+      words: ['MURILO FREITAS', 'SOFTWARE ENGINEER', 'MURA'],
       downloadCv: './download_resume.sh',
       downloadAria: 'Download resume in PDF',
       cvFileName: 'Murilo_Freitas_Resume_EN.pdf',
