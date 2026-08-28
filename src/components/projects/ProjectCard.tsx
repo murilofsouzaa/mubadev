@@ -1,119 +1,82 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import type { ProjectItem } from '../../types/portfolio';
-import { Globe } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
- 
+import { ExternalLink, Github, Play } from 'lucide-react';
+
 interface ProjectCardProps {
   project: ProjectItem;
-  onOpenDetails: (project: ProjectItem) => void;
+  onClick: () => void;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails }) => {
-  const { t, resolveText } = useLanguage();
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
+  const { resolveText, t } = useLanguage();
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      onClick={() => onOpenDetails(project)}
-      /* Adicionamos 'cursor-none' em vez de 'cursor-pointer' para não sobrepor o cursor customizado */
-      className="bg-panel border border-border rounded-lg overflow-hidden font-mono flex flex-col justify-between transition-all duration-200 hover:border-orange-1 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(255,107,0,0.12)] group cursor-none"
-    >
-      {/* Topo do Terminal Card */}
-      <div className="flex items-center justify-between px-3.5 py-2 bg-panel-2 border-b border-border-soft text-[11px]">
-        <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-border group-hover:bg-red-500/80 transition-colors" />
-          <span className="w-2.5 h-2.5 rounded-full bg-border group-hover:bg-yellow-500/80 transition-colors" />
-          <span className="w-2.5 h-2.5 rounded-full bg-orange-3 group-hover:bg-green-500/80 transition-colors" />
-        </div>
-        <span className="text-text-faint text-[10px]">
-          ./{project.title.toLowerCase().replace(/\s+/g, '_')}.app
-        </span>
-      </div>
-
-      {/* Imagem do Projeto */}
-      <div className="relative aspect-video w-full overflow-hidden bg-panel-2 border-b border-border-soft">
+    <div className="group rounded-3xl bg-panel border border-border/80 hover:border-orange-1/60 shadow-clean-card hover:shadow-clean-hover overflow-hidden transition-all duration-300 flex flex-col justify-between">
+      <div onClick={onClick} className="relative aspect-video overflow-hidden bg-black cursor-pointer">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover grayscale opacity-80 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-panel/90 via-transparent to-transparent opacity-80" />
-
-        {/* Badge Online */}
-        {project.deployUrl && (
-          <div className="absolute top-2.5 right-2.5 bg-black/80 backdrop-blur-md border border-green-500/50 text-green-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1.5 shadow-lg">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span>ONLINE</span>
-          </div>
-        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-panel via-transparent to-transparent" />
       </div>
 
-      {/* Conteúdo do Card */}
-      <div className="p-4 flex-1 flex flex-col justify-between">
-        <div>
-          <h3 className="text-[16px] font-bold text-text mb-2 flex items-center gap-2 group-hover:text-orange-1 transition-colors">
-            <span className="text-orange-2">&gt;</span>
+      <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-5">
+        <div className="space-y-3">
+          <h3 className="text-lg font-bold text-text group-hover:text-orange-1 transition-colors">
             {project.title}
           </h3>
-          <p className="text-[12px] text-text-dim line-clamp-2 mb-4 leading-relaxed">
+          <p className="text-xs sm:text-sm text-text-dim leading-relaxed line-clamp-3">
             {resolveText(project.description)}
           </p>
-        </div>
 
-        <div>
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          <div className="flex flex-wrap gap-1.5 pt-1">
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] bg-panel-2 border border-border text-text-faint px-2 py-0.5 rounded group-hover:border-orange-1/30 transition-colors"
+                className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-panel-sub border border-border text-text-dim"
               >
                 {tag}
               </span>
             ))}
           </div>
+        </div>
 
-          {/* Botões do Card */}
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onOpenDetails(project);
-              }}
-              className="text-[11px] py-2 rounded bg-panel-2 border border-border text-text-dim font-bold transition-all duration-150 hover:border-orange-1 hover:text-orange-1 hover:bg-panel flex items-center justify-center gap-1 cursor-none"
+        <div className="flex items-center gap-3 pt-4 border-t border-border/80">
+          <button
+            type="button"
+            onClick={onClick}
+            className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-panel-sub hover:bg-panel border border-border hover:border-orange-1/50 text-text font-bold text-xs transition-all"
+          >
+            <Play className="w-3.5 h-3.5 fill-current" />
+            <span>{t.projects.viewDemoBtn}</span>
+          </button>
+
+          {project.deployUrl && (
+            <a
+              href={project.deployUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-xl bg-panel-sub hover:bg-panel border border-border flex items-center justify-center text-text-dim hover:text-text transition-all"
             >
-              <span>{t.projects.detailsBtn}</span>
-            </button>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          )}
 
-            {project.deployUrl ? (
-              <a
-                href={project.deployUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="text-[11px] py-2 rounded bg-orange-1 text-black font-bold transition-all duration-150 hover:bg-orange-2 flex items-center justify-center gap-1 shadow-sm cursor-none"
-              >
-                <div className="flex items-center gap-2">
-                  <span>{t.projects.visitSiteBtn}</span>
-                  <span>
-                    <Globe className="w-auto h-3" />
-                  </span>
-                </div>
-              </a>
-            ) : (
-              <div className="text-[11px] py-2 rounded bg-panel-2 border border-border/40 text-text-faint text-center cursor-not-allowed">
-                {t.projects.offlineBtn}
-              </div>
-            )}
-          </div>
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repository"
+              className="w-9 h-9 rounded-xl bg-panel-sub hover:bg-panel border border-border flex items-center justify-center text-text-dim hover:text-text transition-all"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
-
-ProjectCard.displayName = 'ProjectCard';

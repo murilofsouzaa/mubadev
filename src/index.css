@@ -1,43 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Actor&family=Archivo+Black&family=Bebas+Neue&family=Geologica:wght,CRSV@100..900,0&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Lexend:wght@100..900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Neucha&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Share+Tech+Mono&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg: #0a0a0a;
-  --panel: #14161d;
-  --panel-sub: #1a1d26;
-  --border: #262936;
-  --border-soft: #24150c;
+  --bg: #0b0d13;
+  --panel: #131620;
+  --panel-sub: #1a1e2b;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-soft: rgba(255, 255, 255, 0.04);
   --orange-1: #ff6b00;
-  --orange-2: #ff8533;
-  --orange-3: #ffa366;
-  --orange-4: rgba(255, 107, 0, 0.2);
-  --text-dim: #9aa0a6;
-  --text-faint: #5f6368;
-  --img-a: #1a1d26;
-  --img-b: #14161d;
+  --orange-2: #f97316;
+  --orange-3: #ea580c;
+  --orange-4: rgba(255, 107, 0, 0.15);
+  --text: #f8fafc;
+  --text-dim: #94a3b8;
+  --text-faint: #64748b;
+  --header-bg: rgba(11, 13, 19, 0.85);
 }
 
 [data-theme="light"] {
-  --bg: #f8f9fa;
+  --bg: #f8fafc;
   --panel: #ffffff;
-  --panel-sub: #f1f3f5;
-  --border: #a1a1a1;
-  --border-soft: #d1570549;
-  --orange-1: #e65c00;
-  --orange-2: #ff771d;
-  --orange-3: #d95200;
-  --orange-4: rgba(230, 92, 0, 0.15);
-  --text-dim: #495057;
-  --text-faint: #868e96;
-  --img-a: #e9ecef;
-  --img-b: #f1f3f5;
-}
-
-html, body, a, button, input {
-  cursor: none !important;
+  --panel-sub: #f1f5f9;
+  --border: rgba(15, 23, 42, 0.12);
+  --border-soft: rgba(15, 23, 42, 0.06);
+  --orange-1: #ea580c;
+  --orange-2: #f97316;
+  --orange-3: #c2410c;
+  --orange-4: rgba(234, 88, 12, 0.12);
+  --text: #0f172a;
+  --text-dim: #475569;
+  --text-faint: #64748b;
+  --header-bg: rgba(248, 250, 252, 0.85);
 }
 
 html {
@@ -46,14 +42,52 @@ html {
 
 body {
   background-color: var(--bg);
-  color: #ffffff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
-[data-theme="light"] body {
-  color: #212529;
+/* Blur only the background page content (Header + Main + Footer) when modal is open */
+body.modal-open #page-content {
+  filter: blur(10px) brightness(0.4);
+  pointer-events: none;
+  user-select: none;
+}
+
+#page-content {
+  transition: filter 0.3s ease, brightness 0.3s ease;
+}
+
+.font-serif-italic {
+  font-family: 'Instrument Serif', Georgia, Cambria, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Infinite Marquee Animation for Continuous Tech Stack Ribbon */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+input, textarea, select, button {
+  font-family: inherit;
 }
 
 ::-webkit-scrollbar {
@@ -73,18 +107,7 @@ body {
   background: var(--orange-2);
 }
 
-/* Personalização do Cursor de Seleção de Texto */
 ::selection {
   background-color: var(--orange-1);
   color: #ffffff;
-}
-
-/* Animação fallback do cursor do terminal */
-@keyframes cursorBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.animate-cursor-blink {
-  animation: cursorBlink 1s step-start infinite;
 }

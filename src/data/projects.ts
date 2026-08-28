@@ -1,22 +1,71 @@
-// src/data/projects.ts
 import type { ProjectItem } from '../types/portfolio';
 
-export const PROJECTS_DATA: ProjectItem[] = [
+export interface ProjectItemExtended extends ProjectItem {
+  figmaUrl?: string;
+  architectureDetails?: {
+    backend: string[];
+    frontend: string[];
+    database: string;
+    infra: string[];
+    productionFlow: string[];
+  };
+}
+
+export const PROJECTS_DATA: ProjectItemExtended[] = [
   {
-    id: '1',
-    title: 'EDEN',
+    id: 'eden',
+    title: 'Eden',
+    subtitle: {
+      pt: 'Loja online focada em roupas de academia e alta performance com arquitetura em camadas e microsserviços.',
+      en: 'Online shop focused on gym clothing with layered architecture and production deployment.',
+    },
     description: {
-      pt: 'O projeto Eden é uma loja online focada em roupas de academia. O objetivo é oferecer aos usuários uma maneira rápida e simples de navegar pelos itens e verificar detalhes. A interface permanece clara, a lista de produtos organizada e o sistema conecta frontend e backend de forma estável e segura.',
-      en: 'The Eden project is an e-commerce platform focused on fitness apparel. The goal is to provide users a fast and intuitive browsing experience with clear item details, structured catalog, and robust frontend-backend integration.',
+      pt: 'The Eden project is an online shop focused on gym clothing. The goal is to give users a fast and simple way to browse items and check details. The interface stays clear, the product list stays organized, and the system connects the frontend and backend to keep everything stable and safe.',
+      en: 'The Eden project is an online shop focused on gym clothing. The goal is to give users a fast and simple way to browse items and check details. The interface stays clear, the product list stays organized, and the system connects the frontend and backend to keep everything stable and safe.',
     },
     fullDescription: {
-      pt: 'O projeto Eden é uma loja online focada em roupas de academia. O objetivo é oferecer aos usuários uma maneira rápida e simples de navegar pelos itens e verificar detalhes. A interface permanece clara, a lista de produtos permanece organizada e o sistema conecta o frontend e o backend para manter tudo estável e seguro. Funciona como um bom plano de treino: estável, claro e desenvolvido para ajudar você a seguir em frente. Estou desenvolvendo este projeto para aprender conceitos como: Design Orientado a Domínio (DDD), Padrões de Projeto, SOLID, Mobile First e UI/UX.',
-      en: 'The Eden project is an e-commerce platform focused on gym and workout apparel. It offers users a fast, smooth browsing and checkout experience with detailed item inspection. The interface remains clean and responsive, keeping products organized with rock-solid frontend and backend synchronization. Developed to apply architectural principles such as Domain-Driven Design (DDD), Design Patterns, SOLID principles, Mobile First, and UI/UX best practices.',
+      pt: `The Eden project is an online shop focused on gym clothing. The goal is to give users a fast and simple way to browse items and check details. The interface stays clear, the product list stays organized, and the system connects the frontend and backend to keep everything stable and safe.
+
+It works like a good workout plan: steady, clear, and built to help you move forward.
+I'm developing this project to learn concepts such as: Domain-Driven Design, Design Patterns, SOLID, Mobile First, and UI/UX.`,
+      en: `The Eden project is an online shop focused on gym clothing. The goal is to give users a fast and simple way to browse items and check details. The interface stays clear, the product list stays organized, and the system connects the frontend and backend to keep everything stable and safe.
+
+It works like a good workout plan: steady, clear, and built to help you move forward.
+I'm developing this project to learn concepts such as: Domain-Driven Design, Design Patterns, SOLID, Mobile First, and UI/UX.`,
     },
-    image: '../../projects/eden/edenapresentation.png', 
-    youtubeId: 'ohn5Kagjs8s', // ID do vídeo no YouTube (ex: youtube.com/watch?v=dQw4w9WgXcQ)
-    tags: ['React', 'Typescript','Java','Spring Boot', 'PostgreSQL', 'Tailwind', 'Docker', 'Nginx'],
-    githubUrl: 'https://github.com/murilofsouzaa/eden',
+    figmaUrl: 'https://www.figma.com/proto/bh5TuhdBSesmUsegzCpEdg/EDEN?node-id=0-1&t=08d9XmtUwl2qmwZK-1',
+    architectureDetails: {
+      backend: [
+        'Java & Spring Boot (Layered Architecture)',
+        'Spring Data JPA, Validation, Web',
+        'Maven Build & Dependency Management',
+        'JUnit & Mockito (Unit & Integration Testing)',
+      ],
+      frontend: [
+        'React, TypeScript & Tailwind CSS',
+        'Vite + TypeScript Build Tooling',
+        'Axios, Lucide React, React Router',
+        'Mobile First & Responsive UI/UX',
+      ],
+      database: 'PostgreSQL (Produção) & H2 (Testes)',
+      infra: [
+        'Docker & Docker Compose',
+        'NGINX Reverse Proxy (SSL/TLS, Caching, Compression)',
+        'GitHub Actions (CI/CD Automation)',
+      ],
+      productionFlow: [
+        'Backend accessible internally on port 8080.',
+        'Frontend compiled into a static build and served by NGINX inside container on port 8080.',
+        "Host NGINX (VPS) receives secure traffic on ports 80 and 443 (HTTPS) and forwards to frontend on 127.0.0.1:3000.",
+        'Frontend consumes backend API through /api routes with centralized reverse proxy routing.',
+      ],
+    },
+    image: '/projects/eden/edenapresentation.png',
+    youtubeId: 'ohn5Kagjs8s',
+    tags: ['React', 'TypeScript', 'Java', 'Spring Boot', 'PostgreSQL', 'Tailwind CSS', 'Docker', 'NGINX', 'GitHub Actions'],
+    githubUrl: 'https://github.com/murilofsouzaa/Eden',
     deployUrl: 'https://eden.mubadev.com.br/',
+    featured: true,
+    size: 'large',
   },
 ];

@@ -1,59 +1,57 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { SKILLS_DATA } from '../../data/skills';
-import { SkillCard } from './TechnologiesCard';
 import { useLanguage } from '../../context/LanguageContext';
+import { TechIcon } from './TechIcons';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-export const Skills: React.FC = React.memo(() => {
+export const Technologies: React.FC = React.memo(() => {
   const { t } = useLanguage();
 
-  return (
-    <section id="sobre" className="py-12 sm:py-[70px]">
-      <div className="flex items-center gap-2 text-[12px] text-text-dim mb-3">
-        <span className="text-orange-1 font-bold">root@fedora</span>
-        <span className="text-text-faint">:</span>
-        <span className="text-orange-3">~/technologies$</span>
-        <span className="text-text font-semibold">ls -la --sort=expertise</span>
-        <span className="inline-block w-1.5 h-3.5 bg-orange-1 animate-pulse ml-1" />
-      </div>
+  // Extract all unique skills into a single flat array
+  const allSkills = SKILLS_DATA.flatMap((cat) => cat.items);
 
-      {/* Título Padronizado no Estilo Projetos */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border-soft pb-4 mb-8">
-        <div className="flex items-center gap-3">
-          <span className="text-orange-1 text-[26px] sm:text-[32px] font-bold">&gt;</span>
-          <h2 className="text-[28px] sm:text-[36px] font-bold tracking-tight text-text font-mono uppercase">
-            {t.tech.title}
-          </h2>
-        </div>
-        <span className="text-[11px] font-mono text-text-faint border border-border px-2.5 py-1 rounded bg-panel">
-          {SKILLS_DATA.reduce((acc, curr) => acc + curr.items.length, 0)} {t.tech.countLabel}
+  // Duplicate list to create a seamless infinite loop
+  const marqueeSkills = [...allSkills, ...allSkills, ...allSkills];
+
+  return (
+    <section className="py-8 w-full overflow-hidden select-none">
+      {/* Subtle Top Label */}
+      <div className="text-center mb-5">
+        <span className="text-xs font-bold uppercase tracking-widest text-text-faint">
+          {t.tech.title}
         </span>
       </div>
 
-      {/* Grid de Cards Estilo Lista do Terminal */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4"
-      >
-        {SKILLS_DATA.map((skill) => (
-          <SkillCard key={skill.id} skill={skill} />
-        ))}
-      </motion.div>
+      {/* Infinite Continuous Ribbon Container with Left & Right Gradient Fade */}
+      <div className="relative w-full overflow-hidden py-3">
+        {/* Left & Right subtle fade mask for smooth entry and exit */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-bg to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none" />
+
+        {/* Infinite Moving Track */}
+        <div className="animate-marquee flex items-center gap-8 sm:gap-12 whitespace-nowrap">
+          {marqueeSkills.map((tech, idx) => (
+            <div
+              key={`${tech.name}-${idx}`}
+              className="flex items-center gap-3 group cursor-default transition-all opacity-80 hover:opacity-100"
+            >
+              {/* Bullet Dot */}
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-1 shrink-0" />
+
+              {/* Tech Icon */}
+              <div className="w-5 h-5 sm:w-6 sm:h-6 shrink-0 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <TechIcon name={tech.name} className="w-full h-full object-contain" />
+              </div>
+
+              {/* Tech Name */}
+              <span className="text-sm sm:text-base font-semibold text-text-dim group-hover:text-text tracking-tight transition-colors">
+                {tech.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 });
 
-Skills.displayName = 'Skills';
+Technologies.displayName = 'Technologies';

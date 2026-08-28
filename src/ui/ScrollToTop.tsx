@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { ArrowUp } from 'lucide-react';
 
 export const ScrollToTop: React.FC = () => {
   const { t } = useLanguage();
@@ -8,8 +9,7 @@ export const ScrollToTop: React.FC = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      // Exibe o botão após rolar 300px para baixo
-      if (window.scrollY > 300) {
+      if (window.scrollY > 250) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -38,10 +38,9 @@ export const ScrollToTop: React.FC = () => {
           onClick={scrollToTop}
           type="button"
           aria-label={t.scrollToTop.ariaLabel}
-          className="fixed bottom-6 right-6 z-[100] p-3 rounded-lg bg-panel-2 border border-border text-orange-1 hover:border-orange-1 hover:bg-panel shadow-lg font-mono text-xs flex items-center gap-2 group cursor-none transition-all"
+          className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-panel border border-border/80 text-orange-1 hover:text-black hover:bg-orange-1 shadow-clean-hover flex items-center justify-center group transition-all"
         >
-          <span className="group-hover:-translate-y-0.5 transition-transform font-bold">▲</span>
-          <span className="hidden sm:inline text-text-dim group-hover:text-orange-1">[TOP]</span>
+          <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
         </motion.button>
       )}
     </AnimatePresence>
