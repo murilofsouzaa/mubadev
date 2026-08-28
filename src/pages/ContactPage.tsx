@@ -110,7 +110,7 @@ export const ContactPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-panel border border-border shadow-sm"
+          className="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-panel shadow-sm"
         >
           {status === 'success' ? (
             <div className="py-10 text-center space-y-4">
@@ -143,7 +143,7 @@ export const ContactPage: React.FC = () => {
 
               {/* Name & Email Row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   <label className="text-xs font-bold text-text-dim uppercase tracking-wider block">
                     {t.contact.form.nameLabel} <span className="text-orange-1">*</span>
                   </label>
@@ -153,11 +153,11 @@ export const ContactPage: React.FC = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder={t.contact.form.namePlaceholder}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-panel-sub border border-border focus:border-orange-1 focus:ring-1 focus:ring-orange-1 text-sm text-text placeholder:text-text-faint outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-panel-sub focus:bg-panel focus:ring-2 focus:ring-orange-1/50 text-sm text-text placeholder:text-text-faint outline-none transition-all shadow-inner"
                   />
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   <label className="text-xs font-bold text-text-dim uppercase tracking-wider block">
                     {t.contact.form.emailLabel} <span className="text-orange-1">*</span>
                   </label>
@@ -167,13 +167,13 @@ export const ContactPage: React.FC = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder={t.contact.form.emailPlaceholder}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-panel-sub border border-border focus:border-orange-1 focus:ring-1 focus:ring-orange-1 text-sm text-text placeholder:text-text-faint outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-panel-sub focus:bg-panel focus:ring-2 focus:ring-orange-1/50 text-sm text-text placeholder:text-text-faint outline-none transition-all shadow-inner"
                   />
                 </div>
               </div>
 
               {/* Subject */}
-              <div className="space-y-1.5">
+              <div className="space-y-2">
                 <label className="text-xs font-bold text-text-dim uppercase tracking-wider block">
                   {t.contact.form.subjectLabel}
                 </label>
@@ -182,12 +182,12 @@ export const ContactPage: React.FC = () => {
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   placeholder={t.contact.form.subjectPlaceholder}
-                  className="w-full px-4 py-3.5 rounded-2xl bg-panel-sub border border-border focus:border-orange-1 focus:ring-1 focus:ring-orange-1 text-sm text-text placeholder:text-text-faint outline-none transition-all"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-panel-sub focus:bg-panel focus:ring-2 focus:ring-orange-1/50 text-sm text-text placeholder:text-text-faint outline-none transition-all shadow-inner"
                 />
               </div>
 
               {/* Message */}
-              <div className="space-y-1.5">
+              <div className="space-y-2">
                 <label className="text-xs font-bold text-text-dim uppercase tracking-wider block">
                   {t.contact.form.messageLabel} <span className="text-orange-1">*</span>
                 </label>
@@ -197,7 +197,7 @@ export const ContactPage: React.FC = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder={t.contact.form.messagePlaceholder}
-                  className="w-full px-4 py-3.5 rounded-2xl bg-panel-sub border border-border focus:border-orange-1 focus:ring-1 focus:ring-orange-1 text-sm text-text placeholder:text-text-faint outline-none transition-all resize-none"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-panel-sub focus:bg-panel focus:ring-2 focus:ring-orange-1/50 text-sm text-text placeholder:text-text-faint outline-none transition-all resize-none shadow-inner"
                 />
               </div>
 
@@ -232,13 +232,13 @@ export const ContactPage: React.FC = () => {
           className="lg:col-span-5 space-y-6"
         >
           {/* Direct Email Card */}
-          <div className="p-6 rounded-3xl bg-panel border border-border shadow-sm space-y-4">
+          <div className="p-6 rounded-3xl bg-panel shadow-sm space-y-4">
             <h3 className="text-sm font-bold text-text uppercase tracking-wider">
               {t.contact.info.directTitle}
             </h3>
 
             <div className="space-y-3">
-              <div className="p-4 rounded-2xl bg-panel-sub border border-border flex items-center justify-between gap-3">
+              <div className="p-4 rounded-2xl bg-panel-sub flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3 overflow-hidden">
                   <div className="w-10 h-10 rounded-xl bg-orange-1/10 flex items-center justify-center text-orange-1 shrink-0">
                     <Mail className="w-5 h-5" />
@@ -258,7 +258,7 @@ export const ContactPage: React.FC = () => {
                   type="button"
                   onClick={handleCopyEmail}
                   aria-label={t.contact.info.copyEmail}
-                  className="p-2 rounded-xl bg-panel hover:bg-panel-sub text-text-dim hover:text-text transition-all shrink-0 border border-border"
+                  className="p-2 rounded-xl bg-panel hover:bg-panel-sub text-text-dim hover:text-text transition-all shrink-0"
                 >
                   {copied ? (
                     <Check className="w-4 h-4 text-emerald-400" />
@@ -268,7 +268,7 @@ export const ContactPage: React.FC = () => {
                 </button>
               </div>
 
-              <div className="p-4 rounded-2xl bg-panel-sub border border-border flex items-center gap-3">
+              <div className="p-4 rounded-2xl bg-panel-sub flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-orange-1/10 flex items-center justify-center text-orange-1 shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
@@ -280,12 +280,12 @@ export const ContactPage: React.FC = () => {
                     rel="noopener noreferrer"
                     className="text-sm font-bold text-text hover:text-orange-1 transition-colors"
                   >
-                    (31) 98317-5784
+                    (33) 99902-6628
                   </a>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-panel-sub border border-border flex items-center gap-3">
+              <div className="p-4 rounded-2xl bg-panel-sub flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-orange-1/10 flex items-center justify-center text-orange-1 shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
@@ -298,7 +298,7 @@ export const ContactPage: React.FC = () => {
           </div>
 
           {/* Social Profiles */}
-          <div className="p-6 rounded-3xl bg-panel border border-border shadow-sm space-y-4">
+          <div className="p-6 rounded-3xl bg-panel shadow-sm space-y-4">
             <h3 className="text-sm font-bold text-text uppercase tracking-wider">
               {t.contact.info.socialTitle}
             </h3>
@@ -308,9 +308,9 @@ export const ContactPage: React.FC = () => {
                 href="https://linkedin.com/in/murilofsouzaa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3.5 rounded-2xl bg-panel-sub hover:bg-panel border border-border flex items-center gap-3 text-text transition-all group"
+                className="p-3.5 rounded-2xl bg-panel-sub hover:bg-panel flex items-center gap-3 text-text transition-all group"
               >
-                <div className="w-8 h-8 rounded-lg bg-panel flex items-center justify-center text-text-dim group-hover:text-orange-1 transition-colors border border-border">
+                <div className="w-8 h-8 rounded-lg bg-panel flex items-center justify-center text-text-dim group-hover:text-orange-1 transition-colors">
                   <Linkedin className="w-4 h-4" />
                 </div>
                 <span className="text-xs font-bold">LinkedIn</span>
@@ -320,9 +320,9 @@ export const ContactPage: React.FC = () => {
                 href="https://github.com/murilofsouzaa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3.5 rounded-2xl bg-panel-sub hover:bg-panel border border-border flex items-center gap-3 text-text transition-all group"
+                className="p-3.5 rounded-2xl bg-panel-sub hover:bg-panel flex items-center gap-3 text-text transition-all group"
               >
-                <div className="w-8 h-8 rounded-lg bg-panel flex items-center justify-center text-text-dim group-hover:text-orange-1 transition-colors border border-border">
+                <div className="w-8 h-8 rounded-lg bg-panel flex items-center justify-center text-text-dim group-hover:text-orange-1 transition-colors">
                   <Github className="w-4 h-4" />
                 </div>
                 <span className="text-xs font-bold">GitHub</span>

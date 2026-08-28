@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import type { ProjectItemExtended } from '../../data/projects';
-import { X, ExternalLink, Github, Sparkles, Cpu, Layers, Server } from 'lucide-react';
+import { X, ExternalLink, Terminal, Copy, Check, Github } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 interface ProjectModalProps {
@@ -10,8 +10,15 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const isOpen = Boolean(project);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyCommand = (command: string) => {
+    navigator.clipboard.writeText(command);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   // Apply blur to background page and handle lock
   useEffect(() => {
@@ -54,12 +61,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               leaveFrom="opacity-100 scale-100 translate-y-0"
               leaveTo="opacity-0 scale-95 translate-y-4"
             >
-              <DialogPanel className="relative w-full h-full sm:h-auto lg:h-[86vh] sm:max-w-5xl sm:max-h-[90vh] bg-panel sm:border sm:border-border sm:rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col lg:flex-row text-left align-middle transform transition-all">
+              <DialogPanel className="relative w-full h-full sm:h-auto lg:h-[86vh] sm:max-w-5xl sm:max-h-[90vh] bg-panel sm:rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col lg:flex-row text-left align-middle transform transition-all">
                 
                 {/* Left Side: Video Player Showcase */}
-                <div className="w-full lg:w-[52%] bg-black flex flex-col justify-center relative overflow-hidden shrink-0 border-b lg:border-b-0 lg:border-r border-border">
+                <div className="w-full lg:w-[52%] bg-black flex flex-col justify-center relative overflow-hidden shrink-0">
                   {/* Mobile Top Bar with Close Button */}
-                  <div className="flex sm:hidden items-center justify-between px-4 py-3 bg-panel border-b border-border z-20">
+                  <div className="flex sm:hidden items-center justify-between px-4 py-3 bg-panel z-20">
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-orange-1 animate-pulse" />
                       <DialogTitle as="h3" className="font-extrabold text-base text-text">
@@ -100,20 +107,35 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 {/* Right Side: Scrollable Feed of Information & Action Bar */}
                 <div className="w-full lg:w-[48%] flex-1 flex flex-col justify-between bg-panel overflow-hidden">
                   
-                  {/* Desktop Header */}
-                  <div className="hidden sm:flex items-center justify-between px-6 py-4 bg-panel-sub/80 border-b border-border shrink-0">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-orange-1 animate-pulse" />
-                      <DialogTitle as="h3" className="font-extrabold text-lg text-text">
-                        {project.title}
-                      </DialogTitle>
+                  {/* Desktop Header with Terminal Window Aesthetics */}
+                  <div className="hidden sm:flex items-center justify-between px-6 py-4 bg-panel-sub/90 shrink-0">
+                    {/* Terminal Window Controls & Prompt */}
+                    <div className="flex items-center gap-3 min-w-0">
+                      {/* Window Action Dots */}
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
+                      </div>
+
+                      {/* Terminal Command Line Title */}
+                      <div className="flex items-center gap-1.5 font-mono text-xs text-text truncate">
+                        <Terminal className="w-3.5 h-3.5 text-orange-1 shrink-0" />
+                        <span className="text-text-faint truncate">
+                          <span className="text-orange-1 font-bold">muba@dev</span>:<span className="text-text-dim">~/projects/{project.id}</span>$
+                        </span>
+                        <DialogTitle as="h3" className="font-bold text-text truncate ml-1">
+                          cat {project.title.toLowerCase()}.md
+                        </DialogTitle>
+                      </div>
                     </div>
 
+                    {/* Close Button */}
                     <button
                       type="button"
                       onClick={onClose}
                       aria-label={t.projects.modalClose}
-                      className="w-8 h-8 rounded-full bg-panel hover:bg-panel-sub flex items-center justify-center text-text-dim hover:text-text transition-colors border border-border"
+                      className="w-8 h-8 rounded-full bg-panel hover:bg-panel-sub flex items-center justify-center text-text-dim hover:text-text transition-colors shrink-0"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -124,18 +146,22 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     
                     {/* About Project */}
                     <div className="space-y-2">
-                      <h4 className="text-xs font-bold text-text uppercase tracking-wider flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-orange-1" />
-                        <span>{t.projects.aboutTitle}</span>
-                      </h4>
-                      <div className="text-xs sm:text-sm text-text-dim leading-relaxed bg-panel-sub/60 p-4 rounded-2xl space-y-2.5">
-                        <p>
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-xs font-bold text-text uppercase tracking-wider">
+                          {t.projects.aboutTitle}
+                        </h4>
+                        <span className="hidden sm:inline-block font-mono text-[11px] text-orange-1 font-bold">
+                          $ cat overview.md
+                        </span>
+                      </div>
+                      <div className="text-sm sm:text-[15px] text-text-dim leading-relaxed bg-panel-sub/60 p-4 sm:p-5 rounded-2xl space-y-3">
+                        <p className="text-text">
                           {t.projects.aboutText}
                         </p>
-                        <p className="text-text font-medium">
+                        <p className="text-text font-semibold">
                           {t.projects.aboutMotto}
                         </p>
-                        <p className="text-[11px] sm:text-xs text-text-faint pt-1">
+                        <p className="text-xs sm:text-sm text-text-faint pt-1">
                           <strong className="text-orange-1">{t.projects.conceptsLabel} </strong>
                           {t.projects.conceptsList}
                         </p>
@@ -144,35 +170,75 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
                     {/* Production Execution Flow */}
                     <div className="space-y-2">
-                      <h4 className="text-xs font-bold text-text uppercase tracking-wider flex items-center gap-1.5">
-                        <Server className="w-3.5 h-3.5 text-orange-1" />
-                        <span>{t.projects.productionFlowTitle}</span>
-                      </h4>
-                      <div className="bg-panel-sub/60 p-4 rounded-2xl space-y-2 text-xs text-text-dim">
-                        <p className="text-text font-semibold">
-                          {t.projects.productionFlowSubtitle}
-                        </p>
-                        <ul className="space-y-1.5 list-disc list-inside text-text-faint">
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-xs font-bold text-text uppercase tracking-wider">
+                          {t.projects.productionFlowTitle}
+                        </h4>
+                        <span className="hidden sm:inline-block font-mono text-[11px] text-orange-1 font-bold">
+                          $ ./deploy.sh
+                        </span>
+                      </div>
+                      <div className="bg-panel-sub/60 p-4 sm:p-5 rounded-2xl space-y-3 font-mono">
+                        {/* AI Chat Style Copyable Code Snippet */}
+                        <div className="rounded-xl overflow-hidden bg-panel border border-border/40 shadow-sm">
+                          <div className="flex items-center justify-between px-3.5 py-1.5 bg-panel-sub/80 text-[11px] text-text-faint font-mono border-b border-border/40">
+                            <div className="flex items-center gap-1.5">
+                              <Terminal className="w-3 h-3 text-orange-1" />
+                              <span>bash</span>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => handleCopyCommand('docker compose up -d')}
+                              className="inline-flex items-center gap-1 text-[11px] text-text-dim hover:text-text hover:bg-panel px-2 py-0.5 rounded transition-all"
+                            >
+                              {copied ? (
+                                <>
+                                  <Check className="w-3 h-3 text-emerald-400" />
+                                  <span className="text-emerald-400 font-semibold">{language === 'pt' ? 'Copiado!' : 'Copied!'}</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Copy className="w-3 h-3" />
+                                  <span>{language === 'pt' ? 'Copiar' : 'Copy'}</span>
+                                </>
+                              )}
+                            </button>
+                          </div>
+                          <div className="px-3.5 py-2.5 text-xs sm:text-sm font-mono overflow-x-auto text-text flex items-center justify-between gap-2">
+                            <code>
+                              <span className="text-orange-1 font-bold select-none">$ </span>
+                              <span className="text-emerald-400 font-semibold">docker compose up -d</span>
+                              <span className="text-text-faint ml-2 select-none"># NGINX + Spring Boot</span>
+                            </code>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2 pt-1 text-xs sm:text-sm text-text">
                           {t.projects.productionFlowItems.map((flow, idx) => (
-                            <li key={idx}>
-                              <span>{flow}</span>
-                            </li>
+                            <div key={idx} className="flex items-start gap-2.5">
+                              <span className="text-orange-1 font-bold shrink-0 mt-0.5">&gt;</span>
+                              <span className="text-text leading-relaxed">{flow}</span>
+                            </div>
                           ))}
-                        </ul>
+                        </div>
                       </div>
                     </div>
 
                     {/* Technologies Stack Tags */}
                     <div className="space-y-2">
-                      <h4 className="text-xs font-bold text-text-faint uppercase tracking-wider flex items-center gap-1.5">
-                        <Cpu className="w-3.5 h-3.5 text-orange-1" />
-                        <span>{t.projects.techStack}</span>
-                      </h4>
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-xs font-bold text-text-faint uppercase tracking-wider">
+                          {t.projects.techStack}
+                        </h4>
+                        <span className="hidden sm:inline-block font-mono text-[11px] text-orange-1 font-bold">
+                          $ ls stack/
+                        </span>
+                      </div>
                       <div className="flex flex-wrap gap-1.5">
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="text-xs font-semibold px-2.5 py-1 rounded-xl bg-panel-sub text-text hover:text-orange-1 transition-colors border border-border"
+                            className="text-xs sm:text-sm font-mono font-semibold px-3 py-1.5 rounded-xl bg-panel-sub text-text hover:text-orange-1 transition-colors border border-border/50"
                           >
                             {tag}
                           </span>
@@ -182,45 +248,33 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
                   </div>
 
-                  {/* Bottom Action Buttons (with white text on orange) */}
-                  <div className="p-4 sm:p-5 bg-panel-sub/80 border-t border-border flex flex-wrap gap-2.5 shrink-0">
+                  {/* Bottom Action Buttons */}
+                  <div className="p-4 sm:p-5 bg-panel-sub flex flex-col sm:flex-row gap-3 w-full shrink-0 border-t border-border/40 font-mono">
                     {project.deployUrl && (
                       <a
                         href={edenProjectUrl(project.deployUrl)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-orange-1 hover:bg-orange-2 text-white font-bold text-xs transition-all shadow-sm"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-orange-1 hover:bg-orange-2 text-white font-bold text-xs sm:text-sm transition-all shadow-md h-11"
                       >
+                        <span className="text-white/80 font-normal">$</span>
                         <span>{t.projects.visitSiteBtn}</span>
-                        <ExternalLink className="w-3.5 h-3.5 text-white" />
+                        <ExternalLink className="w-4 h-4 text-white shrink-0" />
                       </a>
                     )}
 
-                    <div className="grid grid-cols-2 gap-2 w-full sm:w-auto sm:flex-1">
-                      {project.githubUrl && (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-panel hover:bg-panel-sub text-text font-bold text-xs transition-all shadow-sm border border-border"
-                        >
-                          <Github className="w-3.5 h-3.5" />
-                          <span>{t.projects.gitRepoBtn}</span>
-                        </a>
-                      )}
-
-                      {project.figmaUrl && (
-                        <a
-                          href={project.figmaUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-panel hover:bg-panel-sub text-text font-bold text-xs transition-all shadow-sm border border-border"
-                        >
-                          <Layers className="w-3.5 h-3.5 text-orange-1" />
-                          <span>{t.projects.figmaBtn}</span>
-                        </a>
-                      )}
-                    </div>
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-panel hover:bg-panel-sub text-white hover:text-orange-1 font-bold text-xs sm:text-sm transition-all border border-border/80 shadow-md h-11"
+                      >
+                        <Github className="w-4 h-4 text-white shrink-0" />
+                        <span className="text-orange-1 font-bold">$</span>
+                        <span>{t.projects.gitRepoBtn}</span>
+                      </a>
+                    )}
                   </div>
 
                 </div>

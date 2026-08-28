@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Zeyada&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -56,6 +56,14 @@ body.modal-open #page-content {
   user-select: none;
 }
 
+@media (max-width: 767px) {
+  body.mobile-menu-open #page-content {
+    filter: blur(8px) brightness(0.4);
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
 #page-content {
   transition: filter 0.3s ease, brightness 0.3s ease;
 }
@@ -64,6 +72,10 @@ body.modal-open #page-content {
   font-family: 'Instrument Serif', Georgia, Cambria, 'Times New Roman', serif;
   font-style: italic;
   font-weight: 400;
+}
+
+.font-zeyada {
+  font-family: 'Zeyada', cursive;
 }
 
 /* Infinite Marquee Animation for Continuous Tech Stack Ribbon */

@@ -4,7 +4,7 @@ import { PROJECTS_DATA } from '../data/projects';
 import type { ProjectItemExtended } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 import { ProjectModal } from '../components/projects/ProjectModal';
-import { Play, Sparkles, ExternalLink, Github, Layers, CheckCircle2 } from 'lucide-react';
+import { Play, ExternalLink, Github, Layers } from 'lucide-react';
 
 export const ProjectsPage: React.FC = () => {
   const { t, resolveText } = useLanguage();
@@ -53,31 +53,27 @@ export const ProjectsPage: React.FC = () => {
             {/* Content Overlaid Directly on Top of Photo */}
             <div className="relative z-10 w-full h-full p-6 sm:p-8 lg:p-10 flex flex-col justify-between flex-1 space-y-6">
               
-              {/* Top Row: Badges & Direct Action Links */}
+              {/* Top Row: Status Badge & Direct Action Links */}
               <div className="flex flex-wrap items-center justify-between gap-3">
-                {/* Badges */}
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-orange-1 font-bold text-xs flex items-center gap-1.5 border border-white/10 shadow-sm">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>{t.projects.featuredBadge}</span>
-                  </span>
-                  <span className="px-3.5 py-1.5 rounded-full bg-emerald-500/90 text-black font-bold text-xs flex items-center gap-1.5 shadow-sm">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>{t.projects.onlineBadge}</span>
+                {/* Single Clean Status Badge */}
+                <div className="flex items-center">
+                  <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-emerald-400 font-mono font-bold text-xs flex items-center gap-2 border border-white/10 shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>ONLINE & EM PRODUÇÃO</span>
                   </span>
                 </div>
 
                 {/* Top Direct Action Buttons */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 sm:gap-2.5">
                   {edenProject.deployUrl && (
                     <a
                       href={edenProject.deployUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-orange-1 hover:bg-orange-2 text-white font-bold text-xs transition-all shadow-md"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-1 hover:bg-orange-2 text-white font-bold text-xs sm:text-sm transition-all shadow-md"
                     >
                       <span>{t.projects.visitSiteBtn}</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-white" />
+                      <ExternalLink className="w-4 h-4 text-white shrink-0" />
                     </a>
                   )}
 
@@ -86,9 +82,9 @@ export const ProjectsPage: React.FC = () => {
                       href={edenProject.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-black/60 hover:bg-black/80 backdrop-blur-md text-white font-bold text-xs transition-all border border-white/15 shadow-sm"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-black/60 hover:bg-black/80 backdrop-blur-md text-white font-bold text-xs sm:text-sm transition-all border border-white/15 shadow-sm"
                     >
-                      <Github className="w-3.5 h-3.5" />
+                      <Github className="w-4 h-4 text-white shrink-0" />
                       <span>GitHub</span>
                     </a>
                   )}
@@ -98,9 +94,9 @@ export const ProjectsPage: React.FC = () => {
                       href={edenProject.figmaUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-black/60 hover:bg-black/80 backdrop-blur-md text-white font-bold text-xs transition-all border border-white/15 shadow-sm"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-black/60 hover:bg-black/80 backdrop-blur-md text-white font-bold text-xs sm:text-sm transition-all border border-white/15 shadow-sm"
                     >
-                      <Layers className="w-3.5 h-3.5 text-orange-1" />
+                      <Layers className="w-4 h-4 text-orange-1 shrink-0" />
                       <span>Figma</span>
                     </a>
                   )}

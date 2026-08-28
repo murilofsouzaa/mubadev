@@ -10,6 +10,8 @@ export default {
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
         serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        zeyada: ['"Zeyada"', 'cursive'],
       },
       colors: {
         bg: 'var(--bg)',

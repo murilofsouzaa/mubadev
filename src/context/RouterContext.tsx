@@ -105,8 +105,9 @@ export const Link: React.FC<LinkProps> = ({ to, children, className, onClick, ..
   );
 };
 
-interface NavLinkProps extends Omit<LinkProps, 'className'> {
+interface NavLinkProps extends Omit<LinkProps, 'className' | 'children'> {
   className?: string | ((props: { isActive: boolean }) => string);
+  children?: React.ReactNode | ((props: { isActive: boolean }) => React.ReactNode);
 }
 
 export const NavLink: React.FC<NavLinkProps> = ({ to, children, className, onClick, ...props }) => {
@@ -115,6 +116,7 @@ export const NavLink: React.FC<NavLinkProps> = ({ to, children, className, onCli
   const isActive = pathname === cleanTo || (cleanTo !== '/' && pathname.startsWith(cleanTo));
 
   const computedClassName = typeof className === 'function' ? className({ isActive }) : className;
+  const computedChildren = typeof children === 'function' ? children({ isActive }) : children;
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick) onClick(e);
@@ -126,7 +128,7 @@ export const NavLink: React.FC<NavLinkProps> = ({ to, children, className, onCli
 
   return (
     <a href={to} onClick={handleClick} className={computedClassName} {...props}>
-      {children}
+      {computedChildren}
     </a>
   );
 };

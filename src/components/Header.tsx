@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from '../context/RouterContext';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -11,6 +11,27 @@ export const Header: React.FC = React.memo(() => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isDark = theme === 'dark';
+
+  // Manage background blur and brightness decrease on mobile menu open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add('mobile-menu-open');
+    } else {
+      document.body.classList.remove('mobile-menu-open');
+    }
+
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { to: '/', label: t.nav.home, code: '00_home' },
@@ -73,8 +94,12 @@ export const Header: React.FC = React.memo(() => {
                 }`
               }
             >
-              <span className="font-mono text-[10px] text-orange-1">/</span>
-              <span>{link.label}</span>
+              {({ isActive }) => (
+                <>
+                  <span className={`font-mono text-[10px] ${isActive ? 'text-white' : 'text-orange-1'}`}>/</span>
+                  <span>{link.label}</span>
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
@@ -301,6 +326,21 @@ export const Header: React.FC = React.memo(() => {
               </Link>
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Backdrop with Blur & Dimmed Brightness */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={() => setMobileMenuOpen(false)}
+            className="fixed inset-0 top-20 sm:top-24 bg-black/60 backdrop-blur-sm z-30 md:hidden pointer-events-auto"
+            aria-hidden="true"
+          />
         )}
       </AnimatePresence>
     </motion.header>

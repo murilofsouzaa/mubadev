@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '../context/RouterContext';
 import { useLanguage } from '../context/LanguageContext';
-import { Download, Mail, Phone, MapPin, Linkedin, Github, Terminal } from 'lucide-react';
+import { Download, Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
 
 export const Footer: React.FC = React.memo(() => {
   const { t } = useLanguage();
@@ -10,21 +10,6 @@ export const Footer: React.FC = React.memo(() => {
     <footer className="w-full bg-panel/60 border-t border-border/70 dark:border-transparent mt-20 pt-14 pb-12 transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Subtle Terminal Status Bar */}
-        <div className="mb-10 p-3.5 sm:p-4 rounded-2xl bg-panel-sub border border-border flex flex-col sm:flex-row items-center justify-between gap-2.5 font-mono text-xs text-text-dim">
-          <div className="flex items-center gap-2">
-            <Terminal className="w-3.5 h-3.5 text-orange-1" />
-            <span className="text-orange-1 font-bold">murilo@dev:~$</span>
-            <span className="text-text font-medium">status --production</span>
-          </div>
-          <div className="flex items-center gap-2 text-[11px]">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-emerald-400 font-bold">200 OK</span>
-            <span className="text-text-faint">•</span>
-            <span className="text-text-faint">deploy: docker + nginx</span>
-          </div>
-        </div>
-
         {/* Top 3-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 pb-12">
           

@@ -76,13 +76,13 @@ export const AboutPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Trajetória & Atuação (Biografia Real): Centered on mobile, Left-aligned on sm+ */}
-      <section className="gsap-about-bio space-y-4 text-center sm:text-left">
-        <div className="flex items-center justify-center sm:justify-start gap-2">
-          <span className="font-mono text-xs text-orange-1 font-bold">// 01.trajectory</span>
+      {/* Trajetória & Atuação (Biografia Real) */}
+      <section className="gsap-about-bio space-y-4">
+        <div className="flex items-center justify-between w-full">
           <h2 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
             {t.about.objectiveTitle}
           </h2>
+          <span className="font-mono text-xs text-orange-1 font-bold">// 01.trajectory</span>
         </div>
 
         <div className="space-y-3.5 text-base sm:text-lg text-text-dim leading-relaxed">
@@ -99,16 +99,16 @@ export const AboutPage: React.FC = () => {
 
       {/* Idiomas */}
       <section className="gsap-about-lang space-y-4">
-        <div className="flex items-center justify-center sm:justify-start gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-orange-1/10 flex items-center justify-center text-orange-1">
-            <Globe className="w-4 h-4" />
-          </div>
-          <div>
-            <span className="font-mono text-xs text-orange-1 font-bold block sm:inline mr-2">// 02.languages</span>
-            <h2 className="text-xl sm:text-2xl font-bold text-text tracking-tight inline">
+        <div className="flex items-center justify-between w-full">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-orange-1/10 flex items-center justify-center text-orange-1 shrink-0">
+              <Globe className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
               {t.about.languagesTitle}
             </h2>
           </div>
+          <span className="font-mono text-xs text-orange-1 font-bold">// 02.languages</span>
         </div>
 
         {/* Clean Vertical Rows */}
@@ -129,18 +129,18 @@ export const AboutPage: React.FC = () => {
 
       <hr className="border-border" />
 
-      {/* Formação Acadêmica Real (Timeline com bolinhas 100% centralizadas) */}
+      {/* Formação Acadêmica Real */}
       <section className="space-y-8">
-        <div className="flex items-center justify-center sm:justify-start gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-orange-1/10 flex items-center justify-center text-orange-1">
-            <GraduationCap className="w-4 h-4" />
-          </div>
-          <div>
-            <span className="font-mono text-xs text-orange-1 font-bold block sm:inline mr-2">// 03.education</span>
-            <h2 className="text-xl sm:text-2xl font-bold text-text tracking-tight inline">
+        <div className="flex items-center justify-between w-full">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-orange-1/10 flex items-center justify-center text-orange-1 shrink-0">
+              <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7" />
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
               {t.about.educationTitle}
             </h2>
           </div>
+          <span className="font-mono text-xs text-orange-1 font-bold">// 03.education</span>
         </div>
 
         {/* Timeline Container with Dead-Center Mathematical Alignment */}
@@ -153,7 +153,7 @@ export const AboutPage: React.FC = () => {
               {/* Perfectly Centered Dot right on top of the vertical line */}
               <div className="absolute left-[-24.5px] sm:left-[-28.5px] top-1.5 w-3 h-3 rounded-full bg-orange-1 ring-4 ring-bg shadow-sm" />
 
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+              <div className="space-y-1.5">
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-text">
                     {edu.institution}
@@ -162,8 +162,9 @@ export const AboutPage: React.FC = () => {
                     {resolveText(edu.field)} — {resolveText(edu.degree)}
                   </p>
                 </div>
-                <div className="text-xs sm:text-sm text-text-faint font-medium flex items-center gap-1.5 shrink-0 font-mono">
-                  <Calendar className="w-3.5 h-3.5 text-orange-1" />
+
+                <div className="text-xs sm:text-sm text-text-faint font-medium flex items-center gap-1.5 font-mono pt-0.5">
+                  <Calendar className="w-3.5 h-3.5 text-orange-1 shrink-0" />
                   <span>{resolveText(edu.status) || edu.period}</span>
                 </div>
               </div>
