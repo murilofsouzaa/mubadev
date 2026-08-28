@@ -47,11 +47,11 @@ const AppContent: React.FC = () => {
         className="fixed top-0 left-0 right-0 h-[2.5px] bg-orange-1 origin-left z-50 pointer-events-none"
       />
 
-      {/* Main Page Content Wrapper (Blurred when Modal opens) */}
-      <div id="page-content" className="flex-1 flex flex-col justify-between min-h-screen w-full">
-        {/* Navigation Header */}
-        <Header />
+      {/* Navigation Header (Outside of blurred content so it stays 100% crisp on mobile dropdown) */}
+      <Header />
 
+      {/* Main Page Content Wrapper (Blurred when Modal or Mobile Menu opens) */}
+      <div id="page-content" className="flex-1 flex flex-col justify-between min-h-[calc(100vh-5rem)] sm:min-h-[calc(100vh-6rem)] w-full">
         {/* Main Content Area per Endpoint with generous mobile margins */}
         <main className="relative z-10 flex-1 max-w-6xl w-full mx-auto px-5 sm:px-8 lg:px-10 py-6 sm:py-10">
           {renderCurrentPage()}

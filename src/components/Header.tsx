@@ -45,7 +45,9 @@ export const Header: React.FC = React.memo(() => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="sticky top-0 z-40 w-full bg-bg/90 backdrop-blur-md border-b border-border transition-colors"
+      className={`sticky top-0 z-50 w-full border-b border-border transition-colors ${
+        mobileMenuOpen ? 'bg-bg' : 'bg-bg/90 backdrop-blur-md'
+      }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between gap-3 sm:gap-6">
         
@@ -258,7 +260,7 @@ export const Header: React.FC = React.memo(() => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="md:hidden border-t border-border bg-panel px-5 py-5 space-y-4 shadow-xl overflow-hidden"
+            className="md:hidden border-t border-border bg-panel px-5 py-5 space-y-4 shadow-2xl overflow-hidden relative z-50"
           >
             {/* Navigation Links with Monospace Prompt Prefixes */}
             <nav className="flex flex-col gap-1.5 font-mono">
@@ -329,16 +331,16 @@ export const Header: React.FC = React.memo(() => {
         )}
       </AnimatePresence>
 
-      {/* Mobile Backdrop with Blur & Dimmed Brightness */}
+      {/* Mobile Backdrop to catch outside clicks and dim background */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.2 }}
             onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 top-20 sm:top-24 bg-black/60 backdrop-blur-sm z-30 md:hidden pointer-events-auto"
+            className="fixed inset-0 top-20 sm:top-24 bg-black/50 z-30 md:hidden pointer-events-auto"
             aria-hidden="true"
           />
         )}

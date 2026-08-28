@@ -49,13 +49,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Blur only the background page content (Header + Main + Footer) when modal is open */
+/* Blur page content when modal is open */
+body.modal-open header,
 body.modal-open #page-content {
   filter: blur(10px) brightness(0.4);
   pointer-events: none;
   user-select: none;
 }
 
+/* Blur only the page content (below header) when mobile menu is open */
 @media (max-width: 767px) {
   body.mobile-menu-open #page-content {
     filter: blur(8px) brightness(0.4);
@@ -64,6 +66,7 @@ body.modal-open #page-content {
   }
 }
 
+header,
 #page-content {
   transition: filter 0.3s ease, brightness 0.3s ease;
 }
