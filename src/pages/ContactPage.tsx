@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Copy, Check, Linkedin, Github } from 'lucide-react';
+import { sendContactEmail } from '../services/emailService';
 
 export const ContactPage: React.FC = () => {
   const { t } = useLanguage();
@@ -13,7 +14,8 @@ export const ContactPage: React.FC = () => {
     message: '',
   });
 
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [honey, setHoney] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'activation' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [copied, setCopied] = useState(false);
 
@@ -21,6 +23,14 @@ export const ContactPage: React.FC = () => {
     navigator.clipboard.writeText('onemurilo@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
+  };
+
+  const getMailtoUrl = () => {
+    const subject = encodeURIComponent(formData.subject || 'Contato via Portfólio');
+    const body = encodeURIComponent(
+      `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`
+    );
+    return `mailto:onemurilo@gmail.com?subject=${subject}&body=${body}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,45 +52,25 @@ export const ContactPage: React.FC = () => {
     setStatus('submitting');
     setErrorMessage('');
 
-    try {
-      // Using Web3Forms public API endpoint for reliable serverless form submission
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: '5f928e46-5db2-4ca3-b68e-28b991307b22',
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject || `Novo contato de ${formData.name}`,
-          message: formData.message,
-          from_name: 'Portfólio Murilo Freitas',
-        }),
-      });
+    const result = await sendContactEmail({
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+      honey,
+    });
 
-      const result = await response.json();
-      if (result.success || response.ok) {
-        setStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+    if (result.success) {
+      if (result.needsActivation) {
+        setStatus('activation');
       } else {
-        // Fallback to mailto link
-        window.location.href = `mailto:onemurilo@gmail.com?subject=${encodeURIComponent(
-          formData.subject || 'Contato via Portfólio'
-        )}&body=${encodeURIComponent(
-          `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`
-        )}`;
         setStatus('success');
       }
-    } catch {
-      // Fallback
-      window.location.href = `mailto:onemurilo@gmail.com?subject=${encodeURIComponent(
-        formData.subject || 'Contato via Portfólio'
-      )}&body=${encodeURIComponent(
-        `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`
-      )}`;
-      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setHoney('');
+    } else {
+      setStatus('error');
+      setErrorMessage(result.error || t.contact.form.errorMessage);
     }
   };
 
@@ -131,13 +121,53 @@ export const ContactPage: React.FC = () => {
                 {t.contact.form.sendAnother}
               </button>
             </div>
+          ) : status === 'activation' ? (
+            <div className="py-10 text-center space-y-4">
+              <div className="w-16 h-16 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 mx-auto">
+                <Mail className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold text-text">
+                {t.contact.form.activationTitle}
+              </h3>
+              <p className="text-sm text-text-dim max-w-md mx-auto">
+                {t.contact.form.activationSubtitle}
+              </p>
+              <button
+                type="button"
+                onClick={() => setStatus('idle')}
+                className="mt-4 px-6 py-2.5 rounded-xl bg-orange-1 hover:bg-orange-2 text-white font-bold text-xs transition-all shadow-sm"
+              >
+                {t.contact.form.sendAnother}
+              </button>
+            </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
-              
+              {/* Honeypot field (hidden from real users, traps spam bots) */}
+              <input
+                type="text"
+                name="_honey"
+                value={honey}
+                onChange={(e) => setHoney(e.target.value)}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
               {status === 'error' && (
-                <div className="p-4 rounded-2xl bg-red-500/10 text-red-400 text-xs font-semibold flex items-center gap-2">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
-                  <span>{errorMessage || t.contact.form.errorMessage}</span>
+                <div className="p-4 rounded-2xl bg-red-500/10 text-red-400 text-xs font-semibold space-y-2">
+                  <div className="flex items-center gap-2">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{errorMessage || t.contact.form.errorMessage}</span>
+                  </div>
+                  <div>
+                    <a
+                      href={getMailtoUrl()}
+                      className="inline-block text-orange-1 hover:underline font-bold"
+                    >
+                      {t.contact.form.fallbackButton} &rarr;
+                    </a>
+                  </div>
                 </div>
               )}
 

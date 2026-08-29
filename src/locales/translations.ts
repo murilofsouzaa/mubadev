@@ -99,6 +99,9 @@ export interface TranslationSchema {
       sendingButton: string;
       successMessage: string;
       successSubtitle: string;
+      activationTitle: string;
+      activationSubtitle: string;
+      fallbackButton: string;
       sendAnother: string;
       errorMessage: string;
       fillRequired: string;
@@ -243,6 +246,9 @@ export const translations: Record<Language, TranslationSchema> = {
         sendingButton: 'Enviando mensagem...',
         successMessage: 'Mensagem enviada com sucesso!',
         successSubtitle: 'Obrigado pelo contato! Responderei através do seu e-mail o mais breve possível.',
+        activationTitle: 'Ativação do Formulário Necessária',
+        activationSubtitle: 'Como é o primeiro envio para este e-mail, um link de confirmação do FormSubmit foi enviado. Basta clicar no link recebido para ativar o recebimento automático!',
+        fallbackButton: 'Enviar diretamente pelo seu aplicativo de e-mail',
         sendAnother: 'Enviar outra mensagem',
         errorMessage: 'Ocorreu um erro ao enviar. Por favor, tente novamente ou envie um email direto.',
         fillRequired: 'Por favor, preencha todos os campos obrigatórios.',
@@ -383,6 +389,9 @@ export const translations: Record<Language, TranslationSchema> = {
         sendingButton: 'Sending message...',
         successMessage: 'Message sent successfully!',
         successSubtitle: 'Thank you for reaching out! I will reply to your email as soon as possible.',
+        activationTitle: 'Form Activation Required',
+        activationSubtitle: 'Since this is the first submission to this address, FormSubmit sent a confirmation email. Please click the link in your inbox to complete activation!',
+        fallbackButton: 'Send directly via your email client',
         sendAnother: 'Send another message',
         errorMessage: 'An error occurred while sending. Please try again or reach out directly via email.',
         fillRequired: 'Please fill in all required fields.',
