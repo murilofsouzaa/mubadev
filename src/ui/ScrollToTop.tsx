@@ -38,7 +38,7 @@ export const ScrollToTop: React.FC = () => {
           onClick={scrollToTop}
           type="button"
           aria-label={t.scrollToTop.ariaLabel}
-          className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-panel border border-border/80 text-orange-1 hover:text-black hover:bg-orange-1 shadow-clean-hover flex items-center justify-center group transition-all"
+          className="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-white dark:bg-zinc-900 border border-stone-300 dark:border-zinc-700 text-stone-900 dark:text-zinc-100 shadow-2xl hover:bg-[#EA580C] dark:hover:bg-[#EA580C] hover:border-[#EA580C] dark:hover:border-[#EA580C] hover:text-white dark:hover:text-white flex items-center justify-center group transition-all"
         >
           <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
         </motion.button>

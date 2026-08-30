@@ -1,39 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Zeyada&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;600;700;800;900&family=Zeyada&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* 
+  70-20-10 RULE COLOR SYSTEM
+  70% Dominant: Background & Ambient Canvas (Obsidian Midnight / Deep Noir)
+  20% Secondary: Panels, Borders, Structures & Warm Parchment Typography
+  10% Accent: Retro Jazz Amber Gold, Neon Crimson & Terminal Phosphor Glow
+*/
 :root {
-  --bg: #0b0d13;
-  --panel: #131620;
-  --panel-sub: #1a1e2b;
-  --border: rgba(255, 255, 255, 0.09);
-  --border-soft: rgba(255, 255, 255, 0.04);
-  --orange-1: #ff6b00;
-  --orange-2: #f97316;
-  --orange-3: #ea580c;
-  --orange-4: rgba(255, 107, 0, 0.15);
-  --text: #f8fafc;
-  --text-dim: #94a3b8;
-  --text-faint: #64748b;
-  --header-bg: rgba(11, 13, 19, 0.85);
+  /* 70% Base Canvas */
+  --bg: #09090b;
+  
+  /* 20% Structures, Cards & Typography (Neutral Obsidian / Graphite) */
+  --panel: #141417;
+  --panel-sub: #1c1c21;
+  --panel-card: #16161a;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(255, 255, 255, 0.05);
+  --border-brass: rgba(232, 89, 12, 0.35);
+  --text: #f4f4f5;
+  --text-dim: #a1a1aa;
+  --text-faint: #71717a;
+  --parchment: #e4e4e7;
+  
+  /* Official Palette: Vibrant Orange #EA580C */
+  --accent: #EA580C;
+  --orange-1: #EA580C;
+  --orange-2: #D9480F;
+  --orange-3: #C92A2A;
+  --orange-4: rgba(234, 88, 12, 0.16);
+  --amber-1: #EA580C;
+  --amber-2: #D9480F;
+  --amber-3: #C92A2A;
+  --amber-glow-color: rgba(234, 88, 12, 0.35);
+  --crimson-1: #EA580C;
+  --crimson-2: #D9480F;
+  --crimson-deep: #22080c;
+  --phosphor-green: #38e54d;
+  --header-bg: rgba(9, 9, 11, 0.85);
 }
 
 [data-theme="light"] {
-  --bg: #f8fafc;
+  /* 70% Base Canvas: Clean premium ivory stone */
+  --bg: #F8F7F4;
+  
+  /* 20% Structures & Secondary */
   --panel: #ffffff;
-  --panel-sub: #f1f5f9;
-  --border: rgba(15, 23, 42, 0.12);
-  --border-soft: rgba(15, 23, 42, 0.06);
-  --orange-1: #ea580c;
-  --orange-2: #f97316;
-  --orange-3: #c2410c;
-  --orange-4: rgba(234, 88, 12, 0.12);
-  --text: #0f172a;
-  --text-dim: #475569;
-  --text-faint: #64748b;
-  --header-bg: rgba(248, 250, 252, 0.85);
+  --panel-sub: #F2EFE9;
+  --panel-card: #ffffff;
+  --border: #E7E5E4;
+  --border-soft: #F5F5F4;
+  --border-brass: rgba(234, 88, 12, 0.32);
+  --text: #1C1917;
+  --text-dim: #44403C;
+  --text-faint: #78716C;
+  --parchment: #1C1917;
+  
+  /* Official Palette: Vibrant Orange #EA580C */
+  --accent: #EA580C;
+  --orange-1: #EA580C;
+  --orange-2: #D9480F;
+  --orange-3: #C92A2A;
+  --orange-4: rgba(234, 88, 12, 0.15);
+  --amber-1: #EA580C;
+  --amber-2: #D9480F;
+  --amber-3: #C92A2A;
+  --amber-glow-color: rgba(234, 88, 12, 0.2);
+  --crimson-1: #EA580C;
+  --crimson-2: #D9480F;
+  --crimson-deep: #F5EAE6;
+  --phosphor-green: #15803d;
+  --header-bg: rgba(248, 247, 244, 0.92);
 }
 
 html {
@@ -43,10 +83,34 @@ html {
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Space Grotesk', system-ui, sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+/* Subtle Analog Grain Overlay */
+.vintage-grain {
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* CRT Scanlines for Terminal Card / Telemetry */
+.crt-screen {
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-screen::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.6;
 }
 
 /* Blur page content when modal is open */
@@ -57,7 +121,7 @@ body.modal-open #page-content {
   user-select: none;
 }
 
-/* Blur only the page content (below header) when mobile menu is open */
+/* Blur only page content when mobile menu is open */
 @media (max-width: 767px) {
   body.mobile-menu-open #page-content {
     filter: blur(8px) brightness(0.4);
@@ -71,14 +135,56 @@ header,
   transition: filter 0.3s ease, brightness 0.3s ease;
 }
 
+.font-display {
+  font-family: 'Syne', 'Space Grotesk', sans-serif;
+}
+
 .font-serif-italic {
-  font-family: 'Instrument Serif', Georgia, Cambria, 'Times New Roman', serif;
+  font-family: 'Instrument Serif', 'DM Serif Display', Georgia, serif;
   font-style: italic;
   font-weight: 400;
 }
 
 .font-zeyada {
   font-family: 'Zeyada', cursive;
+}
+
+/* Retro Equalizer Animation */
+@keyframes eq-bounce-1 {
+  0%, 100% { height: 25%; }
+  50% { height: 95%; }
+}
+@keyframes eq-bounce-2 {
+  0%, 100% { height: 80%; }
+  50% { height: 20%; }
+}
+@keyframes eq-bounce-3 {
+  0%, 100% { height: 45%; }
+  50% { height: 100%; }
+}
+@keyframes eq-bounce-4 {
+  0%, 100% { height: 90%; }
+  50% { height: 35%; }
+}
+@keyframes eq-bounce-5 {
+  0%, 100% { height: 30%; }
+  50% { height: 75%; }
+}
+
+.animate-eq-1 { animation: eq-bounce-1 1.2s ease-in-out infinite; }
+.animate-eq-2 { animation: eq-bounce-2 0.9s ease-in-out infinite; }
+.animate-eq-3 { animation: eq-bounce-3 1.4s ease-in-out infinite; }
+.animate-eq-4 { animation: eq-bounce-4 1.1s ease-in-out infinite; }
+.animate-eq-5 { animation: eq-bounce-5 1.3s ease-in-out infinite; }
+
+/* Spotlight Beam Animation */
+@keyframes spotlight-pulse {
+  0%, 100% { opacity: 0.65; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.9; transform: scale(1.05) rotate(1deg); }
+}
+
+.animate-spotlight {
+  animation: spotlight-pulse 8s ease-in-out infinite;
 }
 
 /* Infinite Marquee Animation for Continuous Tech Stack Ribbon */
@@ -101,6 +207,107 @@ header,
   animation-play-state: paused;
 }
 
+/* Vintage Gotham Street Lamp Flicker Animation */
+@keyframes lamp-flicker {
+  0%, 100% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 14px rgba(254, 240, 138, 0.9)) drop-shadow(0 0 30px rgba(234, 88, 12, 0.4));
+  }
+  4% { opacity: 0.7; filter: drop-shadow(0 0 6px rgba(254, 240, 138, 0.5)); }
+  7% { opacity: 0.95; filter: drop-shadow(0 0 14px rgba(254, 240, 138, 0.9)); }
+  8% { opacity: 0.65; filter: drop-shadow(0 0 4px rgba(254, 240, 138, 0.4)); }
+  9% { opacity: 0.98; }
+  10% { opacity: 0.85; }
+  11% { opacity: 1; }
+  88% { opacity: 0.95; }
+  89% { opacity: 0.72; filter: drop-shadow(0 0 6px rgba(254, 240, 138, 0.5)); }
+  90% { opacity: 0.98; filter: drop-shadow(0 0 16px rgba(254, 240, 138, 0.95)); }
+  91% { opacity: 0.68; }
+  92% { opacity: 0.95; }
+}
+
+@keyframes light-cone-flicker {
+  0%, 100% {
+    opacity: 0.75;
+  }
+  4% { opacity: 0.55; }
+  7% { opacity: 0.75; }
+  8% { opacity: 0.5; }
+  9% { opacity: 0.8; }
+  10% { opacity: 0.68; }
+  11% { opacity: 0.85; }
+  88% { opacity: 0.75; }
+  89% { opacity: 0.58; }
+  90% { opacity: 0.82; }
+  91% { opacity: 0.52; }
+  92% { opacity: 0.78; }
+}
+
+.animate-lamp-flicker {
+  animation: lamp-flicker 6s infinite;
+}
+
+.animate-cone-flicker {
+  animation: light-cone-flicker 6s infinite;
+}
+
+/* Animated Volumetric Fog Drift & Seamless Infinite Clouds */
+@keyframes infiniteClouds {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-clouds-layer-1 {
+  display: flex;
+  width: 200%;
+  animation: infiniteClouds 45s linear infinite;
+  will-change: transform;
+}
+
+.animate-clouds-layer-2 {
+  display: flex;
+  width: 200%;
+  animation: infiniteClouds 70s linear infinite reverse;
+  will-change: transform;
+  opacity: 0.6;
+}
+
+@keyframes driftFog {
+  0% { transform: translateX(-15%) translateY(0px); opacity: 0.25; }
+  50% { transform: translateX(15%) translateY(-10px); opacity: 0.45; }
+  100% { transform: translateX(-15%) translateY(0px); opacity: 0.25; }
+}
+
+@keyframes driftFogSlow {
+  0% { transform: translateX(12%) translateY(0px); opacity: 0.2; }
+  50% { transform: translateX(-12%) translateY(-15px); opacity: 0.4; }
+  100% { transform: translateX(12%) translateY(0px); opacity: 0.2; }
+}
+
+.animate-fog {
+  animation: driftFog 30s ease-in-out infinite;
+}
+
+.animate-fog-slow {
+  animation: driftFogSlow 45s ease-in-out infinite;
+}
+
+/* Complete Suppression of Click Highlight & Focus Outline for Interactive Elements */
+.no-focus-outline,
+.no-focus-outline:focus,
+.no-focus-outline:focus-visible,
+.no-focus-outline:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  -webkit-tap-highlight-color: transparent !important;
+  user-select: none !important;
+}
+
 input, textarea, select, button {
   font-family: inherit;
 }
@@ -114,15 +321,15 @@ input, textarea, select, button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--orange-1);
+  background: var(--amber-1);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--orange-2);
+  background: var(--amber-2);
 }
 
 ::selection {
-  background-color: var(--orange-1);
-  color: #ffffff;
+  background-color: var(--amber-1);
+  color: #07060b;
 }

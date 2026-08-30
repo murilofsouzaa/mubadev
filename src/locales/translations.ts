@@ -128,6 +128,7 @@ export interface TranslationSchema {
     phone: string;
     location: string;
     rights: string;
+    authorRole: string;
   };
   scrollToTop: {
     ariaLabel: string;
@@ -275,6 +276,7 @@ export const translations: Record<Language, TranslationSchema> = {
       phone: '(33) 99902-6628',
       location: 'Minas Gerais, Brasil',
       rights: '© 2026 Murilo Freitas de Souza. Todos os direitos reservados.',
+      authorRole: 'Murilo Freitas • Engenheiro de Software',
     },
     scrollToTop: {
       ariaLabel: 'Voltar ao topo',
@@ -418,6 +420,7 @@ export const translations: Record<Language, TranslationSchema> = {
       phone: '+55 (33) 99902-6628',
       location: 'Minas Gerais, Brazil',
       rights: '© 2026 Murilo Freitas de Souza. All rights reserved.',
+      authorRole: 'Murilo Freitas • Software Engineer',
     },
     scrollToTop: {
       ariaLabel: 'Scroll to top',

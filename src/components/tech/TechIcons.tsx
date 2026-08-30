@@ -187,7 +187,8 @@ const getSvgPath = (name: string): string | null => {
       return '/icons/git-svgrepo-com.svg';
     case 'githubactions':
     case 'actions':
-      return '/icons/git-svgrepo-com.svg';
+    case 'github':
+      return '/icons/github.svg';
     default:
       return null;
   }

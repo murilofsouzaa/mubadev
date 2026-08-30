@@ -216,7 +216,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                         <div className="space-y-2 pt-1 text-xs sm:text-sm text-text">
                           {t.projects.productionFlowItems.map((flow, idx) => (
                             <div key={idx} className="flex items-start gap-2.5">
-                              <span className="text-orange-1 font-bold shrink-0 mt-0.5">&gt;</span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#EA580C] shrink-0 mt-2" />
                               <span className="text-text leading-relaxed">{flow}</span>
                             </div>
                           ))}
@@ -230,9 +230,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                         <h4 className="text-xs font-bold text-text-faint uppercase tracking-wider">
                           {t.projects.techStack}
                         </h4>
-                        <span className="hidden sm:inline-block font-mono text-[11px] text-orange-1 font-bold">
-                          $ ls stack/
-                        </span>
                       </div>
                       <div className="flex flex-wrap gap-1.5">
                         {project.tags.map((tag) => (

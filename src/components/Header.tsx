@@ -3,7 +3,7 @@ import { NavLink, Link } from '../context/RouterContext';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Menu, X, ArrowUpRight, Terminal } from 'lucide-react';
+import { Sun, Moon, Menu, X, ArrowUpRight } from 'lucide-react';
 
 export const Header: React.FC = React.memo(() => {
   const { theme, toggleTheme } = useTheme();
@@ -34,10 +34,10 @@ export const Header: React.FC = React.memo(() => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { to: '/', label: t.nav.home, code: '00_home' },
-    { to: '/sobre', label: t.nav.about, code: '01_about' },
-    { to: '/projetos', label: t.nav.projects, code: '02_projects' },
-    { to: '/contato', label: t.nav.contact, code: '03_contact' },
+    { to: '/', label: t.nav.home },
+    { to: '/sobre', label: t.nav.about },
+    { to: '/projetos', label: t.nav.projects },
+    { to: '/contato', label: t.nav.contact },
   ];
 
   return (
@@ -45,60 +45,62 @@ export const Header: React.FC = React.memo(() => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className={`sticky top-0 z-50 w-full border-b border-border transition-colors ${
-        mobileMenuOpen ? 'bg-bg' : 'bg-bg/90 backdrop-blur-md'
+      className={`sticky top-0 z-50 w-full border-b transition-all ${
+        mobileMenuOpen
+          ? 'bg-[#F8F7F4] dark:bg-[#09090b] border-stone-200 dark:border-white/10'
+          : 'bg-[#F8F7F4]/80 dark:bg-[#09090b]/40 border-stone-200/40 dark:border-white/[0.04] backdrop-blur-md'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between gap-3 sm:gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 h-20 sm:h-24 flex items-center justify-between gap-4">
         
-        {/* Left: Brand Identity with Dog Avatar & Subtle Terminal Prompt */}
+        {/* Left: Brand Identity */}
         <Link
           to="/"
-          className="flex items-center gap-2.5 sm:gap-3.5 select-none text-text focus:outline-none shrink-0 group min-w-0"
+          className="flex items-center gap-3 sm:gap-3.5 select-none text-text focus:outline-none shrink-0 group min-w-0"
         >
           <motion.div
-            whileHover={{ scale: 1.08, rotate: 2 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             className="relative shrink-0"
           >
-            <img
-              src="/favicon.jpg"
-              alt="Avatar de Murilo Freitas"
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-orange-1 shadow-sm transition-transform"
-            />
-            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-400 border-2 border-bg animate-pulse" />
+            {/* Clean Avatar Ring */}
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full p-[2px] ring-1 ring-stone-300 dark:ring-[#EA580C]/40 overflow-hidden bg-white dark:bg-zinc-900">
+              <img
+                src="/favicon.jpg"
+                alt="Avatar de Murilo Freitas"
+                className="w-full h-full rounded-full object-cover grayscale-[15%] contrast-115"
+              />
+            </div>
           </motion.div>
 
           <div className="flex flex-col min-w-0">
-            <span className="font-bold text-sm sm:text-lg tracking-tight text-text flex items-center group-hover:text-orange-1 transition-colors truncate">
-              Murilo Freitas<span className="text-orange-1">.</span>
+            <span className="font-sans font-bold text-base text-stone-950 dark:text-zinc-100 group-hover:text-[#EA580C] transition-colors truncate tracking-tight">
+              Murilo Freitas<span className="text-[#EA580C] font-black">.</span>
             </span>
-            <span className="font-mono text-[10px] sm:text-[11px] text-text-faint font-medium -mt-0.5 flex items-center gap-1 truncate">
-              <span className="text-orange-1 font-bold">&gt;</span>
-              <span>{t.header.role}</span>
-              <span className="w-1.5 h-3 bg-orange-1 animate-pulse inline-block ml-0.5" />
+
+            <span className="text-xs text-stone-600 dark:text-zinc-400 font-mono truncate">
+              {t.header.role}
             </span>
           </div>
         </Link>
 
-        {/* Center: Navigation Links Pill with Subtle Terminal Numbering (Desktop only) */}
-        <nav className="hidden md:flex items-center gap-1 bg-panel border border-border rounded-full p-1.5 shadow-sm">
+        {/* Center: Floating Navigation Pill (Desktop only) */}
+        <nav className="hidden md:flex items-center gap-1 rounded-full border border-stone-300/80 dark:border-[#EA580C]/30 bg-white/80 dark:bg-[#120507]/80 backdrop-blur-md p-1.5 shadow-sm">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
-                `px-3.5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 select-none flex items-center gap-1.5 ${
+                `rounded-full transition-all duration-150 select-none flex items-center gap-1 font-sans ${
                   isActive
-                    ? 'bg-orange-1 text-white shadow-sm font-bold'
-                    : 'text-text-dim hover:text-text hover:bg-panel-sub'
+                    ? 'bg-[#EA580C] text-white px-4 py-1.5 text-xs md:text-sm font-semibold shadow-sm'
+                    : 'text-stone-700 dark:text-zinc-300 hover:text-stone-950 dark:hover:text-white hover:bg-stone-200/50 dark:hover:bg-white/5 px-3.5 py-1.5 text-xs md:text-sm font-medium'
                 }`
               }
             >
               {({ isActive }) => (
                 <>
-                  <span className={`font-mono text-[10px] ${isActive ? 'text-white' : 'text-orange-1'}`}>/</span>
+                  <span className={isActive ? 'text-white font-black' : 'text-[#EA580C] font-bold'}>/</span>
                   <span>{link.label}</span>
                 </>
               )}
@@ -106,7 +108,7 @@ export const Header: React.FC = React.memo(() => {
           ))}
         </nav>
 
-        {/* Right: Desktop Controls */}
+        {/* Right: Desktop Controls (Language, Theme & CTA) */}
         <div className="hidden md:flex items-center gap-3 shrink-0">
           
           {/* Language Switch */}
@@ -114,36 +116,36 @@ export const Header: React.FC = React.memo(() => {
             onClick={toggleLanguage}
             type="button"
             aria-label={`${t.header.langAria} (${language.toUpperCase()})`}
-            className="flex items-center bg-panel border border-border rounded-full p-1 text-xs font-bold transition-all hover:border-orange-1/60 shadow-sm font-mono"
+            className="rounded-full border border-stone-300/80 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 p-1 flex items-center gap-1 text-xs font-mono backdrop-blur-md shadow-sm"
           >
             <span
-              className={`px-2.5 py-1 rounded-full transition-all ${
+              className={`rounded-full transition-colors px-2.5 py-0.5 text-xs ${
                 language === 'pt'
-                  ? 'bg-orange-1 text-white shadow-sm font-extrabold'
-                  : 'text-text-faint hover:text-text'
+                  ? 'bg-[#EA580C] text-white font-bold shadow-sm'
+                  : 'text-stone-700 dark:text-zinc-400 hover:text-stone-950 dark:hover:text-white'
               }`}
             >
               PT
             </span>
             <span
-              className={`px-2.5 py-1 rounded-full transition-all ${
+              className={`rounded-full transition-colors px-2.5 py-0.5 text-xs ${
                 language === 'en'
-                  ? 'bg-orange-1 text-white shadow-sm font-extrabold'
-                  : 'text-text-faint hover:text-text'
+                  ? 'bg-[#EA580C] text-white font-bold shadow-sm'
+                  : 'text-stone-700 dark:text-zinc-400 hover:text-stone-950 dark:hover:text-white'
               }`}
             >
               EN
             </span>
           </button>
 
-          {/* Animated Theme Switch */}
+          {/* Theme Rotary Switch */}
           <motion.button
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
             onClick={toggleTheme}
             type="button"
             aria-label={`${t.header.themeAria} ${isDark ? 'light' : 'dark'}`}
-            className="w-10 h-10 rounded-full bg-panel border border-border flex items-center justify-center text-text-dim hover:text-orange-1 hover:border-orange-1/80 transition-all shadow-sm overflow-hidden"
+            className="w-9 h-9 rounded-full border border-stone-300/80 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md flex items-center justify-center text-stone-700 dark:text-zinc-400 hover:text-stone-950 dark:hover:text-white transition-all shadow-sm overflow-hidden"
           >
             <AnimatePresence mode="wait" initial={false}>
               {isDark ? (
@@ -154,43 +156,43 @@ export const Header: React.FC = React.memo(() => {
                   exit={{ rotate: 90, scale: 0, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Sun className="w-4 h-4 text-orange-2" />
+                  <Sun className="w-4 h-4 text-[#EA580C]" />
                 </motion.div>
               ) : (
                 <motion.div
                   key="moon"
                   initial={{ rotate: 90, scale: 0, opacity: 0 }}
                   animate={{ rotate: 0, scale: 1, opacity: 1 }}
-                  exit={{ rotate: -90, scale: 0, opacity: 0 }}
+                  exit={{ rotate: 90, scale: 0, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Moon className="w-4 h-4 text-orange-1" />
+                  <Moon className="w-4 h-4 text-stone-800" />
                 </motion.div>
               )}
             </AnimatePresence>
           </motion.button>
 
-          {/* Direct CTA Link with terminal prompt chevron */}
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+          {/* Direct CTA Link */}
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.95 }}>
             <Link
               to="/contato"
-              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-orange-1 hover:bg-orange-2 text-white font-bold text-xs transition-all shadow-sm group"
+              className="bg-[#EA580C] hover:bg-[#D9480F] text-white font-semibold text-xs md:text-sm px-5 py-2.5 rounded-full flex items-center gap-1.5 shadow-sm transition-transform active:scale-95 group font-sans"
             >
-              <Terminal className="w-3.5 h-3.5 text-white" />
               <span>{t.header.talkBtn}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </motion.div>
         </div>
 
-        {/* Right: Mobile Controls (Theme Toggle & Animated Hamburger) */}
+        {/* Right: Mobile Controls (Theme Toggle & Hamburger) */}
         <div className="flex md:hidden items-center gap-2 shrink-0">
+
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
             type="button"
             aria-label={`${t.header.themeAria} ${isDark ? 'light' : 'dark'}`}
-            className="w-9 h-9 rounded-xl bg-panel border border-border flex items-center justify-center text-text-dim hover:text-orange-1 transition-all shadow-sm"
+            className="w-9 h-9 rounded-xl border border-stone-300 dark:border-zinc-700 bg-transparent flex items-center justify-center text-stone-800 dark:text-zinc-300 hover:text-stone-950 dark:hover:text-white transition-all shadow-sm"
           >
             <AnimatePresence mode="wait" initial={false}>
               {isDark ? (
@@ -201,28 +203,30 @@ export const Header: React.FC = React.memo(() => {
                   exit={{ rotate: 90, scale: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Sun className="w-4 h-4 text-orange-2" />
+                  <Sun className="w-4 h-4 text-zinc-300" />
                 </motion.div>
               ) : (
                 <motion.div
                   key="moon-mobile"
                   initial={{ rotate: 90, scale: 0 }}
                   animate={{ rotate: 0, scale: 1 }}
-                  exit={{ rotate: -90, scale: 0 }}
+                  exit={{ rotate: 90, scale: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Moon className="w-4 h-4 text-orange-1" />
+                  <Moon className="w-4 h-4 text-stone-800" />
                 </motion.div>
               )}
             </AnimatePresence>
           </motion.button>
 
+          {/* Mobile Hamburger Toggle Button */}
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             type="button"
-            aria-label="Menu"
-            className="w-9 h-9 rounded-xl bg-panel border border-border flex items-center justify-center text-text shadow-sm"
+            aria-label={mobileMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
+            aria-expanded={mobileMenuOpen}
+            className="w-10 h-10 rounded-xl border border-stone-300 dark:border-zinc-700 bg-transparent flex items-center justify-center text-stone-800 dark:text-zinc-300 hover:text-stone-950 dark:hover:text-white hover:border-stone-500 dark:hover:border-zinc-500 transition-all focus:outline-none"
           >
             <AnimatePresence mode="wait" initial={false}>
               {mobileMenuOpen ? (
@@ -233,17 +237,17 @@ export const Header: React.FC = React.memo(() => {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.15 }}
                 >
-                  <X className="w-5 h-5 text-orange-1" />
+                  <X className="w-5 h-5 text-stone-800 dark:text-zinc-300" />
                 </motion.div>
               ) : (
                 <motion.div
                   key="menu"
                   initial={{ rotate: 90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
+                  exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.15 }}
                 >
-                  <Menu className="w-5 h-5" />
+                  <Menu className="w-5 h-5 text-stone-800 dark:text-zinc-300" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -252,7 +256,7 @@ export const Header: React.FC = React.memo(() => {
 
       </div>
 
-      {/* Mobile Dropdown Menu with Fluid Expand Animation */}
+      {/* Mobile Dropdown Menu with Complete Contrast and Sync with Active Theme */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -260,44 +264,41 @@ export const Header: React.FC = React.memo(() => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="md:hidden border-t border-border bg-panel px-5 py-5 space-y-4 shadow-2xl overflow-hidden relative z-50"
+            className="md:hidden border-t border-stone-300/80 dark:border-[#EA580C]/20 bg-[#F8F7F4]/95 dark:bg-[#12080a]/95 backdrop-blur-md px-5 py-5 space-y-4 shadow-lg dark:shadow-xl overflow-hidden relative z-50"
           >
-            {/* Navigation Links with Monospace Prompt Prefixes */}
-            <nav className="flex flex-col gap-1.5 font-mono">
+            {/* Navigation Links */}
+            <nav className="flex flex-col gap-1.5">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
                   onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
-                    `px-4 py-3 rounded-2xl text-sm font-semibold transition-all flex items-center justify-between ${
+                    `px-4 py-3 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
                       isActive
-                        ? 'bg-orange-1 text-white'
-                        : 'text-text hover:bg-panel-sub'
+                        ? 'bg-[#EA580C] text-white font-semibold shadow-sm'
+                        : 'text-stone-800 hover:text-stone-950 dark:text-zinc-300 dark:hover:text-white hover:bg-stone-200/50 dark:hover:bg-white/5'
                     }`
                   }
                 >
                   <span>{link.label}</span>
-                  <span className="text-xs text-orange-1">
-                    {link.code}
-                  </span>
                 </NavLink>
               ))}
             </nav>
 
             {/* Controls Bar inside mobile menu */}
-            <div className="pt-2 border-t border-border/80 flex items-center justify-between gap-3">
+            <div className="pt-3 border-t border-stone-300 dark:border-zinc-800 flex items-center justify-between gap-3">
               {/* Language Switch */}
-              <div className="flex items-center gap-1 bg-panel-sub border border-border rounded-xl p-1 text-xs font-bold font-mono">
+              <div className="flex items-center gap-1 bg-stone-200/80 dark:bg-zinc-900/80 border border-stone-300 dark:border-zinc-700 rounded-xl p-1 text-xs font-bold font-mono">
                 <button
                   type="button"
                   onClick={() => {
                     if (language !== 'pt') toggleLanguage();
                   }}
-                  className={`px-3 py-1.5 rounded-lg transition-all ${
+                  className={`px-3 py-1.5 rounded-lg transition-colors ${
                     language === 'pt'
-                      ? 'bg-orange-1 text-white font-extrabold shadow-sm'
-                      : 'text-text-faint hover:text-text'
+                      ? 'bg-[#EA580C] text-white font-bold shadow-sm'
+                      : 'text-stone-800 dark:text-zinc-300 hover:text-black dark:hover:text-white'
                   }`}
                 >
                   PT
@@ -307,10 +308,10 @@ export const Header: React.FC = React.memo(() => {
                   onClick={() => {
                     if (language !== 'en') toggleLanguage();
                   }}
-                  className={`px-3 py-1.5 rounded-lg transition-all ${
+                  className={`px-3 py-1.5 rounded-lg transition-colors ${
                     language === 'en'
-                      ? 'bg-orange-1 text-white font-extrabold shadow-sm'
-                      : 'text-text-faint hover:text-text'
+                      ? 'bg-[#EA580C] text-white font-bold shadow-sm'
+                      : 'text-stone-800 dark:text-zinc-300 hover:text-black dark:hover:text-white'
                   }`}
                 >
                   EN
@@ -321,10 +322,10 @@ export const Header: React.FC = React.memo(() => {
               <Link
                 to="/contato"
                 onClick={() => setMobileMenuOpen(false)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-orange-1 hover:bg-orange-2 text-white font-bold text-xs transition-all shadow-sm font-mono"
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#EA580C] hover:bg-[#D9480F] text-white font-semibold text-xs transition-all shadow-sm font-sans"
               >
-                <span>$ {t.header.talkBtn}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-white" />
+                <span>{t.header.talkBtn}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </motion.div>
@@ -340,7 +341,7 @@ export const Header: React.FC = React.memo(() => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 top-20 sm:top-24 bg-black/50 z-30 md:hidden pointer-events-auto"
+            className="fixed inset-0 top-20 sm:top-24 bg-black/40 z-30 md:hidden pointer-events-auto backdrop-blur-sm"
             aria-hidden="true"
           />
         )}
