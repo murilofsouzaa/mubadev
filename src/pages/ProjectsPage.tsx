@@ -4,7 +4,7 @@ import { PROJECTS_DATA } from '../data/projects';
 import type { ProjectItemExtended } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 import { ProjectModal } from '../components/projects/ProjectModal';
-import { Play, ExternalLink, Github, Layers, Sparkles } from 'lucide-react';
+import { Play, ExternalLink, Github, Layers } from 'lucide-react';
 
 export const ProjectsPage: React.FC = () => {
   const { t, resolveText, language } = useLanguage();
@@ -56,19 +56,8 @@ export const ProjectsPage: React.FC = () => {
             {/* Content Overlaid Directly on Top of Photo */}
             <div className="relative z-10 w-full h-full p-6 sm:p-8 lg:p-10 flex flex-col justify-between flex-1 space-y-6">
               
-              {/* Top Row: Destaque Badge, Status Badge & Direct Action Links */}
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-3.5 py-1.5 rounded-full bg-orange-1/20 border border-orange-1/40 text-orange-1 font-mono font-bold text-xs flex items-center gap-1.5 shadow-sm backdrop-blur-md">
-                    <Sparkles className="w-3.5 h-3.5 text-orange-1" />
-                    <span>{language === 'pt' ? 'DESTAQUE' : 'FEATURED'}</span>
-                  </span>
-                  <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-emerald-400 font-mono font-bold text-xs flex items-center gap-2 border border-white/10 shadow-sm">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>{t.projects.onlineBadge}</span>
-                  </span>
-                </div>
-
+              {/* Top Row: Direct Action Links */}
+              <div className="flex items-center justify-end gap-3">
                 {/* Top Direct Action Buttons */}
                 <div className="flex items-center gap-2 sm:gap-2.5">
                   {featuredProject.deployUrl && (
@@ -185,14 +174,6 @@ export const ProjectsPage: React.FC = () => {
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-panel via-panel/20 to-transparent" />
-
-                  {/* Top Status Badge */}
-                  <div className="absolute top-3.5 left-3.5 flex items-center gap-2 pointer-events-none">
-                    <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-emerald-400 font-mono font-bold text-[11px] flex items-center gap-1.5 border border-white/10 shadow-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>{t.projects.onlineBadge}</span>
-                    </span>
-                  </div>
 
                   {/* Hover Overlay with Quick Action Button */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/35 backdrop-blur-[2px]">
