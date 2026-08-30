@@ -175,14 +175,17 @@ export const AboutPage: React.FC = () => {
 
               {/* Skills */}
               <div className="flex flex-wrap gap-1.5 pt-2 font-mono">
-                {edu.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-[11px] sm:text-xs font-semibold px-2.5 py-1 rounded-lg bg-panel-sub text-text-dim border border-border"
-                  >
-                    {skill}
-                  </span>
-                ))}
+                {edu.skills.map((skill, index) => {
+                  const skillText = resolveText(skill);
+                  return (
+                    <span
+                      key={`${typeof skill === 'string' ? skill : skill.pt}-${index}`}
+                      className="text-[11px] sm:text-xs font-semibold px-2.5 py-1 rounded-lg bg-panel-sub text-text-dim border border-border"
+                    >
+                      {skillText}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           ))}

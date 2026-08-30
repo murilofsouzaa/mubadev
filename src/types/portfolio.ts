@@ -24,7 +24,7 @@ export interface EducationItem {
   location: string;
   status: LocalizedString | string;
   description: LocalizedString | string;
-  skills: string[];
+  skills: (LocalizedString | string)[];
   highlights?: (LocalizedString | string)[];
 }
 

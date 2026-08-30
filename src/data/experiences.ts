@@ -9,7 +9,7 @@ export interface ExperienceItem {
   location: string;
   type: LocalizedString | string;
   description: (LocalizedString | string)[];
-  skills: string[];
+  skills: (LocalizedString | string)[];
 }
 
 export const EXPERIENCES_DATA: ExperienceItem[] = [
@@ -58,7 +58,7 @@ export const EXPERIENCES_DATA: ExperienceItem[] = [
       'Docker',
       'Nginx',
       'GitHub Actions',
-      'Redes & Suporte TI',
+      { pt: 'Redes & Suporte TI', en: 'Networking & IT Support' },
     ],
   },
 ];

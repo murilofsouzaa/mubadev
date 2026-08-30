@@ -59,7 +59,7 @@ export const ProjectsPage: React.FC = () => {
                 <div className="flex items-center">
                   <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-emerald-400 font-mono font-bold text-xs flex items-center gap-2 border border-white/10 shadow-sm">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>ONLINE & EM PRODUÇÃO</span>
+                    <span>{t.projects.onlineBadge}</span>
                   </span>
                 </div>
 
