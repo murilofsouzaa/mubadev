@@ -166,6 +166,12 @@ const getSvgPath = (name: string): string | null => {
     case 'springboot':
     case 'spring':
       return '/icons/spring-boot-svgrepo-com.svg';
+    case 'nodejs':
+    case 'node':
+      return '/icons/node-svgrepo-com.svg';
+    case 'express':
+    case 'expressjs':
+      return '/icons/express-svgrepo-com.svg';
     case 'cpp':
     case 'c++':
       return '/icons/cpp-svgrepo-com.svg';
@@ -201,6 +207,40 @@ interface TechIconProps {
 }
 
 export const TechIcon: React.FC<TechIconProps> = ({ name, className = 'w-5 h-5', style }) => {
+  const normalized = name.toLowerCase().replace(/[\s._-]+/g, '');
+
+  // GitHub / GitHub Actions: White in Dark Mode, Dark in Light Mode
+  if (normalized === 'githubactions' || normalized === 'actions' || normalized === 'github') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={`${className} text-stone-900 dark:text-white transition-colors`}
+        style={style}
+        aria-label={name}
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+        />
+      </svg>
+    );
+  }
+
+  // Express.js with invert in dark mode
+  if (normalized === 'express' || normalized === 'expressjs') {
+    return (
+      <img
+        src="/icons/express-svgrepo-com.svg"
+        alt={name}
+        className={`${className} object-contain dark:invert transition-all`}
+        style={style}
+        loading="lazy"
+      />
+    );
+  }
+
   const svgPath = getSvgPath(name);
 
   if (svgPath) {
@@ -212,16 +252,6 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = 'w-5 h-5',
         style={style}
         loading="lazy"
       />
-    );
-  }
-
-  // Fallback for Node.js or other custom tech
-  const normalized = name.toLowerCase().replace(/[\s._-]+/g, '');
-  if (normalized === 'nodejs' || normalized === 'node') {
-    return (
-      <svg viewBox="0 0 24 24" fill="#5FA04E" className={className} style={style}>
-        <path d="M12 10.74c-.07 0-1.22.68-1.84 1.04-.12.07-.15.22-.08.34l.43.74c.07.12.22.15.34.08.43-.25 1.06-.61 1.15-.61.35 0 .52.14.52.44 0 .84-2.18.59-2.18 2.27 0 .93.68 1.55 1.67 1.55 1.04 0 1.79-.64 1.84-.68.1-.09.12-.24.03-.34l-.45-.52c-.09-.1-.23-.12-.34-.04-.3.23-.77.49-1.08.49-.44 0-.61-.23-.61-.48 0-.88 2.18-.62 2.18-2.28 0-1.07-.79-1.49-1.62-1.49zm6.91-5.74L12.56.78a1.18 1.18 0 0 0-1.12 0L5.09 5c-.35.2-.56.57-.56.97v8.44c0 .4.21.77.56.97l6.35 4.22c.35.2.78.2 1.12 0l6.35-4.22c.35-.2.56-.57.56-.97V5.97c0-.4-.21-.77-.56-.97zm-6.91 16.32l-6.35-4.22V8.66l6.35 4.22v8.44zm1.05-9.61L6.7 7.49l5.3-3.53 5.3 3.53-4.25 2.83zm5.3 4.22l-5.3 3.53v-8.44l5.3-3.53v8.44z" />
-      </svg>
     );
   }
 

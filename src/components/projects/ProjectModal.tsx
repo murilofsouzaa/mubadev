@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import type { ProjectItemExtended } from '../../data/projects';
-import { X, ExternalLink, Terminal, Copy, Check, Github } from 'lucide-react';
+import { X, ExternalLink, Terminal, Copy, Check, Github, Layers } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 interface ProjectModalProps {
@@ -10,7 +10,7 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  const { t, language } = useLanguage();
+  const { t, language, resolveText } = useLanguage();
   const isOpen = Boolean(project);
   const [copied, setCopied] = useState(false);
 
@@ -155,16 +155,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                         </span>
                       </div>
                       <div className="text-sm sm:text-[15px] text-text-dim leading-relaxed bg-panel-sub/60 p-4 sm:p-5 rounded-2xl space-y-3">
-                        <p className="text-text">
-                          {t.projects.aboutText}
+                        <p className="text-text whitespace-pre-line">
+                          {resolveText(project.fullDescription || project.description) || t.projects.aboutText}
                         </p>
-                        <p className="text-text font-semibold">
-                          {t.projects.aboutMotto}
-                        </p>
-                        <p className="text-xs sm:text-sm text-text-faint pt-1">
-                          <strong className="text-orange-1">{t.projects.conceptsLabel} </strong>
-                          {t.projects.conceptsList}
-                        </p>
+                        {(project.motto || (project.id === 'eden' && t.projects.aboutMotto)) && (
+                          <p className="text-text font-semibold">
+                            {project.motto ? resolveText(project.motto) : t.projects.aboutMotto}
+                          </p>
+                        )}
+                        {(project.concepts || (project.id === 'eden' && t.projects.conceptsList)) && (
+                          <p className="text-xs sm:text-sm text-text-faint pt-1">
+                            <strong className="text-orange-1">{t.projects.conceptsLabel} </strong>
+                            {project.concepts ? resolveText(project.concepts) : t.projects.conceptsList}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -188,7 +192,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                             </div>
                             <button
                               type="button"
-                              onClick={() => handleCopyCommand('docker compose up -d')}
+                              onClick={() => handleCopyCommand(project.architectureDetails?.commandSnippet || 'docker compose up -d')}
                               className="inline-flex items-center gap-1 text-[11px] text-text-dim hover:text-text hover:bg-panel px-2 py-0.5 rounded transition-all"
                             >
                               {copied ? (
@@ -207,17 +211,19 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                           <div className="px-3.5 py-2.5 text-xs sm:text-sm font-mono overflow-x-auto text-text flex items-center justify-between gap-2">
                             <code>
                               <span className="text-orange-1 font-bold select-none">$ </span>
-                              <span className="text-emerald-400 font-semibold">docker compose up -d</span>
-                              <span className="text-text-faint ml-2 select-none"># NGINX + Spring Boot</span>
+                              <span className="text-emerald-400 font-semibold">{project.architectureDetails?.commandSnippet || 'docker compose up -d'}</span>
+                              {project.architectureDetails?.commandComment && (
+                                <span className="text-text-faint ml-2 select-none">{project.architectureDetails.commandComment}</span>
+                              )}
                             </code>
                           </div>
                         </div>
                         
                         <div className="space-y-2 pt-1 text-xs sm:text-sm text-text">
-                          {t.projects.productionFlowItems.map((flow, idx) => (
+                          {(project.architectureDetails?.productionFlow || t.projects.productionFlowItems).map((flow, idx) => (
                             <div key={idx} className="flex items-start gap-2.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-[#EA580C] shrink-0 mt-2" />
-                              <span className="text-text leading-relaxed">{flow}</span>
+                              <span className="text-text leading-relaxed">{resolveText(flow)}</span>
                             </div>
                           ))}
                         </div>
@@ -249,7 +255,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   <div className="p-4 sm:p-5 bg-panel-sub flex flex-col sm:flex-row gap-3 w-full shrink-0 border-t border-border/40 font-mono">
                     {project.deployUrl && (
                       <a
-                        href={edenProjectUrl(project.deployUrl)}
+                        href={project.deployUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-orange-1 hover:bg-orange-2 text-white font-bold text-xs sm:text-sm transition-all shadow-md h-11"
@@ -272,6 +278,19 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                         <span>{t.projects.gitRepoBtn}</span>
                       </a>
                     )}
+
+                    {project.figmaUrl && (
+                      <a
+                        href={project.figmaUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-panel hover:bg-panel-sub text-white hover:text-orange-1 font-bold text-xs sm:text-sm transition-all border border-border/80 shadow-md h-11"
+                      >
+                        <Layers className="w-4 h-4 text-orange-1 shrink-0" />
+                        <span className="text-orange-1 font-bold">$</span>
+                        <span>{t.projects.figmaBtn || 'Figma'}</span>
+                      </a>
+                    )}
                   </div>
 
                 </div>
@@ -284,7 +303,3 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
     </Transition>
   );
 };
-
-function edenProjectUrl(url: string) {
-  return url;
-}
