@@ -85,7 +85,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
                   <div className="relative w-full aspect-video lg:h-full lg:aspect-auto overflow-hidden bg-black flex items-center justify-center">
                     <iframe
-                      src={`https://www.youtube.com/embed/${project.youtubeId || (project.id === 'strucx' ? 'dyDJiA3XHEQ' : 'ohn5Kagjs8s')}?autoplay=0&rel=0`}
+                      src={`https://www.youtube.com/embed/${project.youtubeId || (project.id === 'strucx' ? 'pHSRwB7maDk' : 'ohn5Kagjs8s')}?autoplay=0&rel=0`}
                       title={`Demonstração de ${project.title}`}
                       className="w-full h-full min-h-[220px] sm:min-h-[320px] lg:min-h-full border-0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

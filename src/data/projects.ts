@@ -84,7 +84,7 @@ The project fuses an editorial aesthetic inspired by international architecture 
       ],
     },
     image: '/projects/strucx-thumbnail.png',
-    youtubeId: 'dyDJiA3XHEQ',
+    youtubeId: 'pHSRwB7maDk',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Node.js', 'Express', 'Docker', 'Nginx', 'GitHub Actions'],
     githubUrl: 'https://github.com/murilofsouzaa/strucx',
     deployUrl: 'https://strucx.mubadev.com.br/',
