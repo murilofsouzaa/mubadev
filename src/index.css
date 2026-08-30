@@ -10,7 +10,8 @@
   20% Secondary: Panels, Borders, Structures & Warm Parchment Typography
   10% Accent: Retro Jazz Amber Gold, Neon Crimson & Terminal Phosphor Glow
 */
-:root {
+:root,
+[data-theme="dark"] {
   /* 70% Base Canvas */
   --bg: #09090b;
   
