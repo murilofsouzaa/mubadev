@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import type { ProjectItemExtended } from '../../data/projects';
-import { X, ExternalLink, Terminal, Copy, Check, Github, Layers } from 'lucide-react';
+import { X, ExternalLink, Terminal, Copy, Check, Github, Layers, Play } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 interface ProjectModalProps {
@@ -13,6 +13,15 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
   const { t, language, resolveText } = useLanguage();
   const isOpen = Boolean(project);
   const [copied, setCopied] = useState(false);
+  const [mediaTab, setMediaTab] = useState<'video' | 'image'>('video');
+
+  useEffect(() => {
+    if (project?.youtubeId) {
+      setMediaTab('video');
+    } else {
+      setMediaTab('image');
+    }
+  }, [project]);
 
   const handleCopyCommand = (command: string) => {
     navigator.clipboard.writeText(command);
@@ -83,18 +92,62 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     </button>
                   </div>
 
-                  {project.youtubeId ? (
-                    <div className="relative w-full aspect-video lg:h-full lg:aspect-auto overflow-hidden bg-black flex items-center justify-center">
-                      <iframe
-                        src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=0&rel=0`}
-                        title={`Demonstração de ${project.title}`}
-                        className="w-full h-full min-h-[220px] sm:min-h-[320px] lg:min-h-full border-0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
+                  {/* Media Tab Controls (Video Preview vs Image) */}
+                  {project.youtubeId && (
+                    <div className="flex items-center justify-between px-4 py-2.5 bg-panel-sub/90 border-b border-border/50 z-10">
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setMediaTab('video')}
+                          className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                            mediaTab === 'video'
+                              ? 'bg-orange-1 text-white shadow-sm'
+                              : 'bg-panel text-text-dim hover:text-text'
+                          }`}
+                        >
+                          <Play className="w-3 h-3 fill-current" />
+                          <span>{language === 'pt' ? 'Vídeo Preview' : 'Video Preview'}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setMediaTab('image')}
+                          className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                            mediaTab === 'image'
+                              ? 'bg-orange-1 text-white shadow-sm'
+                              : 'bg-panel text-text-dim hover:text-text'
+                          }`}
+                        >
+                          <span>{language === 'pt' ? 'Captura de Tela' : 'Screenshot'}</span>
+                        </button>
+                      </div>
+
+                      <a
+                        href={`https://youtu.be/${project.youtubeId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[11px] font-mono text-orange-1 hover:underline flex items-center gap-1"
+                      >
+                        <span>YouTube</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  )}
+
+                  {/* Media Showcase Content */}
+                  {project.youtubeId && mediaTab === 'video' ? (
+                    <div className="relative w-full aspect-video sm:aspect-video lg:h-full lg:aspect-auto overflow-hidden bg-black flex items-center justify-center p-0 lg:p-4">
+                      <div className="w-full h-full min-h-[220px] sm:min-h-[320px] lg:h-auto lg:aspect-video rounded-none lg:rounded-2xl overflow-hidden shadow-2xl border-0 lg:border border-white/10">
+                        <iframe
+                          src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=0&rel=0`}
+                          title={`Preview de ${project.title}`}
+                          className="w-full h-full border-0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      </div>
                     </div>
                   ) : (
-                    <div className="relative w-full h-full min-h-[240px] overflow-hidden bg-panel-sub">
+                    <div className="relative w-full h-full min-h-[240px] overflow-hidden bg-panel-sub flex items-center justify-center">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -144,6 +197,36 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   {/* Scrollable Details Body */}
                   <div className="p-4 sm:p-6 overflow-y-auto space-y-4 sm:space-y-5 flex-1">
                     
+                    {/* Embedded Video Preview in Project Details */}
+                    {project.youtubeId && (
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <h4 className="text-xs font-bold text-text uppercase tracking-wider flex items-center gap-2">
+                            <Play className="w-3 h-3 text-orange-1 fill-orange-1" />
+                            <span>{language === 'pt' ? 'Vídeo Preview do Projeto' : 'Project Video Preview'}</span>
+                          </h4>
+                          <a
+                            href={`https://youtu.be/${project.youtubeId}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-mono text-[11px] text-orange-1 hover:underline flex items-center gap-1"
+                          >
+                            <span>YouTube</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
+                        <div className="rounded-2xl overflow-hidden border border-border bg-black aspect-video shadow-md">
+                          <iframe
+                            src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=0&rel=0`}
+                            title={`Preview de ${project.title}`}
+                            className="w-full h-full border-0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                    )}
+
                     {/* About Project */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">

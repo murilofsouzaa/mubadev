@@ -118,9 +118,7 @@ export const ProjectsPage: React.FC = () => {
                 >
                   <Play className="w-4 h-4 fill-white text-white ml-0.5" />
                   <span>
-                    {featuredProject.youtubeId
-                      ? t.projects.viewDemoBtn
-                      : (language === 'pt' ? 'Ver Detalhes do Projeto' : 'View Project Details')}
+                    {language === 'pt' ? 'Ver Detalhes do Projeto' : 'View Project Details'}
                   </span>
                 </button>
               </div>
