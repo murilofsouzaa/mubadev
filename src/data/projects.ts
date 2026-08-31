@@ -88,7 +88,7 @@ The project fuses an editorial aesthetic inspired by international architecture 
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Node.js', 'Express', 'Docker', 'Nginx', 'GitHub Actions'],
     githubUrl: 'https://github.com/murilofsouzaa/strucx',
     deployUrl: 'https://strucx.mubadev.com.br/',
-    featured: true,
+    featured: false,
     size: 'large',
   },
   {
@@ -168,5 +168,79 @@ I'm developing this project to learn concepts such as: Domain-Driven Design, Des
     deployUrl: 'https://eden.mubadev.com.br/',
     featured: false,
     size: 'medium',
+  },
+  {
+    id: 'amordebicho',
+    title: 'Amor de Bicho',
+    subtitle: {
+      pt: 'Landing Page moderna e performática para Pet Shop & Centro Veterinário, com animações GSAP ScrollTrigger a 60 FPS e deploy automatizado via Docker e GitHub Actions.',
+      en: 'Modern and high-performance Landing Page for a Pet Shop & Veterinary Center, with GSAP ScrollTrigger animations at 60 FPS and automated deployment via Docker and GitHub Actions.',
+    },
+    description: {
+      pt: 'Landing Page moderna, performática e interativa para o Pet Shop e Centro Veterinário Amor de Bicho. Desenvolvida com arquitetura de ponta, animações sincronizadas via GSAP ScrollTrigger a 60 FPS, tipografia de alto impacto e deploy automatizado com Docker e GitHub Actions.',
+      en: 'Modern, performant, and interactive Landing Page for Amor de Bicho Pet Shop & Veterinary Center. Built with cutting-edge architecture, GSAP ScrollTrigger animations synchronized at 60 FPS, high-impact typography, and automated deployment with Docker and GitHub Actions.',
+    },
+    fullDescription: {
+      pt: `Landing Page moderna, performática e interativa para o Pet Shop e Centro Veterinário Amor de Bicho. Desenvolvida com arquitetura de ponta, animações sincronizadas via GSAP ScrollTrigger a 60 FPS, tipografia de alto impacto e deploy automatizado com Docker e GitHub Actions.
+
+A experiência conta com Hero Colossal com vídeo em Canvas a 60 FPS, Narrativa Pinned imersiva com ScrollTrigger, grid de serviços com contraste dinâmico no hover, Bento Grid de diferenciais (câmeras ao vivo, clínica 24h, manejo fear-free), seção de depoimentos e footer institucional completo.`,
+      en: `Modern, performant, and interactive Landing Page for Amor de Bicho Pet Shop & Veterinary Center. Built with cutting-edge architecture, GSAP ScrollTrigger animations at 60 FPS, high-impact typography, and automated deployment with Docker and GitHub Actions.
+
+The experience features a Colossal Hero with 60 FPS Canvas video, immersive Pinned Narrative with ScrollTrigger, services grid with dynamic hover contrast, Differentials Bento Grid (live cameras, 24h clinic, fear-free handling), testimonials section, and complete institutional footer.`,
+    },
+    motto: {
+      pt: 'Identidade visual em Verde Principal #496F5D, tipografia Viga & Bungee, cantos retos e design system 100% cage-free.',
+      en: 'Brand identity in Verde Principal #496F5D, Viga & Bungee typography, sharp corners and 100% cage-free design system.',
+    },
+    concepts: {
+      pt: 'GSAP ScrollTrigger, Lenis Smooth Scroll, Framer Motion, React Router DOM v7, Multi-Stage Docker, Nginx SPA, GitHub Actions CI/CD.',
+      en: 'GSAP ScrollTrigger, Lenis Smooth Scroll, Framer Motion, React Router DOM v7, Multi-Stage Docker, Nginx SPA, GitHub Actions CI/CD.',
+    },
+    architectureDetails: {
+      backend: [],
+      frontend: [
+        'React 19 + TypeScript',
+        'Vite 8 (Build tool de altíssima velocidade)',
+        'Tailwind CSS v4 (Sistema de estilos moderno)',
+        'GSAP 3 + ScrollTrigger (Animações e scrubbing a 60 FPS)',
+        'Lenis (Smooth scrolling inercial a 60-120 FPS)',
+        'Framer Motion (Microinterações e dropdowns fluidos)',
+        'React Router DOM v7 (Roteamento SPA)',
+        'Lucide React (Ícones limpos e minimalistas)',
+      ],
+      infra: [
+        'Docker (Multi-stage build com Node 20 e Nginx Alpine)',
+        'Nginx (Gzip, cache de assets e suporte a SPA)',
+        'Docker Compose',
+        'GitHub Actions (CI/CD com lint, build e deploy SSH)',
+      ],
+      commandSnippet: 'docker compose up --build -d',
+      commandComment: '# Nginx Alpine · porta 8086',
+      productionFlow: [
+        {
+          pt: 'Build multi-stage: Node 20 compila o Vite, Nginx Alpine serve a SPA estática com Gzip e cache agressivo.',
+          en: 'Multi-stage build: Node 20 compiles Vite, Nginx Alpine serves the static SPA with Gzip and aggressive caching.',
+        },
+        {
+          pt: 'Container exposto em http://localhost:8086; Nginx host da VPS roteia HTTPS (443) para 127.0.0.1:8086.',
+          en: 'Container exposed at http://localhost:8086; VPS host Nginx routes HTTPS (443) to 127.0.0.1:8086.',
+        },
+        {
+          pt: 'Pipeline GitHub Actions dispara no push para main: ESLint → Vite build → Docker build → deploy SSH automático na VPS.',
+          en: 'GitHub Actions pipeline triggers on push to main: ESLint → Vite build → Docker build → automatic SSH deploy to VPS.',
+        },
+        {
+          pt: 'Secrets configuradas no GitHub: VPS_HOST, VPS_SSH_KEY e VPS_PORT garantem deploy seguro sem exposição de credenciais.',
+          en: 'GitHub secrets configured: VPS_HOST, VPS_SSH_KEY and VPS_PORT ensure secure deployment without credential exposure.',
+        },
+      ],
+    },
+    image: '/amordebichothumbail.png',
+    youtubeId: 'kcPnboHULAg',
+    tags: ['React 19', 'TypeScript', 'Tailwind CSS v4', 'GSAP', 'Lenis', 'Framer Motion', 'Vite', 'Docker', 'Nginx', 'GitHub Actions'],
+    githubUrl: 'https://github.com/murilofsouzaa/amordebicho',
+    deployUrl: 'https://amordebicho.mubadev.com.br/',
+    featured: true,
+    size: 'large',
   },
 ];
