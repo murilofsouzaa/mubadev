@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { PROJECTS_DATA } from '../../data/projects';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { PROJECTS_DATA, type ProjectItemExtended } from '../../data/projects';
 import { useLanguage } from '../../context/LanguageContext';
-import { Play, ExternalLink, Github, Layers, X } from 'lucide-react';
+import { Play, ExternalLink, Github, Layers, X, Loader2 } from 'lucide-react';
 
 export const ProjectsList: React.FC = () => {
   const { language, resolveText } = useLanguage();
-  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
+  const [activeVideoProject, setActiveVideoProject] = useState<ProjectItemExtended | null>(null);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
+
+  // Close modal on Escape and freeze scroll
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveVideoProject(null);
+    };
+    if (activeVideoProject) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+      const lenis = (window as any).__lenis;
+      if (lenis) lenis.stop();
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+      const lenis = (window as any).__lenis;
+      if (lenis) lenis.start();
+    };
+  }, [activeVideoProject]);
+
+  const handleOpenVideo = (project: ProjectItemExtended) => {
+    setIsVideoLoading(true);
+    setActiveVideoProject(project);
+  };
 
   return (
     <section id="projetos" className="py-16 sm:py-24 max-w-4xl mx-auto select-none">
@@ -104,54 +129,34 @@ export const ProjectsList: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Right Column: Seamless Inline Video Box (5 cols) */}
+                {/* Right Column: Compact Video Preview Box that Expands on Click (5 cols) */}
                 <div className="md:col-span-5">
-                  {playingVideoId === project.id && project.youtubeId ? (
-                    <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black shadow-md border border-border/60">
-                      <iframe
-                        src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=1&rel=0`}
-                        title={project.title}
-                        className="w-full h-full border-0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setPlayingVideoId(null)}
-                        aria-label="Fechar prévia"
-                        className="absolute top-2.5 right-2.5 z-10 p-1.5 rounded-full bg-black/80 text-white hover:bg-black transition-colors"
+                  <div
+                    onClick={() => handleOpenVideo(project)}
+                    className="group relative aspect-video w-full rounded-xl overflow-hidden cursor-pointer bg-black shadow-md border border-border/60"
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top opacity-85 group-hover:opacity-95 group-hover:scale-105 transition-all duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-colors" />
+
+                    {/* Centered Play Button */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="w-12 h-12 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg transition-transform group-hover:bg-white group-hover:scale-105"
                       >
-                        <X className="w-4 h-4" />
-                      </button>
+                        <Play className="w-5 h-5 fill-current ml-0.5" />
+                      </motion.div>
                     </div>
-                  ) : (
-                    <div
-                      onClick={() => setPlayingVideoId(project.id)}
-                      className="group relative aspect-video w-full rounded-xl overflow-hidden cursor-pointer bg-black shadow-md border border-border/60"
-                    >
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover object-top opacity-85 group-hover:opacity-95 group-hover:scale-105 transition-all duration-500"
-                      />
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-colors" />
 
-                      {/* Centered Play Button */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <motion.div
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="w-12 h-12 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg transition-transform group-hover:bg-white group-hover:scale-105"
-                        >
-                          <Play className="w-5 h-5 fill-current ml-0.5" />
-                        </motion.div>
-                      </div>
-
-                      <div className="absolute bottom-2.5 left-3 text-[11px] font-mono text-white/90 drop-shadow">
-                        {language === 'pt' ? 'Assistir vídeo' : 'Watch video'}
-                      </div>
+                    <div className="absolute bottom-2.5 left-3 text-[11px] font-mono text-white/90 drop-shadow">
+                      {language === 'pt' ? 'Assistir vídeo' : 'Watch video'}
                     </div>
-                  )}
+                  </div>
                 </div>
 
               </div>
@@ -159,6 +164,81 @@ export const ProjectsList: React.FC = () => {
           );
         })}
       </div>
+
+      {/* Expanded Cinema Lightbox Modal */}
+      <AnimatePresence>
+        {activeVideoProject && activeVideoProject.youtubeId && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8">
+            {/* Clean Dark Theater Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setActiveVideoProject(null)}
+              className="fixed inset-0 bg-black/90 backdrop-blur-md cursor-pointer"
+            />
+
+            {/* Video Box Expanding into View */}
+            <motion.div
+              initial={{ scale: 0.7, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.7, opacity: 0, y: 30 }}
+              transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+              className="relative w-full max-w-4xl z-10 bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/20"
+            >
+              {/* Modal Top Bar */}
+              <div className="flex items-center justify-between px-5 py-3.5 bg-[#0a0a0a] text-white border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <span className="font-bold text-sm sm:text-base tracking-tight">
+                    {activeVideoProject.title}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveVideoProject(null)}
+                  aria-label="Fechar vídeo"
+                  className="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Video Player Container */}
+              <div className="relative aspect-video w-full bg-black overflow-hidden">
+                {/* Poster Image with Loading Spinner while YouTube connects (eliminates 5s black void) */}
+                {isVideoLoading && (
+                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black">
+                    <img
+                      src={activeVideoProject.image}
+                      alt={activeVideoProject.title}
+                      className="absolute inset-0 w-full h-full object-cover opacity-30 blur-sm"
+                    />
+                    <div className="relative z-20 flex flex-col items-center gap-3 text-white">
+                      <Loader2 className="w-8 h-8 animate-spin text-white/80" />
+                      <span className="text-xs font-mono text-white/70 tracking-widest uppercase">
+                        {language === 'pt' ? 'Carregando prévia...' : 'Loading preview...'}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* YouTube iframe: transitions to 100% opacity as soon as loaded */}
+                <iframe
+                  src={`https://www.youtube.com/embed/${activeVideoProject.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                  title={activeVideoProject.title}
+                  className={`w-full h-full border-0 relative z-20 transition-opacity duration-300 ${
+                    isVideoLoading ? 'opacity-0' : 'opacity-100'
+                  }`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  onLoad={() => setIsVideoLoading(false)}
+                />
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
