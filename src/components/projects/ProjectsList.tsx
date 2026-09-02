@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS_DATA, type ProjectItemExtended } from '../../data/projects';
 import { useLanguage } from '../../context/LanguageContext';
@@ -165,80 +166,84 @@ export const ProjectsList: React.FC = () => {
         })}
       </div>
 
-      {/* Expanded Cinema Lightbox Modal */}
-      <AnimatePresence>
-        {activeVideoProject && activeVideoProject.youtubeId && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8">
-            {/* Clean Dark Theater Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={() => setActiveVideoProject(null)}
-              className="fixed inset-0 bg-black/90 backdrop-blur-md cursor-pointer"
-            />
-
-            {/* Video Box Expanding into View */}
-            <motion.div
-              initial={{ scale: 0.7, opacity: 0, y: 30 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.7, opacity: 0, y: 30 }}
-              transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-              className="relative w-full max-w-4xl z-10 bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/20"
-            >
-              {/* Modal Top Bar */}
-              <div className="flex items-center justify-between px-5 py-3.5 bg-[#0a0a0a] text-white border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="font-bold text-sm sm:text-base tracking-tight">
-                    {activeVideoProject.title}
-                  </span>
-                </div>
-                <button
-                  type="button"
+      {/* Expanded Cinema Lightbox Modal rendered via Portal to document.body */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {activeVideoProject && activeVideoProject.youtubeId && (
+              <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-8">
+                {/* 100% Solid Pure Black Backdrop - ZERO transparency, eliminating any background stripes or bleed */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   onClick={() => setActiveVideoProject(null)}
-                  aria-label="Fechar vídeo"
-                  className="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
+                  className="fixed inset-0 bg-[#000000] cursor-pointer"
+                />
 
-              {/* Video Player Container */}
-              <div className="relative aspect-video w-full bg-black overflow-hidden">
-                {/* Poster Image with Loading Spinner while YouTube connects (eliminates 5s black void) */}
-                {isVideoLoading && (
-                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black">
-                    <img
-                      src={activeVideoProject.image}
-                      alt={activeVideoProject.title}
-                      className="absolute inset-0 w-full h-full object-cover opacity-30 blur-sm"
-                    />
-                    <div className="relative z-20 flex flex-col items-center gap-3 text-white">
-                      <Loader2 className="w-8 h-8 animate-spin text-white/80" />
-                      <span className="text-xs font-mono text-white/70 tracking-widest uppercase">
-                        {language === 'pt' ? 'Carregando prévia...' : 'Loading preview...'}
+                {/* Video Box Expanding into View */}
+                <motion.div
+                  initial={{ scale: 0.7, opacity: 0, y: 30 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.7, opacity: 0, y: 30 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                  className="relative w-full max-w-4xl z-10 bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/20"
+                >
+                  {/* Modal Top Bar */}
+                  <div className="flex items-center justify-between px-5 py-3.5 bg-[#0a0a0a] text-white border-b border-white/10">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-sm sm:text-base tracking-tight">
+                        {activeVideoProject.title}
                       </span>
                     </div>
+                    <button
+                      type="button"
+                      onClick={() => setActiveVideoProject(null)}
+                      aria-label="Fechar vídeo"
+                      className="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
                   </div>
-                )}
 
-                {/* YouTube iframe: transitions to 100% opacity as soon as loaded */}
-                <iframe
-                  src={`https://www.youtube.com/embed/${activeVideoProject.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
-                  title={activeVideoProject.title}
-                  className={`w-full h-full border-0 relative z-20 transition-opacity duration-300 ${
-                    isVideoLoading ? 'opacity-0' : 'opacity-100'
-                  }`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  onLoad={() => setIsVideoLoading(false)}
-                />
+                  {/* Video Player Container */}
+                  <div className="relative aspect-video w-full bg-black overflow-hidden">
+                    {/* Poster Image with Loading Spinner while YouTube connects (eliminates 5s black void) */}
+                    {isVideoLoading && (
+                      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black">
+                        <img
+                          src={activeVideoProject.image}
+                          alt={activeVideoProject.title}
+                          className="absolute inset-0 w-full h-full object-cover opacity-30 blur-sm"
+                        />
+                        <div className="relative z-20 flex flex-col items-center gap-3 text-white">
+                          <Loader2 className="w-8 h-8 animate-spin text-white/80" />
+                          <span className="text-xs font-mono text-white/70 tracking-widest uppercase">
+                            {language === 'pt' ? 'Carregando prévia...' : 'Loading preview...'}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* YouTube iframe: transitions to 100% opacity as soon as loaded */}
+                    <iframe
+                      src={`https://www.youtube.com/embed/${activeVideoProject.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                      title={activeVideoProject.title}
+                      className={`w-full h-full border-0 relative z-20 transition-opacity duration-300 ${
+                        isVideoLoading ? 'opacity-0' : 'opacity-100'
+                      }`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      onLoad={() => setIsVideoLoading(false)}
+                    />
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
-          </div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </section>
   );
 };
