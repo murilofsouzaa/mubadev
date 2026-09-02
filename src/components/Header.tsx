@@ -62,24 +62,24 @@ export const Header: React.FC = () => {
   return (
     <>
       {/* Desktop Static Header (Top of the page, not fixed) */}
-      <header className="hidden sm:block absolute top-0 left-0 right-0 z-30 text-text select-none py-6 sm:py-8 px-6 sm:px-12 lg:px-16">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+      <header className="hidden sm:block absolute top-0 left-0 right-0 z-30 text-black select-none py-6 sm:py-8 px-6 sm:px-12 lg:px-16">
+        <div className="max-w-6xl mx-auto flex items-center justify-between text-black">
           
           {/* Left: Name / Brand */}
           <button
             type="button"
             onClick={scrollToTop}
-            className="text-base sm:text-lg font-bold tracking-tight hover:opacity-75 transition-opacity cursor-pointer focus:outline-none"
+            className="text-base sm:text-lg font-bold tracking-tight text-black hover:opacity-75 transition-opacity cursor-pointer focus:outline-none"
           >
             Murilo Freitas<span className="opacity-60">.</span>
           </button>
 
           {/* Right: Minimal Nav Links (Depois do trabalho, Contato + Idioma) */}
-          <div className="flex items-center gap-6 sm:gap-8 text-xs sm:text-sm font-medium">
+          <div className="flex items-center gap-6 sm:gap-8 text-xs sm:text-sm font-medium text-black">
             <button
               type="button"
               onClick={() => scrollTo('depois-do-trabalho')}
-              className="hover:opacity-70 transition-opacity cursor-pointer"
+              className="text-black hover:opacity-70 transition-opacity cursor-pointer"
             >
               {language === 'pt' ? 'Depois do trabalho' : 'After Work'}
             </button>
@@ -87,25 +87,25 @@ export const Header: React.FC = () => {
             <button
               type="button"
               onClick={() => scrollTo('contato')}
-              className="hover:opacity-70 transition-opacity cursor-pointer"
+              className="text-black hover:opacity-70 transition-opacity cursor-pointer"
             >
               {language === 'pt' ? 'Contato' : 'Contact'}
             </button>
 
             {/* Language Switcher */}
-            <div className="flex items-center gap-1 font-mono text-[11px] opacity-80">
+            <div className="flex items-center gap-1 font-mono text-[11px] text-black opacity-80">
               <button
                 type="button"
                 onClick={() => setLanguage('pt')}
-                className={`hover:opacity-100 ${language === 'pt' ? 'font-bold underline' : 'opacity-50'}`}
+                className={`text-black hover:opacity-100 ${language === 'pt' ? 'font-bold underline' : 'opacity-50'}`}
               >
                 PT
               </button>
-              <span className="opacity-40">/</span>
+              <span className="opacity-40 text-black">/</span>
               <button
                 type="button"
                 onClick={() => setLanguage('en')}
-                className={`hover:opacity-100 ${language === 'en' ? 'font-bold underline' : 'opacity-50'}`}
+                className={`text-black hover:opacity-100 ${language === 'en' ? 'font-bold underline' : 'opacity-50'}`}
               >
                 EN
               </button>

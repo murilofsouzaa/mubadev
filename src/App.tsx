@@ -50,7 +50,7 @@ const AppContent: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen relative flex flex-col bg-[#F5F2EB]">
+    <div data-theme="light" className="min-h-screen relative flex flex-col bg-[#F5F2EB] text-[#000000]">
       {/* Top minimal header */}
       <Header />
 
