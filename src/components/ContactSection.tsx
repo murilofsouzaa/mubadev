@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { Copy, Check, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { sendContactEmail } from '../services/emailService';
@@ -67,8 +68,14 @@ export const ContactSection: React.FC = () => {
     <section id="contato" className="py-16 sm:py-24 max-w-4xl mx-auto select-none border-t border-border/80">
       <div className="space-y-12 sm:space-y-16">
         
-        {/* Header with commanding scale & clear hierarchy */}
-        <div className="space-y-2">
+        {/* Header with commanding scale & clear hierarchy & scroll opacity reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-2"
+        >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text leading-[1.08]">
             {t.contact.title}
             <span>.</span>
@@ -76,10 +83,16 @@ export const ContactSection: React.FC = () => {
           <p className="text-base sm:text-lg text-text-dim max-w-2xl leading-relaxed">
             {t.contact.subtitle}
           </p>
-        </div>
+        </motion.div>
 
-        {/* Form and Direct Info Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 sm:gap-14">
+        {/* Form and Direct Info Grid with scroll opacity reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-10 sm:gap-14"
+        >
           
           {/* Left Column: Minimal Form (7 cols) */}
           <div className="md:col-span-7">
@@ -269,7 +282,7 @@ export const ContactSection: React.FC = () => {
 
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

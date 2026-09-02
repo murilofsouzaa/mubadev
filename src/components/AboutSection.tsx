@@ -1,27 +1,52 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Download } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { EDUCATION_DATA } from '../data/education';
 
 export const AboutSection: React.FC = () => {
-  const { t, resolveText } = useLanguage();
+  const { t, language, resolveText } = useLanguage();
 
   return (
     <section id="sobre" className="py-16 sm:py-24 max-w-4xl mx-auto select-none border-t border-border/80">
       <div className="space-y-16 sm:space-y-20">
         
-        {/* Section Header */}
-        <div className="space-y-2">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text leading-[1.08]">
-            {t.about.title}
-            <span>.</span>
-          </h2>
-          <p className="text-base sm:text-lg text-text-dim font-mono">
-            {t.about.name} • {t.about.location}
-          </p>
-        </div>
+        {/* Section Header with Download CV Button & Scroll Opacity Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-6"
+        >
+          <div className="space-y-2">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text leading-[1.08]">
+              {t.about.title}
+              <span>.</span>
+            </h2>
+            <p className="text-base sm:text-lg text-text-dim font-mono">
+              {t.about.name} • {t.about.location}
+            </p>
+          </div>
 
-        {/* Trajectory Bio */}
-        <div className="space-y-4 max-w-3xl">
+          <a
+            href={t.hero.cvFilePath}
+            download={t.hero.cvFileName}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-text text-text hover:bg-text hover:text-bg transition-all text-xs sm:text-sm font-semibold w-fit cursor-pointer shadow-sm"
+          >
+            <Download className="w-4 h-4" />
+            <span>{language === 'pt' ? 'Baixar Currículo' : 'Download CV'}</span>
+          </a>
+        </motion.div>
+
+        {/* Trajectory Bio with Scroll Opacity Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-4 max-w-3xl"
+        >
           <h3 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
             {t.about.objectiveTitle}
           </h3>
@@ -29,10 +54,16 @@ export const AboutSection: React.FC = () => {
             <p>{t.about.objectiveText1}</p>
             <p>{t.about.objectiveText2}</p>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Academic Education */}
-        <div className="space-y-6 max-w-3xl border-t border-border/80 pt-12 sm:pt-16">
+        {/* Academic Education with Scroll Opacity Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-6 max-w-3xl border-t border-border/80 pt-12 sm:pt-16"
+        >
           <h3 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
             {t.about.educationTitle}
           </h3>
@@ -53,10 +84,16 @@ export const AboutSection: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Languages */}
-        <div className="space-y-6 max-w-3xl border-t border-border/80 pt-12 sm:pt-16">
+        {/* Languages with Scroll Opacity Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-6 max-w-3xl border-t border-border/80 pt-12 sm:pt-16"
+        >
           <h3 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
             {t.about.languagesTitle}
           </h3>
@@ -71,7 +108,7 @@ export const AboutSection: React.FC = () => {
               <span>{t.about.englishLevel}</span>
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

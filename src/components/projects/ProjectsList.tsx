@@ -1,34 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { PROJECTS_DATA, type ProjectItemExtended } from '../../data/projects';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { PROJECTS_DATA } from '../../data/projects';
 import { useLanguage } from '../../context/LanguageContext';
 import { Play, ExternalLink, Github, Layers, X } from 'lucide-react';
 
 export const ProjectsList: React.FC = () => {
   const { language, resolveText } = useLanguage();
-  const [activeVideoProject, setActiveVideoProject] = useState<ProjectItemExtended | null>(null);
-
-  // Close video modal on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setActiveVideoProject(null);
-      }
-    };
-    if (activeVideoProject) {
-      window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
-    }
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
-    };
-  }, [activeVideoProject]);
+  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
 
   return (
     <section id="projetos" className="py-16 sm:py-24 max-w-4xl mx-auto select-none">
-      {/* Section Header */}
-      <div className="mb-14 sm:mb-20 space-y-2">
+      {/* Section Header with Scroll Opacity Reveal */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-14 sm:mb-20 space-y-2"
+      >
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text leading-[1.08]">
           {language === 'pt' ? 'Projetos' : 'Projects'}
           <span>.</span>
@@ -38,16 +27,20 @@ export const ProjectsList: React.FC = () => {
             ? 'Sistemas em produção, arquitetura e engenharia de software.'
             : 'Production systems, architecture, and software engineering.'}
         </p>
-      </div>
+      </motion.div>
 
-      {/* Projects Editorial Stream (No separate cards) */}
+      {/* Projects Editorial Stream with Scroll Opacity Reveal */}
       <div className="space-y-20 sm:space-y-28">
         {PROJECTS_DATA.map((project) => {
           const descriptionText = resolveText(project.subtitle || project.description);
 
           return (
-            <article
+            <motion.article
               key={project.id}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
               className="pt-8 sm:pt-12 border-t border-border/80 first:border-t-0 first:pt-0"
             >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
@@ -58,36 +51,30 @@ export const ProjectsList: React.FC = () => {
                     {project.title}
                   </h3>
 
-                  {/* Brief Description */}
-                  <p className="text-sm sm:text-base text-text-dim leading-relaxed font-normal">
+                  <p className="text-base sm:text-lg text-text-dim leading-relaxed font-normal">
                     {descriptionText}
                   </p>
 
-                  {/* Technologies (Clean list) */}
-                  <div className="pt-2">
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[11px] sm:text-xs font-mono px-2.5 py-1 rounded bg-panel-sub text-text-dim border border-border/50"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Architecture & Engineering Tags */}
+                  <div className="flex flex-wrap gap-2 pt-1 font-mono text-xs text-text-faint">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="border border-border/60 px-2.5 py-1 rounded-md">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
 
-                  {/* Action Links */}
-                  <div className="flex flex-wrap items-center gap-4 pt-3 text-xs sm:text-sm font-medium">
+                  {/* Action Links (Live URL, GitHub, Figma) */}
+                  <div className="flex flex-wrap items-center gap-5 pt-3 text-xs sm:text-sm font-semibold">
                     {project.deployUrl && (
                       <a
                         href={project.deployUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-text hover:opacity-60 transition-opacity"
+                        className="inline-flex items-center gap-1.5 text-text underline underline-offset-4 hover:opacity-60 transition-opacity"
                       >
-                        <span>{language === 'pt' ? 'Ver aplicação' : 'Live Preview'}</span>
                         <ExternalLink className="w-3.5 h-3.5" />
+                        <span>{language === 'pt' ? 'Ver aplicação' : 'View live'}</span>
                       </a>
                     )}
 
@@ -117,96 +104,61 @@ export const ProjectsList: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Right Column: Compact Video Preview Box (5 cols) */}
+                {/* Right Column: Seamless Inline Video Box (5 cols) */}
                 <div className="md:col-span-5">
-                  <div
-                    onClick={() => setActiveVideoProject(project)}
-                    className="group relative aspect-video w-full rounded-xl overflow-hidden cursor-pointer bg-black shadow-md border border-border/60"
-                  >
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-top opacity-85 group-hover:opacity-95 group-hover:scale-105 transition-all duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-colors" />
-
-                    {/* Centered Play Button */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="w-12 h-12 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg transition-transform group-hover:bg-white group-hover:scale-105"
+                  {playingVideoId === project.id && project.youtubeId ? (
+                    <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black shadow-md border border-border/60">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=1&rel=0`}
+                        title={project.title}
+                        className="w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setPlayingVideoId(null)}
+                        aria-label="Fechar prévia"
+                        className="absolute top-2.5 right-2.5 z-10 p-1.5 rounded-full bg-black/80 text-white hover:bg-black transition-colors"
                       >
-                        <Play className="w-5 h-5 fill-current ml-0.5" />
-                      </motion.div>
+                        <X className="w-4 h-4" />
+                      </button>
                     </div>
+                  ) : (
+                    <div
+                      onClick={() => setPlayingVideoId(project.id)}
+                      className="group relative aspect-video w-full rounded-xl overflow-hidden cursor-pointer bg-black shadow-md border border-border/60"
+                    >
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top opacity-85 group-hover:opacity-95 group-hover:scale-105 transition-all duration-500"
+                      />
+                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-colors" />
 
-                    <div className="absolute bottom-2.5 left-3 text-[11px] font-mono text-white/90 drop-shadow">
-                      {language === 'pt' ? 'Assistir vídeo' : 'Watch video'}
+                      {/* Centered Play Button */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="w-12 h-12 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg transition-transform group-hover:bg-white group-hover:scale-105"
+                        >
+                          <Play className="w-5 h-5 fill-current ml-0.5" />
+                        </motion.div>
+                      </div>
+
+                      <div className="absolute bottom-2.5 left-3 text-[11px] font-mono text-white/90 drop-shadow">
+                        {language === 'pt' ? 'Assistir vídeo' : 'Watch video'}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
               </div>
-            </article>
+            </motion.article>
           );
         })}
       </div>
-
-      {/* Centered Scaled Video Modal */}
-      <AnimatePresence>
-        {activeVideoProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8">
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setActiveVideoProject(null)}
-              className="fixed inset-0 bg-black/85 backdrop-blur-sm cursor-pointer"
-            />
-
-            {/* Video Container scaling from small to large in the center */}
-            <motion.div
-              initial={{ scale: 0.65, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.65, opacity: 0, y: 20 }}
-              transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-              className="relative w-full max-w-4xl z-10 bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/15"
-            >
-              {/* Modal Top Bar */}
-              <div className="flex items-center justify-between px-5 py-3.5 bg-black text-white border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-white" />
-                  <span className="font-bold text-sm sm:text-base tracking-tight">
-                    {activeVideoProject.title}
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setActiveVideoProject(null)}
-                  aria-label="Fechar vídeo"
-                  className="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* YouTube Embed Player */}
-              <div className="relative aspect-video w-full bg-black">
-                <iframe
-                  src={`https://www.youtube.com/embed/${activeVideoProject.youtubeId}?autoplay=1&rel=0`}
-                  title={activeVideoProject.title}
-                  className="w-full h-full border-0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
