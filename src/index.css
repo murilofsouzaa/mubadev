@@ -1,336 +1,127 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;600;700;800;900&family=Zeyada&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Actor&family=Archivo+Black&family=Bebas+Neue&family=Geologica:wght,CRSV@100..900,0&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Lexend:wght@100..900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Neucha&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=VT323&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* 
-  70-20-10 RULE COLOR SYSTEM
-  70% Dominant: Background & Ambient Canvas (Obsidian Midnight / Deep Noir)
-  20% Secondary: Panels, Borders, Structures & Warm Parchment Typography
-  10% Accent: Retro Jazz Amber Gold, Neon Crimson & Terminal Phosphor Glow
+/*
+  PURE MONOCHROME (BLACK & WHITE) DESIGN SYSTEM
 */
+
 :root,
-[data-theme="dark"] {
-  /* 70% Base Canvas */
-  --bg: #09090b;
-  
-  /* 20% Structures, Cards & Typography (Neutral Obsidian / Graphite) */
-  --panel: #141417;
-  --panel-sub: #1c1c21;
-  --panel-card: #16161a;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-soft: rgba(255, 255, 255, 0.05);
-  --border-brass: rgba(232, 89, 12, 0.35);
-  --text: #f4f4f5;
-  --text-dim: #a1a1aa;
-  --text-faint: #71717a;
-  --parchment: #e4e4e7;
-  
-  /* Official Palette: Vibrant Orange #EA580C */
-  --accent: #EA580C;
-  --orange-1: #EA580C;
-  --orange-2: #D9480F;
-  --orange-3: #C92A2A;
-  --orange-4: rgba(234, 88, 12, 0.16);
-  --amber-1: #EA580C;
-  --amber-2: #D9480F;
-  --amber-3: #C92A2A;
-  --amber-glow-color: rgba(234, 88, 12, 0.35);
-  --crimson-1: #EA580C;
-  --crimson-2: #D9480F;
-  --crimson-deep: #22080c;
-  --phosphor-green: #38e54d;
-  --header-bg: rgba(9, 9, 11, 0.85);
+[data-theme="light"] {
+  --bg: #F5F2EB;
+  --bg-sub: #EBE7DF;
+  --panel: #F5F2EB;
+  --panel-sub: #EBE7DF;
+  --panel-card: #F5F2EB;
+  --border: rgba(0, 0, 0, 0.12);
+  --border-soft: rgba(0, 0, 0, 0.06);
+  --border-brass: rgba(0, 0, 0, 0.2);
+  --text: #000000;
+  --text-dim: #555555;
+  --text-faint: #888888;
+  --parchment: #F5F2EB;
+
+  --accent: #000000;
+  --accent-contrast: #FFFFFF;
 }
 
-[data-theme="light"] {
-  /* 70% Base Canvas: Clean premium ivory stone */
-  --bg: #F8F7F4;
-  
-  /* 20% Structures & Secondary */
-  --panel: #ffffff;
-  --panel-sub: #F2EFE9;
-  --panel-card: #ffffff;
-  --border: #E7E5E4;
-  --border-soft: #F5F5F4;
-  --border-brass: rgba(234, 88, 12, 0.32);
-  --text: #1C1917;
-  --text-dim: #44403C;
-  --text-faint: #78716C;
-  --parchment: #1C1917;
-  
-  /* Official Palette: Vibrant Orange #EA580C */
-  --accent: #EA580C;
-  --orange-1: #EA580C;
-  --orange-2: #D9480F;
-  --orange-3: #C92A2A;
-  --orange-4: rgba(234, 88, 12, 0.15);
-  --amber-1: #EA580C;
-  --amber-2: #D9480F;
-  --amber-3: #C92A2A;
-  --amber-glow-color: rgba(234, 88, 12, 0.2);
-  --crimson-1: #EA580C;
-  --crimson-2: #D9480F;
-  --crimson-deep: #F5EAE6;
-  --phosphor-green: #15803d;
-  --header-bg: rgba(248, 247, 244, 0.92);
+[data-theme="dark"] {
+  --bg: #000000;
+  --bg-sub: #111111;
+  --panel: #000000;
+  --panel-sub: #111111;
+  --panel-card: #000000;
+  --border: rgba(255, 255, 255, 0.14);
+  --border-soft: rgba(255, 255, 255, 0.07);
+  --border-brass: rgba(255, 255, 255, 0.25);
+  --text: #FFFFFF;
+  --text-dim: #A0A0A0;
+  --text-faint: #666666;
+  --parchment: #FFFFFF;
+
+  --accent: #FFFFFF;
+  --accent-contrast: #000000;
+}
+
+html,
+body {
+  overflow-x: clip;
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: #F5F2EB;
 }
 
 body {
-  background-color: var(--bg);
+  background-color: #F5F2EB;
   color: var(--text);
-  font-family: 'Plus Jakarta Sans', 'Space Grotesk', system-ui, sans-serif;
+  font-family: 'Geologica', 'Inter', 'Lexend', system-ui, sans-serif;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-}
-
-/* Subtle Analog Grain Overlay */
-.vintage-grain {
-  background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* CRT Scanlines for Terminal Card / Telemetry */
-.crt-screen {
-  position: relative;
-  overflow: hidden;
-}
-
-.crt-screen::before {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-  background-size: 100% 4px;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-/* Blur page content when modal is open */
-body.modal-open header,
-body.modal-open #page-content {
-  filter: blur(10px) brightness(0.4);
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Blur only page content when mobile menu is open */
-@media (max-width: 767px) {
-  body.mobile-menu-open #page-content {
-    filter: blur(8px) brightness(0.4);
-    pointer-events: none;
-    user-select: none;
-  }
-}
-
-header,
-#page-content {
-  transition: filter 0.3s ease, brightness 0.3s ease;
 }
 
 .font-display {
-  font-family: 'Syne', 'Space Grotesk', sans-serif;
+  font-family: 'Geologica', 'Montserrat', sans-serif;
 }
 
 .font-serif-italic {
-  font-family: 'Instrument Serif', 'DM Serif Display', Georgia, serif;
+  font-family: 'Source Serif 4', Georgia, serif;
   font-style: italic;
-  font-weight: 400;
 }
 
-.font-zeyada {
-  font-family: 'Zeyada', cursive;
+.font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 }
 
-/* Retro Equalizer Animation */
-@keyframes eq-bounce-1 {
-  0%, 100% { height: 25%; }
-  50% { height: 95%; }
-}
-@keyframes eq-bounce-2 {
-  0%, 100% { height: 80%; }
-  50% { height: 20%; }
-}
-@keyframes eq-bounce-3 {
-  0%, 100% { height: 45%; }
-  50% { height: 100%; }
-}
-@keyframes eq-bounce-4 {
-  0%, 100% { height: 90%; }
-  50% { height: 35%; }
-}
-@keyframes eq-bounce-5 {
-  0%, 100% { height: 30%; }
-  50% { height: 75%; }
-}
-
-.animate-eq-1 { animation: eq-bounce-1 1.2s ease-in-out infinite; }
-.animate-eq-2 { animation: eq-bounce-2 0.9s ease-in-out infinite; }
-.animate-eq-3 { animation: eq-bounce-3 1.4s ease-in-out infinite; }
-.animate-eq-4 { animation: eq-bounce-4 1.1s ease-in-out infinite; }
-.animate-eq-5 { animation: eq-bounce-5 1.3s ease-in-out infinite; }
-
-/* Spotlight Beam Animation */
-@keyframes spotlight-pulse {
-  0%, 100% { opacity: 0.65; transform: scale(1) rotate(0deg); }
-  50% { opacity: 0.9; transform: scale(1.05) rotate(1deg); }
-}
-
-.animate-spotlight {
-  animation: spotlight-pulse 8s ease-in-out infinite;
-}
-
-/* Infinite Marquee Animation for Continuous Tech Stack Ribbon */
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 28s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-/* Vintage Gotham Street Lamp Flicker Animation */
-@keyframes lamp-flicker {
-  0%, 100% {
-    opacity: 0.95;
-    filter: drop-shadow(0 0 14px rgba(254, 240, 138, 0.9)) drop-shadow(0 0 30px rgba(234, 88, 12, 0.4));
-  }
-  4% { opacity: 0.7; filter: drop-shadow(0 0 6px rgba(254, 240, 138, 0.5)); }
-  7% { opacity: 0.95; filter: drop-shadow(0 0 14px rgba(254, 240, 138, 0.9)); }
-  8% { opacity: 0.65; filter: drop-shadow(0 0 4px rgba(254, 240, 138, 0.4)); }
-  9% { opacity: 0.98; }
-  10% { opacity: 0.85; }
-  11% { opacity: 1; }
-  88% { opacity: 0.95; }
-  89% { opacity: 0.72; filter: drop-shadow(0 0 6px rgba(254, 240, 138, 0.5)); }
-  90% { opacity: 0.98; filter: drop-shadow(0 0 16px rgba(254, 240, 138, 0.95)); }
-  91% { opacity: 0.68; }
-  92% { opacity: 0.95; }
-}
-
-@keyframes light-cone-flicker {
-  0%, 100% {
-    opacity: 0.75;
-  }
-  4% { opacity: 0.55; }
-  7% { opacity: 0.75; }
-  8% { opacity: 0.5; }
-  9% { opacity: 0.8; }
-  10% { opacity: 0.68; }
-  11% { opacity: 0.85; }
-  88% { opacity: 0.75; }
-  89% { opacity: 0.58; }
-  90% { opacity: 0.82; }
-  91% { opacity: 0.52; }
-  92% { opacity: 0.78; }
-}
-
-.animate-lamp-flicker {
-  animation: lamp-flicker 6s infinite;
-}
-
-.animate-cone-flicker {
-  animation: light-cone-flicker 6s infinite;
-}
-
-/* Animated Volumetric Fog Drift & Seamless Infinite Clouds */
-@keyframes infiniteClouds {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-.animate-clouds-layer-1 {
-  display: flex;
-  width: 200%;
-  animation: infiniteClouds 45s linear infinite;
-  will-change: transform;
-}
-
-.animate-clouds-layer-2 {
-  display: flex;
-  width: 200%;
-  animation: infiniteClouds 70s linear infinite reverse;
-  will-change: transform;
-  opacity: 0.6;
-}
-
-@keyframes driftFog {
-  0% { transform: translateX(-15%) translateY(0px); opacity: 0.25; }
-  50% { transform: translateX(15%) translateY(-10px); opacity: 0.45; }
-  100% { transform: translateX(-15%) translateY(0px); opacity: 0.25; }
-}
-
-@keyframes driftFogSlow {
-  0% { transform: translateX(12%) translateY(0px); opacity: 0.2; }
-  50% { transform: translateX(-12%) translateY(-15px); opacity: 0.4; }
-  100% { transform: translateX(12%) translateY(0px); opacity: 0.2; }
-}
-
-.animate-fog {
-  animation: driftFog 30s ease-in-out infinite;
-}
-
-.animate-fog-slow {
-  animation: driftFogSlow 45s ease-in-out infinite;
-}
-
-/* Complete Suppression of Click Highlight & Focus Outline for Interactive Elements */
-.no-focus-outline,
-.no-focus-outline:focus,
-.no-focus-outline:focus-visible,
-.no-focus-outline:active {
-  outline: none !important;
-  box-shadow: none !important;
-  border-color: transparent !important;
-  -webkit-tap-highlight-color: transparent !important;
-  user-select: none !important;
-}
-
-input, textarea, select, button {
-  font-family: inherit;
-}
-
+/* Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--amber-1);
-  border-radius: 4px;
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--amber-2);
+  background: #000000;
 }
 
 ::selection {
-  background-color: var(--amber-1);
-  color: #07060b;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] ::selection {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+/* Lenis Smooth River Scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

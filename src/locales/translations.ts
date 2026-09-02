@@ -82,6 +82,20 @@ export interface TranslationSchema {
     portugueseLabel: string;
     portugueseLevel: string;
   };
+  beyondWork: {
+    title: string;
+    subtitle: string;
+    studyTitle: string;
+    studyText: string;
+    exerciseTitle: string;
+    exerciseText: string;
+    gamingTitle: string;
+    gamingText: string;
+    literatureTitle: string;
+    literatureText: string;
+    cinemaTitle: string;
+    cinemaText: string;
+  };
   contact: {
     badge: string;
     title: string;
@@ -222,13 +236,27 @@ export const translations: Record<Language, TranslationSchema> = {
       location: 'Belo Horizonte — MG, Brasil',
       objectiveTitle: 'Trajetória & Atuação',
       objectiveText1: 'Desenvolvedor de Software e estudante de Engenharia de Software na PUC Minas, com sólida formação técnica pelo IFNMG e experiência prática no desenvolvimento e deploy de aplicações web em produção.',
-      objectiveText2: 'Atualmente atuo no desenvolvimento de sistemas na AFFEMG — incluindo plataforma interna de chamados e aplicação web de bem-estar com React, Tailwind CSS, Node.js e Supabase —, além de projetar arquiteturas escaláveis com Java/Spring Boot, PostgreSQL, Docker e NGINX.',
+      objectiveText2: 'Atualmente faço parte da equipe de suporte e desenvolvimento na AFFEMG — incluindo plataforma interna de chamados e aplicação web de bem-estar com React, Tailwind CSS, Node.js e Supabase —, além de projetar arquiteturas escaláveis com Java/Spring Boot, PostgreSQL, Docker e NGINX.',
       educationTitle: 'Formação Acadêmica',
       languagesTitle: 'Idiomas',
       englishLabel: 'Inglês',
       englishLevel: 'Intermediário / Avançado',
       portugueseLabel: 'Português',
       portugueseLevel: 'Nativo / Fluente',
+    },
+    beyondWork: {
+      title: 'Depois do trabalho',
+      subtitle: 'O que me move fora do terminal e do ambiente acadêmico.',
+      studyTitle: 'Estudo Contínuo',
+      studyText: 'Por incrível que pareça, estudar é, sem dúvidas, o meu hobby favorito. Gosto de estudar sobre história, filosofia, física e matemática, estranho, não? haha',
+      exerciseTitle: 'Musculação & Corrida',
+      exerciseText: 'Gosto de me exercitar, mantenho uma rotina consistente (ao menos tento ser) de musculação e faço corridas ao ar livre quando estou inspirado.',
+      gamingTitle: 'Videogames',
+      gamingText: 'Depois de muito tempo voltei a jogar games modo história, sendo Elden Ring o universo mais recente que explorei a fundo.',
+      literatureTitle: 'Literatura Clássica & Brasileira',
+      literatureText: 'Leio bastante. Admiro a densidade psicológica de Dostoiévski e a genialidade poética de Shakespeare. Na literatura brasileira, li somente Machado de Assis, devo "dissecar" outros autores, eu sei.',
+      cinemaTitle: 'Cinema',
+      cinemaText: 'Já gostei muito de assistir animes no passado, mas hoje me interesso muito mais por filmes e séries, a última série que vi foi House Of Dragons, muito boa.',
     },
     contact: {
       badge: 'Entre em Contato',
@@ -366,13 +394,27 @@ export const translations: Record<Language, TranslationSchema> = {
       location: 'Belo Horizonte — MG, Brazil',
       objectiveTitle: 'Background & Experience',
       objectiveText1: 'Software Developer and Software Engineering student at PUC Minas, with a solid technical background from IFNMG and practical experience developing and deploying production web applications.',
-      objectiveText2: 'Currently developing internal systems at AFFEMG — including an internal ticketing platform and a wellness web application with React, Tailwind CSS, Node.js, and Supabase —, alongside designing scalable architectures with Java/Spring Boot, PostgreSQL, Docker, and NGINX.',
+      objectiveText2: 'Currently part of the support and development team at AFFEMG — working on internal systems, a ticketing platform, and a wellness web application with React, Tailwind CSS, Node.js, and Supabase —, alongside designing scalable architectures with Java/Spring Boot, PostgreSQL, Docker, and NGINX.',
       educationTitle: 'Academic Background',
       languagesTitle: 'Languages',
       englishLabel: 'English',
       englishLevel: 'Intermediate / Advanced',
       portugueseLabel: 'Portuguese',
       portugueseLevel: 'Native / Fluent',
+    },
+    beyondWork: {
+      title: 'After Work',
+      subtitle: 'What moves me outside the terminal and the academic environment.',
+      studyTitle: 'Continuous Learning',
+      studyText: 'As incredible as it may seem, studying is, without a doubt, my favorite hobby. I like studying history, philosophy, physics, and mathematics, strange, right? haha',
+      exerciseTitle: 'Weightlifting & Running',
+      exerciseText: 'I like exercising, I maintain a consistent (at least I try to be) bodybuilding routine and go for outdoor runs when I feel inspired.',
+      gamingTitle: 'Videogames',
+      gamingText: 'After a long time, I went back to playing story-mode games, with Elden Ring being the most recent universe I thoroughly explored.',
+      literatureTitle: 'Classical & Brazilian Literature',
+      literatureText: 'I read a lot. I admire the psychological depth of Dostoevsky and the poetic brilliance of Shakespeare. In Brazilian literature, I have only read Machado de Assis, I know I should "dissect" other authors, I know.',
+      cinemaTitle: 'Cinema',
+      cinemaText: 'I used to really enjoy watching anime in the past, but nowadays I am much more interested in movies and series, the latest series I watched was House Of Dragons, really good.',
     },
     contact: {
       badge: 'Get in Touch',
