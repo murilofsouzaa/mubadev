@@ -58,7 +58,7 @@ export const ProjectsList: React.FC = () => {
       {/* Projects Editorial Stream with Scroll Opacity Reveal */}
       <div className="space-y-20 sm:space-y-28">
         {PROJECTS_DATA.map((project) => {
-          const descriptionText = resolveText(project.subtitle || project.description);
+          const descriptionText = resolveText(project.description || project.subtitle);
 
           return (
             <motion.article

@@ -270,7 +270,7 @@ export const ContactSection: React.FC = () => {
                   GitHub
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/murilofsouza/"
+                  href="https://www.linkedin.com/in/murilofsouzaa/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-text hover:opacity-60 transition-opacity"

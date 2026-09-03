@@ -68,7 +68,7 @@ export const Hero: React.FC = () => {
           </a>
           <span>•</span>
           <a
-            href="https://www.linkedin.com/in/murilofsouza/"
+            href="https://www.linkedin.com/in/murilofsouzaa/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"

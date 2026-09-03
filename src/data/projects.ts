@@ -20,18 +20,18 @@ export const PROJECTS_DATA: ProjectItemExtended[] = [
     id: 'amordebicho',
     title: 'Amor de Bicho',
     subtitle: {
-      pt: 'Landing Page moderna e performática para Pet Shop & Centro Veterinário, com animações GSAP ScrollTrigger a 60 FPS e deploy automatizado via Docker e GitHub Actions.',
-      en: 'Modern and high-performance Landing Page for a Pet Shop & Veterinary Center, with GSAP ScrollTrigger animations at 60 FPS and automated deployment via Docker and GitHub Actions.',
+      pt: 'Landing Page moderna, performática e interativa para o Pet Shop e Centro Veterinário Amor de Bicho.',
+      en: 'Modern, high-performance, and interactive Landing Page for Amor de Bicho Pet Shop and Veterinary Center.',
     },
     description: {
       pt: 'Landing Page moderna, performática e interativa para o Pet Shop e Centro Veterinário Amor de Bicho. Desenvolvida com arquitetura de ponta, animações sincronizadas via GSAP ScrollTrigger a 60 FPS, tipografia de alto impacto e deploy automatizado com Docker e GitHub Actions.',
-      en: 'Modern, performant, and interactive Landing Page for Amor de Bicho Pet Shop & Veterinary Center. Built with cutting-edge architecture, GSAP ScrollTrigger animations synchronized at 60 FPS, high-impact typography, and automated deployment with Docker and GitHub Actions.',
+      en: 'Modern, high-performance, and interactive Landing Page for the Amor de Bicho Pet Shop and Veterinary Center. Developed with cutting-edge architecture, synchronized animations via GSAP ScrollTrigger at 60 FPS, high-impact typography, and automated deployment with Docker and GitHub Actions.',
     },
     fullDescription: {
       pt: `Landing Page moderna, performática e interativa para o Pet Shop e Centro Veterinário Amor de Bicho. Desenvolvida com arquitetura de ponta, animações sincronizadas via GSAP ScrollTrigger a 60 FPS, tipografia de alto impacto e deploy automatizado com Docker e GitHub Actions.
 
 A experiência conta com Hero Colossal com vídeo em Canvas a 60 FPS, Narrativa Pinned imersiva com ScrollTrigger, grid de serviços com contraste dinâmico no hover, Bento Grid de diferenciais (câmeras ao vivo, clínica 24h, manejo fear-free), seção de depoimentos e footer institucional completo.`,
-      en: `Modern, performant, and interactive Landing Page for Amor de Bicho Pet Shop & Veterinary Center. Built with cutting-edge architecture, GSAP ScrollTrigger animations at 60 FPS, high-impact typography, and automated deployment with Docker and GitHub Actions.
+      en: `Modern, high-performance, and interactive Landing Page for Amor de Bicho Pet Shop and Veterinary Center. Developed with cutting-edge architecture, synchronized animations via GSAP ScrollTrigger at 60 FPS, high-impact typography, and automated deployment with Docker and GitHub Actions.
 
 The experience features a Colossal Hero with 60 FPS Canvas video, immersive Pinned Narrative with ScrollTrigger, services grid with dynamic hover contrast, Differentials Bento Grid (live cameras, 24h clinic, fear-free handling), testimonials section, and complete institutional footer.`,
     },
@@ -94,20 +94,20 @@ The experience features a Colossal Hero with 60 FPS Canvas video, immersive Pinn
     id: 'strucx',
     title: 'STRUCX',
     subtitle: {
-      pt: 'Plataforma editorial de engenharia estrutural de alta performance com motor 3D interativo via canvas e microsserviço transacional.',
-      en: 'Editorial web platform for high-complexity structural systems with GPU-accelerated interactive 3D canvas sequence and transactional microservice.',
+      pt: 'Aplicação web completa (Frontend e Backend) para engenharia estrutural de alta complexidade.',
+      en: 'Full-stack web application (Frontend and Backend) for high-complexity structural engineering.',
     },
     description: {
-      pt: 'A StrucX é uma aplicação web completa voltada para construtoras, incorporadoras e escritórios de engenharia que demandam cálculos estruturais de alta complexidade. O projeto une uma estética editorial minimalista a um motor de sequência 3D de 1.155 quadros acelerado por hardware e backend resiliente de mensageria com telemetria e envio de e-mails em tempo real.',
-      en: 'StrucX is an end-to-end web platform designed for construction firms, developers, and engineering studios requiring high-complexity structural calculations. It fuses international editorial architecture aesthetics with a 1,155-frame GPU-accelerated 3D canvas sequence and a resilient telemetry and messaging backend.',
+      pt: 'A StrucX é uma aplicação web completa (Frontend e Backend) voltada para construtoras, incorporadoras e escritórios de engenharia que demandam cálculos estruturais de alta complexidade. O projeto combina uma estética editorial inspirada em estúdios internacionais de arquitetura (como Heatherwick Studio e Thornton Tomasetti) com um sistema avançado de animação 3D acelerado por GPU e uma API de mensageria com envio automatizado de e-mails e persistência à prova de falhas.',
+      en: 'StrucX is a full-stack web application (Frontend and Backend) designed for construction firms, developers, and engineering studios requiring high-complexity structural calculations. The project fuses an editorial aesthetic inspired by international architecture studios (such as Heatherwick Studio and Thornton Tomasetti) with an advanced GPU-accelerated 3D animation system and a messaging API featuring automated email delivery and fail-safe persistence.',
     },
     fullDescription: {
       pt: `A StrucX é uma aplicação web completa (Frontend e Backend) voltada para construtoras, incorporadoras e escritórios de engenharia que demandam cálculos estruturais de alta complexidade.
 
-O projeto combina uma estética editorial inspirada em estúdios internacionais de arquitetura com um sistema avançado de animação 3D acelerado por hardware (Canvas com 1.155 frames WebP em LERP contínuo) e uma API de mensageria com envio automatizado de e-mails, persistência auditada e rate limiting.`,
-      en: `StrucX is an end-to-end web platform (Frontend & Backend) designed for construction firms, developers, and engineering studios requiring high-complexity structural calculations.
+O projeto combina uma estética editorial inspirada em estúdios internacionais de arquitetura (como Heatherwick Studio e Thornton Tomasetti) com um sistema avançado de animação 3D acelerado por GPU e uma API de mensageria com envio automatizado de e-mails e persistência à prova de falhas.`,
+      en: `StrucX is a full-stack web application (Frontend and Backend) designed for construction firms, developers, and engineering studios requiring high-complexity structural calculations.
 
-The project fuses an editorial aesthetic inspired by international architecture studios with an advanced GPU-accelerated 3D sequence engine (Canvas with 1,155 WebP frames in continuous LERP) and a messaging API with automated emails, audited persistence, and rate limiting.`,
+The project fuses an editorial aesthetic inspired by international architecture studios (such as Heatherwick Studio and Thornton Tomasetti) with an advanced GPU-accelerated 3D animation system and a messaging API featuring automated email delivery and fail-safe persistence.`,
     },
     motto: {
       pt: 'Engenharia de precisão para megaestruturas, infraestrutura pesada e geometrias complexas.',
@@ -169,12 +169,12 @@ The project fuses an editorial aesthetic inspired by international architecture 
     id: 'eden',
     title: 'Eden',
     subtitle: {
-      pt: 'Loja online focada em roupas de academia e alta performance com arquitetura em camadas e microsserviços.',
-      en: 'Online shop focused on gym clothing with layered architecture and production deployment.',
+      pt: 'Loja online focada em roupas fitness com arquitetura em camadas, robustez e performance.',
+      en: 'Online shop focused on gym clothing with layered architecture, stability, and speed.',
     },
     description: {
-      pt: 'The Eden project is an online shop focused on gym clothing. The goal is to give users a fast and simple way to browse items and check details. The interface stays clear, the product list stays organized, and the system connects the frontend and backend to keep everything stable and safe.',
-      en: 'The Eden project is an online shop focused on gym clothing. The goal is to give users a fast and simple way to browse items and check details. The interface stays clear, the product list stays organized, and the system connects the frontend and backend to keep everything stable and safe.',
+      pt: "O projeto Eden é uma loja online focada em roupas fitness. O objetivo é oferecer aos usuários uma maneira rápida e simples de navegar pelos itens e conferir detalhes. A interface permanece limpa, a lista de produtos organizada e o sistema conecta o frontend e o backend para manter tudo estável e seguro. Funciona como um bom plano de treino: constante, claro e construído para ajudar você a evoluir. Estou desenvolvendo este projeto para praticar conceitos como: Domain-Driven Design, Design Patterns, SOLID, Mobile First e UI/UX.",
+      en: "The Eden project is an online shop focused on gym clothing. The goal is to give users a fast and simple way to browse items and check details. The interface stays clear, the product list stays organized, and the system connects the frontend and backend to keep everything stable and safe. It works like a good workout plan: steady, clear, and built to help you move forward. I'm developing this project to learn concepts such as: Domain-Driven Design, Design Patterns, SOLID, Mobile First, and UI/UX.",
     },
     fullDescription: {
       pt: `The Eden project is an online shop focused on gym clothing. The goal is to give users a fast and simple way to browse items and check details. The interface stays clear, the product list stays organized, and the system connects the frontend and backend to keep everything stable and safe.
