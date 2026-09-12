@@ -92,10 +92,9 @@ The Smart Locator (Ctrl+K / Ctrl+F) offers VS Code-style search with natural hig
     screenshots: [
       '/projects/enkephalos/screen1.png',
       '/projects/enkephalos/screen2.png',
-      '/projects/enkephalos/screen3.jpg',
+      '/projects/enkephalos/screen3.png',
       '/projects/enkephalos/screen4.png',
       '/projects/enkephalos/screen5.png',
-      '/projects/enkephalos/screen6.png',
     ],
     tags: ['React 19', 'TypeScript', 'Tailwind CSS v4', 'KaTeX', 'Java 21', 'Spring Boot', 'Docker', 'Nginx', 'GitHub Actions'],
     githubUrl: 'https://github.com/murilofsouzaa/enkephalos',
