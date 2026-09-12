@@ -25,16 +25,16 @@ export const PROJECTS_DATA: ProjectItemExtended[] = [
       en: 'Personal study space with handwritten summaries, integrated Pomodoro timer, and a technical computing notes library.',
     },
     description: {
-      pt: 'Meu espaço pessoal de estudos — onde organizo resumos que escrevi à mão sobre temas de computação, filosofia, matemática e mais. Conta com timer Pomodoro em modo rígido, sons ambientes e biblioteca navegável com suporte a KaTeX.',
-      en: 'My personal study space — where I organize summaries I handwrote on topics like computer science, philosophy, mathematics, and more. Features a strict-mode Pomodoro timer, ambient sounds, and a navigable library with KaTeX support.',
+      pt: 'Meu espaço pessoal de estudos, onde organizo resumos que escrevi à mão sobre temas de computação, filosofia, matemática e mais. Conta com timer Pomodoro em modo rígido, sons ambientes e biblioteca navegável com suporte a KaTeX.',
+      en: 'My personal study space, where I organize summaries I handwrote on topics like computer science, philosophy, mathematics, and more. Features a strict-mode Pomodoro timer, ambient sounds, and a navigable library with KaTeX support.',
     },
     fullDescription: {
-      pt: `Enkephalos é o meu espaço pessoal de estudos e organização do conhecimento. Os conteúdos da biblioteca são resumos que escrevi à mão ao longo dos meus estudos sobre computação, filosofia, física, matemática e outros temas — digitalizados e organizados em formato Markdown sincronizado com o Obsidian.
+      pt: `Enkephalos é o meu espaço pessoal de estudos e organização do conhecimento. Os conteúdos da biblioteca são resumos que escrevi à mão ao longo dos meus estudos sobre computação, filosofia, física, matemática e outros temas, digitalizados e organizados em formato Markdown sincronizado com o Obsidian.
 
 O Timer Pomodoro vem com modo rígido (sem pausas artificiais, reinício ao interromper), sons ambientes de chuva contínua e efeitos sonoros de transição para manter o foco real durante as sessões de estudo.
 
 O Localizador Inteligente (Ctrl+K / Ctrl+F) faz busca estilo VS Code com destaque natural, compatibilidade com/sem acentos e navegação palavra por palavra. A Paleta de Cores Dinâmica oferece 6 temas de destaque e alternância entre temas claro e escuro.`,
-      en: `Enkephalos is my personal study space and knowledge organization tool. The library content consists of summaries I handwrote throughout my studies on computer science, philosophy, physics, mathematics, and other topics — digitized and organized in Markdown format synced with Obsidian.
+      en: `Enkephalos is my personal study space and knowledge organization tool. The library content consists of summaries I handwrote throughout my studies on computer science, philosophy, physics, mathematics, and other topics, digitized and organized in Markdown format synced with Obsidian.
 
 The Pomodoro Timer includes strict mode (no artificial pauses, restarts when interrupted), continuous ambient rain sounds, and transition sound effects to maintain real focus during study sessions.
 
