@@ -93,6 +93,7 @@ The Pomodoro Timer features Focus, Short Break, and Long Break modes with direct
       '/projects/enkephalos/screen1.png',
       '/projects/enkephalos/screen2.png',
       '/projects/enkephalos/screen3.jpg',
+      '/projects/enkephalos/screen4.png',
     ],
     tags: ['React 19', 'TypeScript', 'Tailwind CSS v4', 'KaTeX', 'Java 21', 'Spring Boot', 'Docker', 'Nginx', 'GitHub Actions'],
     githubUrl: 'https://github.com/murilofsouzaa/enkephalos',
