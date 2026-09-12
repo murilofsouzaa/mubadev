@@ -25,8 +25,8 @@ export const PROJECTS_DATA: ProjectItemExtended[] = [
       en: 'Personal study space with handwritten summaries, integrated Pomodoro timer, and a technical computing notes library.',
     },
     description: {
-      pt: 'Meu espaço pessoal de estudos, onde organizo resumos que escrevi à mão sobre temas de computação, filosofia, matemática e mais. Conta com timer Pomodoro em modo rígido, sons ambientes e biblioteca navegável com suporte a KaTeX.',
-      en: 'My personal study space, where I organize summaries I handwrote on topics like computer science, philosophy, mathematics, and more. Features a strict-mode Pomodoro timer, ambient sounds, and a navigable library with KaTeX support.',
+      pt: 'Meu espaço pessoal de estudos, onde organizo resumos que escrevi à mão sobre temas de computação, filosofia, matemática e mais. Conta com Pomodoro 100% personalizável, sons ambientes e biblioteca navegável com suporte a KaTeX.',
+      en: 'My personal study space, where I organize summaries I handwrote on topics like computer science, philosophy, mathematics, and more. Features a 100% customizable Pomodoro timer, ambient sounds, and a navigable library with KaTeX support.',
     },
     fullDescription: {
       pt: `Enkephalos é o meu espaço pessoal de estudos e organização do conhecimento. Os conteúdos da biblioteca são resumos que escrevi à mão ao longo dos meus estudos sobre computação, filosofia, física, matemática e outros temas, digitalizados e organizados em formato Markdown sincronizado com o Obsidian.
