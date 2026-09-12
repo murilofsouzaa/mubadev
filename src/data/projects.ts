@@ -21,24 +21,24 @@ export const PROJECTS_DATA: ProjectItemExtended[] = [
     id: 'enkephalos',
     title: 'Enkephalos',
     subtitle: {
-      pt: 'Espaço de estudos minimalista com biblioteca de notas técnicas, localizador inteligente estilo VS Code e timer Pomodoro integrado.',
-      en: 'Minimalist study space with a technical notes library, VS Code-style smart search, and integrated Pomodoro timer.',
+      pt: 'Espaço pessoal de estudos com resumos escritos à mão, timer Pomodoro integrado e biblioteca de notas técnicas de computação.',
+      en: 'Personal study space with handwritten summaries, integrated Pomodoro timer, and a technical computing notes library.',
     },
     description: {
-      pt: 'Espaço de estudos minimalista, fluxo de anotações técnicas e gerenciador de foco com Pomodoro integrado. Suporte a KaTeX, blocos de código, paleta de cores dinâmica e temas claro/escuro.',
-      en: 'Minimalist study space, technical notes workflow, and focus manager with integrated Pomodoro. Supports KaTeX, code blocks, dynamic color palette, and light/dark themes.',
+      pt: 'Meu espaço pessoal de estudos — onde organizo resumos que escrevi à mão sobre temas de computação, filosofia, matemática e mais. Conta com timer Pomodoro em modo rígido, sons ambientes e biblioteca navegável com suporte a KaTeX.',
+      en: 'My personal study space — where I organize summaries I handwrote on topics like computer science, philosophy, mathematics, and more. Features a strict-mode Pomodoro timer, ambient sounds, and a navigable library with KaTeX support.',
     },
     fullDescription: {
-      pt: `Enkephalos é um espaço de estudos minimalista com foco em produtividade e organização do conhecimento técnico.
+      pt: `Enkephalos é o meu espaço pessoal de estudos e organização do conhecimento. Os conteúdos da biblioteca são resumos que escrevi à mão ao longo dos meus estudos sobre computação, filosofia, física, matemática e outros temas — digitalizados e organizados em formato Markdown sincronizado com o Obsidian.
 
-A Biblioteca de Estudos & Notas exibe artigos sincronizados com Markdown do Obsidian, suporte a fórmulas em KaTeX e blocos de código com navegação rápida por tópicos. O Localizador Inteligente (Ctrl+K / Ctrl+F) busca estilo VS Code com destaque natural, compatibilidade com/sem acentos e navegação palavra por palavra.
+O Timer Pomodoro vem com modo rígido (sem pausas artificiais, reinício ao interromper), sons ambientes de chuva contínua e efeitos sonoros de transição para manter o foco real durante as sessões de estudo.
 
-O Timer Pomodoro oferece modos Foco, Pausa Curta e Pausa Longa com ajuste direto no cronômetro, modo rígido sem pausas artificiais, sons ambientes de chuva e efeitos sonoros de transição. A Paleta de Cores Dinâmica Global conta com 6 temas de destaque e alternância entre temas claro e escuro.`,
-      en: `Enkephalos is a minimalist study space focused on productivity and technical knowledge organization.
+O Localizador Inteligente (Ctrl+K / Ctrl+F) faz busca estilo VS Code com destaque natural, compatibilidade com/sem acentos e navegação palavra por palavra. A Paleta de Cores Dinâmica oferece 6 temas de destaque e alternância entre temas claro e escuro.`,
+      en: `Enkephalos is my personal study space and knowledge organization tool. The library content consists of summaries I handwrote throughout my studies on computer science, philosophy, physics, mathematics, and other topics — digitized and organized in Markdown format synced with Obsidian.
 
-The Study & Notes Library displays articles synced with Obsidian Markdown, KaTeX formula support, and code blocks with quick topic navigation. The Smart Locator (Ctrl+K / Ctrl+F) offers VS Code-style search with natural highlighting, accent-insensitive matching, and word-by-word navigation.
+The Pomodoro Timer includes strict mode (no artificial pauses, restarts when interrupted), continuous ambient rain sounds, and transition sound effects to maintain real focus during study sessions.
 
-The Pomodoro Timer features Focus, Short Break, and Long Break modes with direct timer adjustment, strict mode without artificial pauses, ambient rain sounds, and transition sound effects. The Global Dynamic Color Palette includes 6 highlight themes and light/dark theme toggling.`,
+The Smart Locator (Ctrl+K / Ctrl+F) offers VS Code-style search with natural highlighting, accent-insensitive matching, and word-by-word navigation. The Dynamic Color Palette provides 6 highlight themes and light/dark theme toggling.`,
     },
     motto: {
       pt: '6 paletas dinâmicas (Verde Água, Azul, Âmbar, Esmeralda, Violeta, Rosa Coral) · Temas Claro e Escuro · Busca sem acentos.',
