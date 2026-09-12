@@ -9,7 +9,31 @@ export const BeyondWorkSection: React.FC = () => {
     {
       id: 'study',
       title: t.beyondWork.studyTitle,
-      description: t.beyondWork.studyText,
+      description: language === 'pt' ? (
+        <>
+          {t.beyondWork.studyText} Aqui segue um link de coisas da área da computação que estudei:{' '}
+          <a
+            href="https://enkephalos.mubadev.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text font-semibold underline underline-offset-4 hover:opacity-60 transition-opacity inline-block"
+          >
+            enkephalos.mubadev.com.br
+          </a>
+        </>
+      ) : (
+        <>
+          {t.beyondWork.studyText} Here is a link with things from the computing field that I have studied:{' '}
+          <a
+            href="https://enkephalos.mubadev.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text font-semibold underline underline-offset-4 hover:opacity-60 transition-opacity inline-block"
+          >
+            enkephalos.mubadev.com.br
+          </a>
+        </>
+      ),
     },
     {
       id: 'exercise',
