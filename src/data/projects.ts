@@ -243,4 +243,82 @@ I'm developing this project to learn concepts such as: Domain-Driven Design, Des
     featured: false,
     size: 'medium',
   },
+  {
+    id: 'enkephalos',
+    title: 'Enkephalos',
+    subtitle: {
+      pt: 'Espaço de estudos minimalista com biblioteca de notas técnicas, localizador inteligente estilo VS Code e timer Pomodoro integrado.',
+      en: 'Minimalist study space with a technical notes library, VS Code-style smart search, and integrated Pomodoro timer.',
+    },
+    description: {
+      pt: 'Espaço de estudos minimalista, fluxo de anotações técnicas e gerenciador de foco com Pomodoro integrado. Suporte a KaTeX, blocos de código, paleta de cores dinâmica e temas claro/escuro.',
+      en: 'Minimalist study space, technical notes workflow, and focus manager with integrated Pomodoro. Supports KaTeX, code blocks, dynamic color palette, and light/dark themes.',
+    },
+    fullDescription: {
+      pt: `Enkephalos é um espaço de estudos minimalista com foco em produtividade e organização do conhecimento técnico.
+
+A Biblioteca de Estudos & Notas exibe artigos sincronizados com Markdown do Obsidian, suporte a fórmulas em KaTeX e blocos de código com navegação rápida por tópicos. O Localizador Inteligente (Ctrl+K / Ctrl+F) busca estilo VS Code com destaque natural, compatibilidade com/sem acentos e navegação palavra por palavra.
+
+O Timer Pomodoro oferece modos Foco, Pausa Curta e Pausa Longa com ajuste direto no cronômetro, modo rígido sem pausas artificiais, sons ambientes de chuva e efeitos sonoros de transição. A Paleta de Cores Dinâmica Global conta com 6 temas de destaque e alternância entre temas claro e escuro.`,
+      en: `Enkephalos is a minimalist study space focused on productivity and technical knowledge organization.
+
+The Study & Notes Library displays articles synced with Obsidian Markdown, KaTeX formula support, and code blocks with quick topic navigation. The Smart Locator (Ctrl+K / Ctrl+F) offers VS Code-style search with natural highlighting, accent-insensitive matching, and word-by-word navigation.
+
+The Pomodoro Timer features Focus, Short Break, and Long Break modes with direct timer adjustment, strict mode without artificial pauses, ambient rain sounds, and transition sound effects. The Global Dynamic Color Palette includes 6 highlight themes and light/dark theme toggling.`,
+    },
+    motto: {
+      pt: '6 paletas dinâmicas (Verde Água, Azul, Âmbar, Esmeralda, Violeta, Rosa Coral) · Temas Claro e Escuro · Busca sem acentos.',
+      en: '6 dynamic palettes (Teal, Blue, Amber, Emerald, Violet, Coral Pink) · Light and Dark themes · Accent-insensitive search.',
+    },
+    concepts: {
+      pt: 'KaTeX (fórmulas matemáticas), Pomodoro com modo rígido, busca accent-insensitive, sincronização com Obsidian Markdown, Docker multi-stage, GitHub Actions CI/CD.',
+      en: 'KaTeX (math formulas), Pomodoro strict mode, accent-insensitive search, Obsidian Markdown sync, multi-stage Docker, GitHub Actions CI/CD.',
+    },
+    architectureDetails: {
+      backend: [
+        'Java 21 & Spring Boot',
+        'Maven (Gerenciamento de dependências)',
+        'Spring Web (API REST)',
+      ],
+      frontend: [
+        'React 19 + TypeScript',
+        'Vite (Build tool)',
+        'Tailwind CSS v4',
+        'KaTeX (Renderização de fórmulas matemáticas)',
+        'Lucide Icons',
+      ],
+      infra: [
+        'Docker & Docker Compose (Multi-container)',
+        'Nginx (Servidor HTTP, Gzip, cache de assets, suporte SPA)',
+        'Certbot (SSL/TLS automático)',
+        'GitHub Actions (CI/CD: push → SSH → deploy na VPS)',
+      ],
+      commandSnippet: 'docker compose up -d --build',
+      commandComment: '# Frontend :8088 · Backend :8089',
+      productionFlow: [
+        {
+          pt: 'Frontend compilado com Vite e servido por Nginx Alpine com Gzip e cache agressivo na porta 8088.',
+          en: 'Frontend compiled with Vite and served by Nginx Alpine with Gzip and aggressive caching on port 8088.',
+        },
+        {
+          pt: 'Backend Spring Boot executado em container separado na porta 8089, acessível internamente via rede Docker.',
+          en: 'Spring Boot backend runs in a separate container on port 8089, accessible internally via Docker network.',
+        },
+        {
+          pt: 'Nginx host da VPS roteia HTTPS (443) com SSL via Certbot para os containers em enkephalos.mubadev.com.br.',
+          en: 'VPS host Nginx routes HTTPS (443) with Certbot SSL to the containers at enkephalos.mubadev.com.br.',
+        },
+        {
+          pt: 'GitHub Actions dispara no push para main: build → Docker → deploy SSH automático na VPS.',
+          en: 'GitHub Actions triggers on push to main: build → Docker → automatic SSH deploy to VPS.',
+        },
+      ],
+    },
+    image: '/enkephalosthumbnail.png',
+    tags: ['React 19', 'TypeScript', 'Tailwind CSS v4', 'KaTeX', 'Java 21', 'Spring Boot', 'Docker', 'Nginx', 'GitHub Actions'],
+    githubUrl: 'https://github.com/murilofsouzaa/enkephalos',
+    deployUrl: 'https://enkephalos.mubadev.com.br',
+    featured: false,
+    size: 'medium',
+  },
 ];
