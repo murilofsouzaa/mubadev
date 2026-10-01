@@ -76,6 +76,14 @@ export interface TranslationSchema {
     objectiveText1: string;
     objectiveText2: string;
     educationTitle: string;
+    skillsTitle: string;
+    skillsCategories: {
+      languages: { title: string; items: string[] };
+      frameworks: { title: string; items: string[] };
+      databases: { title: string; items: string[] };
+      devops: { title: string; items: string[] };
+      architecture: { title: string; items: string[] };
+    };
     languagesTitle: string;
     englishLabel: string;
     englishLevel: string;
@@ -238,6 +246,29 @@ export const translations: Record<Language, TranslationSchema> = {
       objectiveText1: 'Desenvolvedor de Software e estudante de Engenharia de Software na PUC Minas, com sólida formação técnica pelo IFNMG e experiência prática no desenvolvimento e deploy de aplicações web em produção.',
       objectiveText2: 'Atualmente faço parte da equipe de suporte e desenvolvimento na AFFEMG — incluindo plataforma interna de chamados e aplicação web de bem-estar com React, Tailwind CSS, Node.js e Supabase —, além de projetar arquiteturas escaláveis com Java/Spring Boot, PostgreSQL, Docker e NGINX.',
       educationTitle: 'Formação Acadêmica',
+      skillsTitle: 'Habilidades Técnicas',
+      skillsCategories: {
+        languages: {
+          title: 'Linguagens de Programação',
+          items: ['Java (21)', 'TypeScript', 'JavaScript', 'SQL'],
+        },
+        frameworks: {
+          title: 'Frameworks & Bibliotecas',
+          items: ['Spring Boot', 'Spring Security', 'Spring Data JPA', 'React', 'Node.js', 'Express.js', 'Tailwind CSS'],
+        },
+        databases: {
+          title: 'Bancos de Dados',
+          items: ['PostgreSQL', 'MySQL', 'SQL Server', 'MongoDB', 'Supabase (Queries Otimizadas, Modelagem Relacional)'],
+        },
+        devops: {
+          title: 'DevOps & Infraestrutura',
+          items: ['Docker', 'Docker Compose', 'Nginx (Proxy Reverso)', 'Git', 'GitHub Actions (CI/CD)', 'Linux'],
+        },
+        architecture: {
+          title: 'Conceitos & Arquitetura',
+          items: ['Arquitetura Limpa', 'Clean Code', 'Princípios SOLID', 'Design Patterns', 'APIs RESTful', 'JWT', 'Tratamento Global de Exceções', 'Estado Global', 'Metodologias Ágeis (Scrum)', 'JUnit'],
+        },
+      },
       languagesTitle: 'Idiomas',
       englishLabel: 'Inglês',
       englishLevel: 'Intermediário / Avançado',
@@ -396,6 +427,29 @@ export const translations: Record<Language, TranslationSchema> = {
       objectiveText1: 'Software Developer and Software Engineering student at PUC Minas, with a solid technical background from IFNMG and practical experience developing and deploying production web applications.',
       objectiveText2: 'Currently part of the support and development team at AFFEMG — working on internal systems, a ticketing platform, and a wellness web application with React, Tailwind CSS, Node.js, and Supabase —, alongside designing scalable architectures with Java/Spring Boot, PostgreSQL, Docker, and NGINX.',
       educationTitle: 'Academic Background',
+      skillsTitle: 'Technical Skills',
+      skillsCategories: {
+        languages: {
+          title: 'Programming Languages',
+          items: ['Java (21)', 'TypeScript', 'JavaScript', 'SQL'],
+        },
+        frameworks: {
+          title: 'Frameworks & Libraries',
+          items: ['Spring Boot', 'Spring Security', 'Spring Data JPA', 'React', 'Node.js', 'Express.js', 'Tailwind CSS'],
+        },
+        databases: {
+          title: 'Databases',
+          items: ['PostgreSQL', 'MySQL', 'SQL Server', 'MongoDB', 'Supabase (Query Optimization, Relational Modeling)'],
+        },
+        devops: {
+          title: 'DevOps & Infrastructure',
+          items: ['Docker', 'Docker Compose', 'Nginx (Reverse Proxy)', 'Git', 'GitHub Actions (CI/CD)', 'Linux'],
+        },
+        architecture: {
+          title: 'Concepts & Architecture',
+          items: ['Clean Architecture', 'Clean Code', 'SOLID Principles', 'Design Patterns', 'RESTful APIs', 'JWT', 'Global Exception Handling', 'State Management', 'Agile/Scrum', 'JUnit'],
+        },
+      },
       languagesTitle: 'Languages',
       englishLabel: 'English',
       englishLevel: 'Intermediate / Advanced',

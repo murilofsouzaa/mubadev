@@ -56,6 +56,39 @@ export const AboutSection: React.FC = () => {
           </div>
         </motion.div>
 
+        {/* Technical Skills with Scroll Opacity Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-6 max-w-3xl border-t border-border/80 pt-12 sm:pt-16"
+        >
+          <h3 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
+            {t.about.skillsTitle}
+          </h3>
+
+          <div className="grid grid-cols-1 gap-6">
+            {Object.entries(t.about.skillsCategories).map(([key, category]) => (
+              <div key={key} className="space-y-2.5">
+                <h4 className="text-xs font-mono font-semibold tracking-wider uppercase text-text">
+                  {category.title}
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {category.items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="border border-border/60 bg-text/5 px-2.5 py-1 rounded-md text-xs font-mono text-text-dim hover:text-text hover:border-text/40 transition-colors"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Academic Education with Scroll Opacity Reveal */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
