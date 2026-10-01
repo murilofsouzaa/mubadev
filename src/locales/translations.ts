@@ -258,15 +258,15 @@ export const translations: Record<Language, TranslationSchema> = {
         },
         databases: {
           title: 'Bancos de Dados',
-          items: ['PostgreSQL', 'MySQL', 'SQL Server', 'MongoDB', 'Supabase (Queries Otimizadas, Modelagem Relacional)'],
+          items: ['PostgreSQL', 'MySQL', 'SQL Server', 'MongoDB'],
         },
         devops: {
           title: 'DevOps & Infraestrutura',
-          items: ['Docker', 'Docker Compose', 'Nginx (Proxy Reverso)', 'Git', 'GitHub Actions (CI/CD)', 'Linux'],
+          items: ['Docker', 'Nginx (Proxy Reverso)', 'Git', 'GitHub Actions (CI/CD)', 'Linux'],
         },
         architecture: {
           title: 'Conceitos & Arquitetura',
-          items: ['Arquitetura Limpa', 'Clean Code', 'Princípios SOLID', 'Design Patterns', 'APIs RESTful', 'JWT', 'Tratamento Global de Exceções', 'Estado Global', 'Metodologias Ágeis (Scrum)', 'JUnit'],
+          items: ['Arquitetura Limpa', 'Clean Code', 'Princípios SOLID', 'Design Patterns', 'APIs RESTful', 'JWT', 'Metodologias Ágeis (Scrum)', 'JUnit'],
         },
       },
       languagesTitle: 'Idiomas',
@@ -439,15 +439,15 @@ export const translations: Record<Language, TranslationSchema> = {
         },
         databases: {
           title: 'Databases',
-          items: ['PostgreSQL', 'MySQL', 'SQL Server', 'MongoDB', 'Supabase (Query Optimization, Relational Modeling)'],
+          items: ['PostgreSQL', 'MySQL', 'SQL Server', 'MongoDB'],
         },
         devops: {
           title: 'DevOps & Infrastructure',
-          items: ['Docker', 'Docker Compose', 'Nginx (Reverse Proxy)', 'Git', 'GitHub Actions (CI/CD)', 'Linux'],
+          items: ['Docker', 'Nginx (Reverse Proxy)', 'Git', 'GitHub Actions (CI/CD)', 'Linux'],
         },
         architecture: {
           title: 'Concepts & Architecture',
-          items: ['Clean Architecture', 'Clean Code', 'SOLID Principles', 'Design Patterns', 'RESTful APIs', 'JWT', 'Global Exception Handling', 'State Management', 'Agile/Scrum', 'JUnit'],
+          items: ['Clean Architecture', 'Clean Code', 'SOLID Principles', 'Design Patterns', 'RESTful APIs', 'JWT', 'Agile/Scrum', 'JUnit'],
         },
       },
       languagesTitle: 'Languages',
