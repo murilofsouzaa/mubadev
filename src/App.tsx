@@ -11,8 +11,21 @@ import { AboutSection } from './components/AboutSection';
 import { BeyondWorkSection } from './components/BeyondWorkSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { BooksPage } from './pages/BooksPage';
 
 const AppContent: React.FC = () => {
+  const [currentPath, setCurrentPath] = React.useState(() => window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = () => setCurrentPath(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  if (currentPath === '/livros' || currentPath === '/books') {
+    return <BooksPage />;
+  }
+
   // Ultra-smooth river glide momentum scroll with Lenis
   useEffect(() => {
     const lenis = new Lenis({

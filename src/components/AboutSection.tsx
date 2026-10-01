@@ -47,7 +47,7 @@ export const AboutSection: React.FC = () => {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-4 max-w-3xl"
         >
-          <h3 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
+          <h3 className="text-2xl sm:text-3xl font-bold text-text tracking-tight">
             {t.about.objectiveTitle}
           </h3>
           <div className="space-y-3 text-base sm:text-lg text-text-dim leading-relaxed font-normal">
@@ -64,7 +64,7 @@ export const AboutSection: React.FC = () => {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-6 max-w-3xl border-t border-border/80 pt-12 sm:pt-16"
         >
-          <h3 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
+          <h3 className="text-2xl sm:text-3xl font-bold text-text tracking-tight">
             {t.about.skillsTitle}
           </h3>
 
@@ -89,6 +89,28 @@ export const AboutSection: React.FC = () => {
           </div>
         </motion.div>
 
+        {/* Technical Books with Scroll Opacity Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-4 max-w-3xl border-t border-border/80 pt-12 sm:pt-16"
+        >
+          <h3 className="text-2xl sm:text-3xl font-bold text-text tracking-tight">
+            {t.about.technicalBooksTitle}
+          </h3>
+
+          <div>
+            <a
+              href="/livros"
+              className="text-base sm:text-lg font-semibold text-text underline underline-offset-4 hover:opacity-60 transition-opacity inline-block"
+            >
+              {t.about.technicalBooksLink}
+            </a>
+          </div>
+        </motion.div>
+
         {/* Academic Education with Scroll Opacity Reveal */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -97,7 +119,7 @@ export const AboutSection: React.FC = () => {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-6 max-w-3xl border-t border-border/80 pt-12 sm:pt-16"
         >
-          <h3 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
+          <h3 className="text-2xl sm:text-3xl font-bold text-text tracking-tight">
             {t.about.educationTitle}
           </h3>
 
@@ -127,7 +149,7 @@ export const AboutSection: React.FC = () => {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-6 max-w-3xl border-t border-border/80 pt-12 sm:pt-16"
         >
-          <h3 className="text-xl sm:text-2xl font-bold text-text tracking-tight">
+          <h3 className="text-2xl sm:text-3xl font-bold text-text tracking-tight">
             {t.about.languagesTitle}
           </h3>
 

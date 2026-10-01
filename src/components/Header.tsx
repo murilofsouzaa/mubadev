@@ -40,7 +40,13 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isHomePage = window.location.pathname === '/' || window.location.pathname === '';
+
   const scrollTo = (id: string) => {
+    if (!isHomePage) {
+      window.location.href = '/#' + id;
+      return;
+    }
     const lenis = (window as any).__lenis;
     if (lenis) {
       lenis.scrollTo('#' + id, { duration: 1.5 });
@@ -51,6 +57,10 @@ export const Header: React.FC = () => {
   };
 
   const scrollToTop = () => {
+    if (!isHomePage) {
+      window.location.href = '/';
+      return;
+    }
     const lenis = (window as any).__lenis;
     if (lenis) {
       lenis.scrollTo(0, { duration: 1.5 });

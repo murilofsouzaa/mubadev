@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="w-full py-12 border-t border-border/60 max-w-4xl mx-auto select-none mt-12">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-text-dim">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans font-medium text-text-dim">
         <div>
           <span>Murilo Freitas © {new Date().getFullYear()}</span>
           <span className="mx-2">•</span>

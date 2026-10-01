@@ -89,6 +89,8 @@ export interface TranslationSchema {
     englishLevel: string;
     portugueseLabel: string;
     portugueseLevel: string;
+    technicalBooksTitle: string;
+    technicalBooksLink: string;
   };
   beyondWork: {
     title: string;
@@ -184,7 +186,7 @@ export const translations: Record<Language, TranslationSchema> = {
       downloadCv: 'Baixar Currículo',
       downloadAria: 'Baixar currículo em PDF',
       cvFileName: 'Murilo_Freitas_CV_PT.pdf',
-      cvFilePath: '/agosto2026.pdf',
+      cvFilePath: '/Murilo_Freitas_CV_PT.pdf',
       contactMe: 'Entrar em Contato',
       location: 'Belo Horizonte — MG, Brasil',
       status: 'Aberto a Projetos & Oportunidades',
@@ -254,7 +256,7 @@ export const translations: Record<Language, TranslationSchema> = {
         },
         frameworks: {
           title: 'Frameworks & Bibliotecas',
-          items: ['Spring Boot', 'Spring Security', 'Spring Data JPA', 'React', 'Node.js', 'Express.js', 'Tailwind CSS'],
+          items: ['Spring Boot', 'Spring Security', 'Spring Data JPA', 'Hibernate ORM', 'React', 'Node.js', 'Express.js', 'Tailwind CSS'],
         },
         databases: {
           title: 'Bancos de Dados',
@@ -271,9 +273,11 @@ export const translations: Record<Language, TranslationSchema> = {
       },
       languagesTitle: 'Idiomas',
       englishLabel: 'Inglês',
-      englishLevel: 'Intermediário / Avançado',
+      englishLevel: 'B2',
       portugueseLabel: 'Português',
       portugueseLevel: 'Nativo / Fluente',
+      technicalBooksTitle: 'Livros Técnicos',
+      technicalBooksLink: 'Ver livros técnicos que li e estou lendo',
     },
     beyondWork: {
       title: 'Depois do trabalho',
@@ -365,7 +369,7 @@ export const translations: Record<Language, TranslationSchema> = {
       downloadCv: 'Download Resume',
       downloadAria: 'Download resume in PDF',
       cvFileName: 'Murilo_Freitas_Resume_EN.pdf',
-      cvFilePath: '/agosto2026.pdf',
+      cvFilePath: '/Murilo_Freitas_Resume_EN.pdf',
       contactMe: 'Get in Touch',
       location: 'Belo Horizonte — MG, Brazil',
       status: 'Open to Projects & Work',
@@ -435,7 +439,7 @@ export const translations: Record<Language, TranslationSchema> = {
         },
         frameworks: {
           title: 'Frameworks & Libraries',
-          items: ['Spring Boot', 'Spring Security', 'Spring Data JPA', 'React', 'Node.js', 'Express.js', 'Tailwind CSS'],
+          items: ['Spring Boot', 'Spring Security', 'Spring Data JPA', 'Hibernate ORM', 'React', 'Node.js', 'Express.js', 'Tailwind CSS'],
         },
         databases: {
           title: 'Databases',
@@ -452,9 +456,11 @@ export const translations: Record<Language, TranslationSchema> = {
       },
       languagesTitle: 'Languages',
       englishLabel: 'English',
-      englishLevel: 'Intermediate / Advanced',
+      englishLevel: 'B2',
       portugueseLabel: 'Portuguese',
       portugueseLevel: 'Native / Fluent',
+      technicalBooksTitle: 'Technical Books',
+      technicalBooksLink: 'View technical books I have read and am reading',
     },
     beyondWork: {
       title: 'After Work',

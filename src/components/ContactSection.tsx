@@ -145,7 +145,7 @@ export const ContactSection: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-text-dim uppercase tracking-wider">
+                    <label className="text-xs font-sans font-semibold text-text-dim uppercase tracking-wider">
                       {t.contact.form.nameLabel} *
                     </label>
                     <input
@@ -159,7 +159,7 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-text-dim uppercase tracking-wider">
+                    <label className="text-xs font-sans font-semibold text-text-dim uppercase tracking-wider">
                       {t.contact.form.emailLabel} *
                     </label>
                     <input
@@ -174,7 +174,7 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-text-dim uppercase tracking-wider">
+                  <label className="text-xs font-sans font-semibold text-text-dim uppercase tracking-wider">
                     {t.contact.form.subjectLabel}
                   </label>
                   <input
@@ -187,7 +187,7 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-text-dim uppercase tracking-wider">
+                  <label className="text-xs font-sans font-semibold text-text-dim uppercase tracking-wider">
                     {t.contact.form.messageLabel} *
                   </label>
                   <textarea
@@ -222,7 +222,7 @@ export const ContactSection: React.FC = () => {
           {/* Right Column: Direct Info (5 cols) */}
           <div className="md:col-span-5 space-y-6 text-sm">
             <div className="space-y-1.5">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-text-dim">
+              <h3 className="text-xs font-sans font-semibold uppercase tracking-wider text-text-dim">
                 {t.contact.info.directTitle}
               </h3>
               <div className="flex items-center gap-2 pt-1">
@@ -248,7 +248,7 @@ export const ContactSection: React.FC = () => {
             </div>
 
             <div className="space-y-1.5">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-text-dim">
+              <h3 className="text-xs font-sans font-semibold uppercase tracking-wider text-text-dim">
                 {t.contact.info.locationLabel}
               </h3>
               <p className="text-text font-medium">
@@ -257,7 +257,7 @@ export const ContactSection: React.FC = () => {
             </div>
 
             <div className="space-y-1.5">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-text-dim">
+              <h3 className="text-xs font-sans font-semibold uppercase tracking-wider text-text-dim">
                 {t.contact.info.socialTitle}
               </h3>
               <div className="flex items-center gap-4 pt-1 font-medium">
