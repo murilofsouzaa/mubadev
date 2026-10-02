@@ -71,14 +71,14 @@ export const AboutSection: React.FC = () => {
           <div className="grid grid-cols-1 gap-6">
             {Object.entries(t.about.skillsCategories).map(([key, category]) => (
               <div key={key} className="space-y-2.5">
-                <h4 className="text-xs font-sans font-semibold tracking-wider uppercase text-text">
+                <h4 className="text-sm sm:text-base font-sans font-semibold tracking-wide text-text">
                   {category.title}
                 </h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2.5">
                   {category.items.map((skill) => (
                     <span
                       key={skill}
-                      className="border border-border/60 bg-text/5 px-2.5 py-1 rounded-md text-xs font-sans font-medium text-text-dim hover:text-text hover:border-text/40 transition-colors"
+                      className="border border-border/60 bg-text/5 px-3 py-1.5 rounded-md text-xs sm:text-sm font-sans font-medium text-text-dim hover:text-text hover:border-text/40 transition-colors"
                     >
                       {skill}
                     </span>

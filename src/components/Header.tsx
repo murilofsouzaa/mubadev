@@ -26,10 +26,17 @@ export const Header: React.FC = () => {
       }
 
       // Check if header is over the dark section
-      const darkSection = document.getElementById('depois-do-trabalho');
-      if (darkSection) {
-        const rect = darkSection.getBoundingClientRect();
-        setIsOverDark(rect.top <= 40);
+      const circleContainer = document.getElementById('circulo-tema');
+      const beyondSection = document.getElementById('depois-do-trabalho');
+      
+      if (circleContainer) {
+        const circleRect = circleContainer.getBoundingClientRect();
+        // The circle starts expanding from top 22%. It fully covers the top bar once scrolled ~28% into the pinned container.
+        const isDarkInCircle = circleRect.top <= -window.innerHeight * 0.28 && circleRect.bottom > 40;
+        const isDarkInBeyond = beyondSection ? beyondSection.getBoundingClientRect().top <= 60 : false;
+        setIsOverDark(isDarkInCircle || isDarkInBeyond);
+      } else if (beyondSection) {
+        setIsOverDark(beyondSection.getBoundingClientRect().top <= 40);
       }
 
       lastScrollY.current = currentScrollY;
@@ -48,8 +55,26 @@ export const Header: React.FC = () => {
       return;
     }
     const lenis = (window as any).__lenis;
+
+    if (id === 'depois-do-trabalho') {
+      const circleContainer = document.getElementById('circulo-tema');
+      if (circleContainer) {
+        const isMobile = window.innerWidth < 640;
+        const progressFactor = isMobile ? 0.60 : 0.64;
+        const maxScroll = circleContainer.offsetHeight - window.innerHeight;
+        const targetScroll = circleContainer.offsetTop + Math.max(0, maxScroll * progressFactor);
+        
+        if (lenis) {
+          lenis.scrollTo(targetScroll, { duration: 1.4 });
+        } else {
+          window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+        }
+        return;
+      }
+    }
+
     if (lenis) {
-      lenis.scrollTo('#' + id, { duration: 1.5 });
+      lenis.scrollTo('#' + id, { duration: 1.4 });
     } else {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -148,27 +173,37 @@ export const Header: React.FC = () => {
               Murilo Freitas<span className="opacity-60">.</span>
             </button>
 
-            {/* Right: Language Switcher in place of Resume Button */}
-            <div className="flex items-center gap-1 font-mono text-xs opacity-90">
+            {/* Right: Nav link + Language Switcher */}
+            <div className="flex items-center gap-3 text-xs font-medium">
               <button
                 type="button"
-                onClick={() => setLanguage('pt')}
-                className={`hover:opacity-100 px-1 py-0.5 ${
-                  language === 'pt' ? 'font-bold underline underline-offset-2' : 'opacity-50'
-                }`}
+                onClick={() => scrollTo('depois-do-trabalho')}
+                className="hover:opacity-70 transition-opacity cursor-pointer whitespace-nowrap text-xs"
               >
-                PT
+                {language === 'pt' ? 'Depois do trabalho' : 'After Work'}
               </button>
-              <span className="opacity-40">/</span>
-              <button
-                type="button"
-                onClick={() => setLanguage('en')}
-                className={`hover:opacity-100 px-1 py-0.5 ${
-                  language === 'en' ? 'font-bold underline underline-offset-2' : 'opacity-50'
-                }`}
-              >
-                EN
-              </button>
+
+              <div className="flex items-center gap-0.5 font-mono text-[11px] opacity-90">
+                <button
+                  type="button"
+                  onClick={() => setLanguage('pt')}
+                  className={`hover:opacity-100 px-1 py-0.5 ${
+                    language === 'pt' ? 'font-bold underline underline-offset-2' : 'opacity-50'
+                  }`}
+                >
+                  PT
+                </button>
+                <span className="opacity-40">/</span>
+                <button
+                  type="button"
+                  onClick={() => setLanguage('en')}
+                  className={`hover:opacity-100 px-1 py-0.5 ${
+                    language === 'en' ? 'font-bold underline underline-offset-2' : 'opacity-50'
+                  }`}
+                >
+                  EN
+                </button>
+              </div>
             </div>
           </motion.div>
         )}

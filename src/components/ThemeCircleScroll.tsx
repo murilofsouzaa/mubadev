@@ -31,9 +31,9 @@ export const ThemeCircleScroll: React.FC = () => {
   const desktopScale = useTransform(scrollYProgress, [0.05, 0.65], [1, 650]);
   const desktopOpacity = useTransform(scrollYProgress, [0.46, 0.65], [0, 1]);
 
-  // Mobile values: fast, fluid, and flowing in 1-2 natural swipes (no dragging multiple times)
-  const mobileScale = useTransform(scrollYProgress, [0.01, 0.52], [1, 360]);
-  const mobileOpacity = useTransform(scrollYProgress, [0.18, 0.48], [0, 1]);
+  // Mobile values: smooth, progressive, natural momentum across 195vh
+  const mobileScale = useTransform(scrollYProgress, [0.03, 0.58], [1, 450]);
+  const mobileOpacity = useTransform(scrollYProgress, [0.28, 0.58], [0, 1]);
 
   const scale = isMobile ? mobileScale : desktopScale;
   const contentOpacity = isMobile ? mobileOpacity : desktopOpacity;
@@ -41,16 +41,16 @@ export const ThemeCircleScroll: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      id="depois-do-trabalho"
-      className="relative w-full h-[145vh] sm:h-[260vh] bg-[#F5F2EB] select-none"
+      id="circulo-tema"
+      className="relative w-full h-[195vh] sm:h-[260vh] bg-[#F5F2EB] select-none"
     >
       {/* Sticky full-screen viewport */}
-      <div className="sticky top-0 h-[100dvh] sm:h-screen w-full overflow-hidden bg-[#F5F2EB] flex items-center justify-center">
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#F5F2EB] flex items-center justify-center">
         
         {/* The expanding black circle positioned near the top (22%) centered horizontally */}
         <motion.div
           style={{ scale }}
-          className="absolute top-[22%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#000000] pointer-events-none z-10 origin-center"
+          className="absolute top-[22%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-[#000000] pointer-events-none z-10 origin-center will-change-transform transform-gpu"
         />
 
         {/* Somente o texto "Depois do trabalho." flutuando com pureza no centro da tela escura */}
@@ -58,7 +58,7 @@ export const ThemeCircleScroll: React.FC = () => {
           style={{
             opacity: contentOpacity,
           }}
-          className="relative z-20 max-w-4xl w-full text-center px-6 sm:px-12 text-white pointer-events-auto flex flex-col items-center justify-center"
+          className="relative z-20 max-w-4xl w-full text-center px-6 sm:px-12 text-white pointer-events-auto flex flex-col items-center justify-center will-change-opacity"
         >
           <h2 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-[1.08]">
             {t.beyondWork.title}
