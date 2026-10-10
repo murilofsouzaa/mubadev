@@ -176,7 +176,6 @@ The Smart Locator (Ctrl+K / Ctrl+F) offers VS Code-style search with natural hig
       '/projects/enkephalos/screen6.png',
     ],
     tags: ['React 19', 'TypeScript', 'Tailwind CSS v4', 'KaTeX', 'Java 21', 'Spring Boot', 'Docker', 'Nginx', 'GitHub Actions'],
-    githubUrl: 'https://github.com/murilofsouzaa/enkephalos',
     deployUrl: 'https://enkephalos.mubadev.com.br',
     featured: false,
     size: 'medium',
